@@ -1,7 +1,8 @@
+import Profile from 'components/mypage/Profile';
 import React from 'react';
 
 const Mypage = () => {
-  return <div>Mypage</div>;
+  return <Profile />;
 };
 
 export default Mypage;
