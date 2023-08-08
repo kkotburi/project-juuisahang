@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { deletePost, getPosts, updatePost } from 'api/post';
+import Share from './Share';
 
 const Post = () => {
   const [title, setTitle] = useState('');
@@ -106,6 +107,7 @@ const Post = () => {
                 내용 : {post.body}
               </div>
             )}
+            <Share />
           </div>
         );
       })}
