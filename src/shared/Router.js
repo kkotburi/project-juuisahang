@@ -6,18 +6,19 @@ import Main from '../pages/Main';
 import Category from 'pages/Category';
 import Detail from 'pages/Detail';
 import Write from 'pages/Write';
+import MyPage from 'pages/MyPage';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Join />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
         <Route path="/" element={<Main />} />
-        {/* <Route path="/category" element={<Category />} />
+        <Route path="/category" element={<Category />} />
         <Route path="/detail/:postId" element={<Detail />} />
         <Route path="/write" element={<Write />} />
-        <Route path="/mypage" element={<MyPage />} /> */}
+        <Route path="/mypage" element={<MyPage />} />
       </Routes>
     </BrowserRouter>
   );
