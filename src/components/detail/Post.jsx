@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { deletePost, getPosts, updatePost } from 'api/post';
+import { deletePost, getDetail, getPosts, updatePost } from 'api/post';
 import Share from './Share';
+import { Link } from 'react-router-dom';
 
 const Post = () => {
+  const params = useParams();
+
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [isEdit, setIsEdit] = useState(false);
@@ -11,7 +15,7 @@ const Post = () => {
   const handleOnChangeTitle = (e) => setTitle(e.target.value);
   const handleOnChangeBody = (e) => setBody(e.target.value);
 
-  const { data: posts, isLoading, isError } = useQuery('posts', getPosts);
+  const { data: posts, isLoading, isError } = useQuery('posts', () => getDetail(params.postId));
 
   const queryQlient = useQueryClient();
 
@@ -67,6 +71,9 @@ const Post = () => {
             }}
             key={post.id}
           >
+            <Link to={`/category`}>
+              <button>카테고리로</button>
+            </Link>
             <div
               style={{
                 display: 'flex',
@@ -107,6 +114,15 @@ const Post = () => {
                 내용 : {post.body}
               </div>
             )}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <button>❤️</button>
+            </div>
             <Share />
           </div>
         );

@@ -16,7 +16,7 @@ const Share = () => {
       <CopyToClipboard text={currentUrl} onCopy={() => alert('주소가 복사되었습니다.')}>
         <button>URL</button>
       </CopyToClipboard>
-      <button>카카오톡</button>
+      {/* <button>카카오톡</button> */}
       <TwitterShareButton url={currentUrl}>
         <TwitterIcon size={36} round={true} />
       </TwitterShareButton>
