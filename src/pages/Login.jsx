@@ -1,5 +1,5 @@
 import useInput from 'hooks/useInput';
-import { supabaseClient } from 'lib/supabase/supabase';
+import { supabase } from 'lib/supabaseClient';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const { data, error } = await supabaseClient.auth.signInWithPassword({
+      const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
       });
@@ -27,13 +27,8 @@ const Login = () => {
     }
   };
 
-  const signOut = async () => {
-    await supabaseClient.auth.signOut();
-  };
-
   return (
     <>
-      <button onClick={signOut}>로그아웃</button>
       <div>
         <form onSubmit={signInWithEmail}>
           <div>

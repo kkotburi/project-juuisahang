@@ -1,5 +1,5 @@
 import useInput from 'hooks/useInput';
-import { supabaseClient } from 'lib/supabase/supabase';
+import { supabase } from 'lib/supabaseClient';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,19 +27,17 @@ const Join = () => {
     try {
       // 프로필이미지 storage에 업로드
       const fileName = `./${email}/${selectedFile.name}`;
-      const { data: imgData, error: imgError } = await supabaseClient.storage
-        .from('profile')
-        .upload(fileName, selectedFile, {
-          upsert: true
-        });
+      const { data: imgData, error: imgError } = await supabase.storage.from('profile').upload(fileName, selectedFile, {
+        upsert: true
+      });
 
       const PROFILE_BASE_URL = 'https://nogglsilnolluhkmrvqx.supabase.co/storage/v1/object/public/profile/';
 
-      if (error) {
+      if (imgError) {
         console.error(imgError);
       }
 
-      const { data, error } = await supabaseClient.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
