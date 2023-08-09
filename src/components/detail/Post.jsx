@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { deletePost, getPosts, updatePost } from 'api/post';
+import { deletePost, getDetail, getPosts, updatePost } from 'api/post';
+import Share from './Share';
+import Likes from './Likes';
 
 const Post = () => {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [isEdit, setIsEdit] = useState(false);
+  const params = useParams();
 
-  const handleOnChangeTitle = (e) => setTitle(e.target.value);
-  const handleOnChangeBody = (e) => setBody(e.target.value);
-
-  const { data: posts, isLoading, isError } = useQuery('posts', getPosts);
+  const { data: posts, isLoading, isError } = useQuery('posts', () => getDetail(params.postId));
 
   const queryQlient = useQueryClient();
 
@@ -25,6 +23,13 @@ const Post = () => {
       queryQlient.invalidateQueries('posts');
     }
   });
+
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleOnChangeTitle = (e) => setTitle(e.target.value);
+  const handleOnChangeBody = (e) => setBody(e.target.value);
 
   const handleDeletePost = (id) => {
     deleteMutation.mutate(id);
@@ -66,6 +71,9 @@ const Post = () => {
             }}
             key={post.id}
           >
+            <Link to={`/category`}>
+              <button>카테고리로</button>
+            </Link>
             <div
               style={{
                 display: 'flex',
@@ -106,6 +114,8 @@ const Post = () => {
                 내용 : {post.body}
               </div>
             )}
+            <Likes />
+            <Share />
           </div>
         );
       })}
