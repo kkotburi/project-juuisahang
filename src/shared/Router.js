@@ -14,9 +14,9 @@ const Router = () => {
         {/* <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} /> */}
         <Route path="/" element={<Main />} />
-        {/* <Route path="/category" element={<Category />} />
-        <Route path="/detail/:postId" element={<Detail />} />
-        <Route path="/write" element={<Write />} />
+        {/* <Route path="/category" element={<Category />} /> */}
+        <Route path="/detail" element={<Detail />} />
+        {/* <Route path="/write" element={<Write />} />
         <Route path="/mypage" element={<MyPage />} /> */}
       </Routes>
     </BrowserRouter>
