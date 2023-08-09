@@ -6459,6 +6459,11 @@ levn@^0.4.1:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
 
+lib@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/lib/-/lib-5.0.1.tgz#26d86b99b5a973a754a205632eebf16ab06e83b3"
+  integrity sha512-4Mqauzg2j7F0n7Qy9acFuAUeyYa+TGy6kjTCxzxX1HiHxzQkqw49eDWiK4Zmr023GG/6Yq5DZi15kQDhdO3BVg==
+
 lilconfig@^2.0.3, lilconfig@^2.0.5, lilconfig@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.1.0.tgz#78e23ac89ebb7e1bfbf25b18043de756548e7f52"
