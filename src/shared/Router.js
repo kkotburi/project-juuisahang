@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { supabase } from 'lib/supabaseClient';
+import supabase from 'lib/supabaseClient';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // page
 import Login from 'pages/Login';

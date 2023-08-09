@@ -1,5 +1,5 @@
 import useInput from 'hooks/useInput';
-import { supabase } from 'lib/supabaseClient';
+import supabase from 'lib/supabaseClient';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
