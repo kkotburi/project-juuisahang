@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { deletePost, getDetail, getPosts, updatePost } from 'api/post';
 import Share from './Share';
-import { Link } from 'react-router-dom';
+import Likes from './Likes';
 
 const Post = () => {
   const params = useParams();
-
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [isEdit, setIsEdit] = useState(false);
-
-  const handleOnChangeTitle = (e) => setTitle(e.target.value);
-  const handleOnChangeBody = (e) => setBody(e.target.value);
 
   const { data: posts, isLoading, isError } = useQuery('posts', () => getDetail(params.postId));
 
@@ -30,6 +23,13 @@ const Post = () => {
       queryQlient.invalidateQueries('posts');
     }
   });
+
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleOnChangeTitle = (e) => setTitle(e.target.value);
+  const handleOnChangeBody = (e) => setBody(e.target.value);
 
   const handleDeletePost = (id) => {
     deleteMutation.mutate(id);
@@ -114,15 +114,7 @@ const Post = () => {
                 내용 : {post.body}
               </div>
             )}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-            >
-              <button>❤️</button>
-            </div>
+            <Likes />
             <Share />
           </div>
         );
