@@ -4,5 +4,5 @@ export const useUserStore = create((set) => ({
   currentUser: null,
   addCurrentUser: (user) => set(() => ({ currentUser: user })),
   deleteCurrentUser: () => set(() => ({ currentUser: null })),
-  updateCurrentUser: (updateUser) => set((state) => ({ user: { ...state.user, ...updateUser } }))
+  updateCurrentUser: (updateUser) => set((state) => ({ currentUser: { ...state.currentUser, ...updateUser } }))
 }));
