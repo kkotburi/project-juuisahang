@@ -1,6 +1,6 @@
-import { getPosts } from 'api/posts';
 import React from 'react';
 import { useQuery } from 'react-query';
+import { getPosts } from 'api/posts';
 
 const Hangover = ({ code }) => {
   const { isLoading, isError, data } = useQuery('posts', getPosts);
