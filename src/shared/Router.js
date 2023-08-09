@@ -11,7 +11,7 @@ import Write from 'pages/Write';
 import AuthRoute from './AuthRoute';
 import Layout from './Layout';
 import { useUserStore } from 'store';
-import Mypage from 'pages/Mypage';
+import MyPage from 'pages/MyPage';
 
 const Router = () => {
   const { addCurrentUser, deleteCurrentUser } = useUserStore((state) => state);
@@ -59,7 +59,8 @@ const Router = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          <Route path="/mypage" element={<AuthRoute component={<Mypage />} authenticated={currentUser} />} />
+          {/* <Route path="/mypage" element={<AuthRoute component={<MyPage />} authenticated={currentUser} />} /> */}
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/" element={<Main />} />
           <Route path="/category" element={<Category />} />
           <Route path="/detail/:postId" element={<Detail />} />

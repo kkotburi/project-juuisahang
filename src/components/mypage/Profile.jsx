@@ -11,12 +11,14 @@ const Profile = () => {
 
   const queryClient = useQueryClient();
   const { data: members, isLoading, error } = useQuery('members', getProfile);
+  // console.log(getProfile);
 
   const updateMutation = useMutation(updateProfile, {
     onSuccess: () => {
       queryClient.invalidateQueries('members');
     }
   });
+  console.log(updateProfile);
 
   const nicknameChangeHandler = (e) => setNickname(e.target.value);
   const profileImageUpdate = (e) => setSelectedFile(e.target.files[0]);
