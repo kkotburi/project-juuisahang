@@ -1,9 +1,9 @@
 import supabase from 'lib/supabaseClient';
 
 const getProfile = async (id) => {
-  const { data } = await supabase.from('members').select('*').eq('id', id);
+  const { data } = await supabase.from('members').select().eq('id', id);
   const [member] = data;
-  if (data) {
+  if (member) {
     const imageDownload = await supabase.storage.from('members').download(member.profileImage);
     console.log(imageDownload.data);
   }
@@ -11,7 +11,7 @@ const getProfile = async (id) => {
 };
 
 const updateProfileNickname = async (member) => {
-  await supabase.from('members').update(member).eq('member.id', member.id);
+  await supabase.from('members').update(member).eq('id', member.id);
 };
 
 const updateProfileImage = async ({ file, id }) => {
