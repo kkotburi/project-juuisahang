@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { getProfile, updateProfileNickname, updateProfileImage } from 'api/profile';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import MyPost from './MyPost';
+import { useUserStore } from 'store';
 
 const Profile = () => {
   const [nickname, setNickname] = useState('');
@@ -13,7 +14,7 @@ const Profile = () => {
     data: member,
     isLoading,
     error
-  } = useQuery('members', (id) => getProfile('d54bbe34-9938-4d1b-a21c-cbc87be84e7e'), {
+  } = useQuery('members', () => getProfile('c4ddad6c-f377-40d3-9636-573e952d5f31'), {
     refetchOnWindowFocus: false
   });
 
@@ -37,7 +38,7 @@ const Profile = () => {
     setIsUpdateProfile(true);
     try {
       const profileImage = e.target.files[0];
-      await updateProfileImageMutation.mutateAsync({ file: profileImage, id: 'd54bbe34-9938-4d1b-a21c-cbc87be84e7e' });
+      await updateProfileImageMutation.mutateAsync({ file: profileImage, id: 'c4ddad6c-f377-40d3-9636-573e952d5f31' });
       setIsUpdateProfile(false);
       alert('프로필 사진 변경 완료');
     } catch (error) {
@@ -79,10 +80,9 @@ const Profile = () => {
     // 테스트 코드
     <div>
       <p style={{ padding: '10px' }}>[TEST DATA]</p>
-
       <div style={{ padding: '10px' }} key={member.id}>
         <div style={{ width: '120px', height: '120px', borderRadius: '100%', overflow: 'hidden' }}>
-          <img
+          {/* <img
             style={{
               width: '100%',
               height: '100%',
@@ -91,7 +91,7 @@ const Profile = () => {
             }}
             alt="이미지 준비중"
             src={member.profileImage}
-          ></img>
+          ></img> */}
         </div>
         <input type="file" accept="image/*" onChange={profileImageUpdate} />
         <form onSubmit={(e) => e.preventDefault()}>
