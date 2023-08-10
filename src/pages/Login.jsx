@@ -28,7 +28,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div>
       <div>
         <form onSubmit={signInWithEmail}>
           <div>
@@ -55,7 +55,7 @@ const Login = () => {
           <Link to="/join">회원가입</Link>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

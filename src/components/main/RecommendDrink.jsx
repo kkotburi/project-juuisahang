@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import _ from 'lodash';
 import supabase from 'lib/supabaseClient';
 import { useQuery } from 'react-query';
-import { getDrinks } from 'api/drinks';
-import _ from 'lodash';
+import { getDrinks } from 'api/main';
 
 const RecommendDrink = () => {
   const [mood, setMood] = useState();
@@ -38,6 +38,7 @@ const RecommendDrink = () => {
   // }
 
   // const drinks = data.data;
+
   const moodDrinks = drinks.filter((item) => item.mood === `${mood}`);
   const recommendDrink = _.sample(moodDrinks);
 

@@ -1,43 +1,43 @@
 {
   "drinks": [
     {
-      "id": 1,
+      "id": "",
       "mood": "설렘",
       "name": "1664 블랑",
       "explanation": ""
     },
     {
-      "id": 2,
+      "id": "",
       "mood": "설렘",
       "name": "로제 와인",
       "explanation": ""
     },
     {
-      "id": 3,
+      "id": "",
       "mood": "설렘",
       "name": "스위트 레드 와인",
       "explanation": ""
     },
     {
-      "id": 4,
+      "id": "",
       "mood": "설렘",
       "name": "호가든 로제",
       "explanation": ""
     },
     {
-      "id": 5,
+      "id": "",
       "mood": "설렘",
       "name": "유자 하이볼",
       "explanation": "달달해서 가볍게 즐길 수 있는 술"
     },
     {
-      "id": 6,
+      "id": "",
       "mood": "설렘",
       "name": "비에티 모스카토 다스티 2022",
       "explanation": "달달해서 가볍게 즐길 수 있는 술"
     },
     {
-      "id": 7,
+      "id": "",
       "mood": "설렘",
       "name": "뽀므리 시즈널 브뤼 로제",
       "explanation": "달달해서 가볍게 즐길 수 있는 술"
@@ -185,6 +185,32 @@
       "mood": "외로움",
       "name": "호랑이 막걸리",
       "explanation": "막걸리에 파전을 먹으면서 마음은 외롭지만 뱃 속은 외롭지 않게"
+    }
+  ],
+  "posts": [
+    {
+      "id": "",
+      "category": "술자리 팁",
+      "title": "popularity test",
+      "like": "0"
+    },
+    {
+      "id": "",
+      "category": "건배사",
+      "title": "Is this popular?",
+      "like": "41"
+    },
+    {
+      "id": "",
+      "category": "술 게임",
+      "title": "이거슨 제이슨 서버",
+      "like": "8"
+    },
+    {
+      "id": "",
+      "category": "숙취해소법",
+      "title": "리액트 퀴리네",
+      "like": "239"
     }
   ]
 }
