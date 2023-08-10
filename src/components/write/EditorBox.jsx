@@ -8,8 +8,21 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/i18n/ko-kr';
+import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const EditorBox = () => {
+  const navigate = useNavigate();
+  const currentUser = useUserStore((state) => state.currentUser);
+  // console.log(currentUser);
+
+  const { addMutation } = usePost();
+  // console.log(addMutation);
+
+  const [title, onChangeTitle, setTitle] = useInput();
+  const [body, onChangeBody, setBody] = useInput();
+  const [category, onChangeCategory, setCategory] = useInput();
+
   const editorRef = useRef();
   //   console.log(editorRef.current);
 
@@ -18,20 +31,14 @@ const EditorBox = () => {
     setBody(data);
   };
 
-  const html = '<h3> html 헤더 <span style="color:blue;">파란색</span></h3>';
-
-  const currentUser = useUserStore((state) => state.currentUser);
-  // console.log(currentUser);
-
-  const [title, onChangeTitle, setTitle] = useInput();
-  const [body, onChangeBody, setBody] = useInput();
-  const [category, onChangeCategory, setCategory] = useInput();
-
-  const { addMutation } = usePost();
-  // console.log(addMutation);
-
   const handleSubmitPost = (e) => {
     e.preventDefault();
+
+    if (!title || !body) {
+      return alert('내용을 입력해주세요');
+    } else if (!category) {
+      return alert('카테고리를 선택해주세요');
+    }
 
     const newPost = {
       userId: currentUser.uid,
@@ -42,47 +49,93 @@ const EditorBox = () => {
     };
 
     addMutation.mutate(newPost);
+
     setTitle('');
     setBody('');
     setCategory('');
+
+    navigate(-1);
   };
 
   return (
-    <div>
-      <div style={{ width: '1000px', marginTop: '50px' }}>
-        <form style={{ border: '2px solid black', margin: '10px', padding: '10px' }} onSubmit={handleSubmitPost}>
-          <label>제목 : </label>
-          <input type="text" placeholder="제목 입력" value={title} onChange={onChangeTitle} />
-          <label>카테고리 : </label>
-          <input type="text" placeholder="카테고리 입력" value={category} onChange={onChangeCategory} />
-          <Editor
-            initialValue={body}
-            previewStyle="vertical"
-            height="500px"
-            initialEditType="wysiwyg"
-            hideModeSwitch="true"
-            useCommandShortcut={false}
-            usageStatistics={false}
-            ref={editorRef}
-            plugins={[colorSyntax]}
-            language="ko-KR"
-            onChange={onChange}
-          />
-          <button>등록</button>
-        </form>
-      </div>
-
-      {/* <form style={{ border: '2px solid black', margin: '10px', padding: '10px' }} onSubmit={handleSubmitPost}>
-  <label>제목 : </label>
-  <input type="text" placeholder="제목 입력" value={title} onChange={onChangeTitle} />
-  <label>내용 : </label>
-  <input type="text" placeholder="내용 입력" value={body} onChange={onChangeBody} />
-  <label>카테고리 : </label>
-  <input type="text" placeholder="카테고리 입력" value={category} onChange={onChangeCategory} />
-  <button>등록</button>
-</form> */}
-    </div>
+    <WriteContainer>
+      <form onSubmit={handleSubmitPost}>
+        <WriteBox>
+          <WriteCategory value={category} onChange={onChangeCategory}>
+            <option>카테고리 선택</option>
+            <option>술자리 팁</option>
+            <option>건배사</option>
+            <option>술 게임</option>
+            <option>숙취해소법</option>
+          </WriteCategory>
+          <WriteTitle type="text" placeholder="제목을 입력해주세요" value={title} onChange={onChangeTitle} />
+        </WriteBox>
+        <Editor
+          initialValue={body}
+          previewStyle="vertical"
+          height="600px"
+          initialEditType="wysiwyg"
+          hideModeSwitch="true"
+          useCommandShortcut={false}
+          usageStatistics={false}
+          ref={editorRef}
+          plugins={[colorSyntax]}
+          language="ko-KR"
+          onChange={onChange}
+        />
+        <WriteButtonBox>
+          <WriteButton>취소</WriteButton>
+          <WriteButton>작성</WriteButton>
+        </WriteButtonBox>
+      </form>
+    </WriteContainer>
   );
 };
 
 export default EditorBox;
+
+const WriteContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const WriteBox = styled.div`
+  display: inline-flex;
+  margin: 15px 0;
+`;
+
+const WriteCategory = styled.select`
+  font-size: 14px;
+  background-color: #f7f9fc;
+  border: 1px solid #dbdde6;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+`;
+
+const WriteTitle = styled.input`
+  width: 886px;
+  font-size: 18px;
+  background-color: #f7f9fc;
+  border: 1px solid #dbdde6;
+  border-radius: 5px;
+  padding: 7px;
+`;
+
+const WriteButtonBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+`;
+
+const WriteButton = styled.button`
+  font-size: 18px;
+  color: #ffffff;
+  background-color: #e24c4b;
+  border: none;
+  border-radius: 15px;
+  margin: 0 10px;
+  padding: 9px 30px;
+`;

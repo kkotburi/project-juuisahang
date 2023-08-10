@@ -7,6 +7,7 @@ const usePost = () => {
 
   const addMutation = useMutation(addPost, {
     onSuccess: () => {
+      alert('글이 작성되었습니다');
       queryClient.invalidateQueries('posts');
     },
     refetchOnWindowFocus: false
