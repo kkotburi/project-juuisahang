@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getProfile, updateProfile } from 'api/profile';
+import { getProfile, updateProfileNickname, updateProfileImage } from 'api/profile';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import MyPost from './MyPost';
 
@@ -9,23 +9,49 @@ const Profile = () => {
   const [isUpdateProfile, setIsUpdateProfile] = useState(false);
   const [selectedFile, setSelectedFile] = useState('');
 
-  const queryClient = useQueryClient();
-  const { data: members, isLoading, error } = useQuery('members', getProfile);
+  const {
+    data: member,
+    isLoading,
+    error
+  } = useQuery('members', (id) => getProfile('d54bbe34-9938-4d1b-a21c-cbc87be84e7e'), {
+    refetchOnWindowFocus: false
+  });
 
-  const updateMutation = useMutation(updateProfile, {
+  const queryClient = useQueryClient();
+
+  const updateMutation = useMutation(updateProfileNickname, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('members');
+    }
+  });
+
+  const updateProfileImageMutation = useMutation(updateProfileImage, {
     onSuccess: () => {
       queryClient.invalidateQueries('members');
     }
   });
 
   const nicknameChangeHandler = (e) => setNickname(e.target.value);
-  const profileImageUpdate = (e) => setSelectedFile(e.target.files[0]);
+
+  const profileImageUpdate = async (e) => {
+    setIsUpdateProfile(true);
+    try {
+      const profileImage = e.target.files[0];
+      await updateProfileImageMutation.mutateAsync({ file: profileImage, id: 'd54bbe34-9938-4d1b-a21c-cbc87be84e7e' });
+      setIsUpdateProfile(false);
+      alert('프로필 사진 변경 완료');
+    } catch (error) {
+      console.error('프로필 사진 변경 실패', error);
+    }
+  };
 
   const nicknameUpdateBtn = async (member) => {
     if (!nickname) {
       alert('닉네임을 입력해주세요');
       return;
     }
+
+    setIsUpdateProfile(true);
 
     const updateNickname = {
       ...member,
@@ -41,26 +67,6 @@ const Profile = () => {
     }
   };
 
-  // const nicknameUpdateBtn = async (member) => {
-  //   if (!nickname) return alert('닉네임을 입력해주세요');
-  //   if (!isUpdateProfile) {
-  //     setIsUpdateProfile(true);
-  //   } else {
-  //     const updateNickname = {
-  //       ...member,
-  //       nickname
-  //     };
-
-  //     try {
-  //       await updateMutation.mutate(updateNickname);
-  //       setIsUpdateProfile(false);
-  //       alert('닉네임 수정 완료');
-  //     } catch (error) {
-  //       console.error('닉네임 변경 실패', error);
-  //     }
-  //   }
-  // };
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -71,39 +77,38 @@ const Profile = () => {
 
   return (
     // 테스트 코드
-    <>
+    <div>
       <p style={{ padding: '10px' }}>[TEST DATA]</p>
-      {members.map((member) => (
-        <div style={{ padding: '10px' }} key={member.id}>
-          <div style={{ width: '120px', height: '120px', borderRadius: '100%', overflow: 'hidden' }}>
-            <img
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                imageRendering: '-webkit-optimize-contrast !important'
-              }}
-              alt="이미지 준비중"
-              src={member.profileImage}
-            ></img>
-          </div>
-          <input type="file" accept="image/*" onChange={profileImageUpdate} />
-          <form onSubmit={(e) => e.preventDefault()}>
-            <p>이메일</p>
-            <input type="email" value={member.email} disabled />
-            <p>닉네임</p>
-            <input
-              type="text"
-              maxLength={6}
-              defaultValue={isUpdateProfile ? nickname : member.nickname}
-              onChange={nicknameChangeHandler}
-            />
-            <button style={{ marginLeft: '8px' }} onClick={() => nicknameUpdateBtn(member)}>
-              닉네임 변경
-            </button>
-          </form>
+
+      <div style={{ padding: '10px' }} key={member.id}>
+        <div style={{ width: '120px', height: '120px', borderRadius: '100%', overflow: 'hidden' }}>
+          <img
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              imageRendering: '-webkit-optimize-contrast !important'
+            }}
+            alt="이미지 준비중"
+            src={member.profileImage}
+          ></img>
         </div>
-      ))}
+        <input type="file" accept="image/*" onChange={profileImageUpdate} />
+        <form onSubmit={(e) => e.preventDefault()}>
+          <p>이메일</p>
+          <input type="email" value={member.email} disabled />
+          <p>닉네임</p>
+          <input
+            type="text"
+            maxLength={6}
+            defaultValue={isUpdateProfile ? nickname : member.nickname}
+            onChange={nicknameChangeHandler}
+          />
+          <button style={{ marginLeft: '8px' }} onClick={() => nicknameUpdateBtn(member)}>
+            닉네임 변경
+          </button>
+        </form>
+      </div>
       {/* 유저 정보 받아와서 사용할 기본 코드 */}
       {/* <div style={{ padding: '10px' }}>
         <img src={profileImage} alt="이미지 준비중" />
@@ -119,7 +124,7 @@ const Profile = () => {
         </form>
       </div> */}
       <MyPost />
-    </>
+    </div>
   );
 };
 export default Profile;

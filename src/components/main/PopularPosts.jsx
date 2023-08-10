@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import supabase from 'lib/supabaseClient';
 import { useQuery } from 'react-query';
 import { getPosts } from 'api/main';
-// components
-import Tip from 'components/category/Tip';
-import Toast from 'components/category/Toast';
-import Game from 'components/category/Game';
-import Hangover from 'components/category/Hangover';
 
-const Category = () => {
-  const { code } = useParams();
-
+const PopularPosts = () => {
   // supabase
   const [posts, setPosts] = useState([]);
 
@@ -44,14 +36,20 @@ const Category = () => {
 
   // const posts = data.data;
 
+  const popularPosts = posts.sort((a, b) => b.like - a.like).slice(0, 2);
+
   return (
     <div>
-      {code === '술자리 팁' && <Tip code={code} posts={posts} />}
-      {code === '건배사' && <Toast code={code} posts={posts} />}
-      {code === '술 게임' && <Game code={code} posts={posts} />}
-      {code === '숙취해소법' && <Hangover code={code} posts={posts} />}
+      <div>Popularity</div>
+      {popularPosts.map((post) => {
+        return (
+          <div key={post.id}>
+            <div>{post.title}</div>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
-export default Category;
+export default PopularPosts;
