@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRef } from 'react';
+import { St } from './MyPostStyle';
 
 const MyPost = () => {
   const listRef = useRef();
@@ -24,24 +25,18 @@ const MyPost = () => {
   };
 
   return (
-    <div
-      style={{
-        padding: '10px',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column'
-      }}
-    >
-      <div style={{ display: 'flex' }}>
-        <span onClick={myPostList}>내가 쓴 글</span>
-        <span style={{ marginLeft: '10px' }} onClick={myLikePostList}>
-          좋아요 목록
-        </span>
-      </div>
-      <div style={{ border: '2px solid gray', width: '1000px', height: '400px', padding: '10px' }} ref={listRef}>
+    <St.MyPostContainer>
+      <St.PostList>
+        <St.MyPost onClick={myPostList}>내가 쓴 글</St.MyPost>
+        <St.LikeList onClick={myLikePostList}>좋아요 목록</St.LikeList>
+      </St.PostList>
+      <div
+        style={{ border: '2px solid gray', width: '1000px', height: '400px', padding: '10px', marginTop: '15px' }}
+        ref={listRef}
+      >
         {content}
       </div>
-    </div>
+    </St.MyPostContainer>
   );
 };
 
