@@ -17,10 +17,7 @@ export const St = {
     float: right;
     margin-top: 30px;
   `,
-  ProfileContainer: styled.div`
-    width: 220px;
-    margin: auto;
-  `,
+
   ProfileImageBox: styled.div`
     width: 150px;
     height: 150px;
@@ -28,6 +25,7 @@ export const St = {
     overflow: hidden;
     background-color: #d9d9d9;
     margin: auto;
+    margin-bottom: 20px;
   `,
   ProfileImage: styled.img`
     width: 100%;
@@ -38,13 +36,15 @@ export const St = {
   ContentsBox: styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-left: 15px;
-    gap: 10px;
+    gap: 20px;
   `,
   ContentsForm: styled.form`
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
   `,
 
   ContentsLabel: styled.label`
@@ -53,13 +53,14 @@ export const St = {
 
   ContentsInput: styled.input`
     width: 120px;
-    height: 20px;
+    height: 22px;
     outline: none;
     font-size: 12px;
     padding-left: 10px;
     margin-left: 10px;
     border: 1px solid gray;
     border-radius: 5px;
+    background-color: white;
   `,
 
   NicknameChangeBtn: styled.button`
