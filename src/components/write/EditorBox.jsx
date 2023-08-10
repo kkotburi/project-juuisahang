@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUserStore } from 'store';
-import useInput from 'hooks/useInput';
 import usePost from 'hooks/usePost';
+import useInput from 'hooks/useInput';
 import { Editor } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
@@ -9,7 +10,6 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/i18n/ko-kr';
 import { styled } from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 const EditorBox = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const EditorBox = () => {
   const editorRef = useRef();
   //   console.log(editorRef.current);
 
-  const onChange = () => {
+  const onChangeGetHTML = () => {
     const data = editorRef.current.getInstance().getHTML();
     setBody(data);
   };
@@ -57,8 +57,20 @@ const EditorBox = () => {
     navigate(-1);
   };
 
+  const handleClickCancel = () => {
+    if (window.confirm('글 작성을 취소하시겠습니까?')) {
+      alert('이전 페이지로 이동하겠습니다.');
+      navigate(-1);
+    } else {
+      alert('글 작성으로 돌아가겠습니다.');
+    }
+  };
+
   return (
     <WriteContainer>
+      <WriteCancelButtonBox>
+        <WriteCancelButton onClick={handleClickCancel}>취소</WriteCancelButton>
+      </WriteCancelButtonBox>
       <form onSubmit={handleSubmitPost}>
         <WriteBox>
           <WriteCategory value={category} onChange={onChangeCategory}>
@@ -81,12 +93,11 @@ const EditorBox = () => {
           ref={editorRef}
           plugins={[colorSyntax]}
           language="ko-KR"
-          onChange={onChange}
+          onChange={onChangeGetHTML}
         />
-        <WriteButtonBox>
-          <WriteButton>취소</WriteButton>
-          <WriteButton>작성</WriteButton>
-        </WriteButtonBox>
+        <WriteAddButtonBox>
+          <WriteAddButton>작성</WriteAddButton>
+        </WriteAddButtonBox>
       </form>
     </WriteContainer>
   );
@@ -98,6 +109,32 @@ const WriteContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+`;
+
+const WriteCancelButtonBox = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 90%;
+`;
+
+const WriteCancelButton = styled.button`
+  font-size: 16px;
+  color: #000000;
+  /* background-color: #4b4b4b; */
+  background-color: transparent;
+  border: none;
+  border-radius: 15px;
+  padding: 7px 35px;
+  cursor: pointer;
+
+  &:hover {
+    /* background-color: #bb3535; */
+    font-weight: 600;
+    /* font-style: italic; */
+  }
 `;
 
 const WriteBox = styled.div`
@@ -123,19 +160,23 @@ const WriteTitle = styled.input`
   padding: 7px;
 `;
 
-const WriteButtonBox = styled.div`
+const WriteAddButtonBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
 `;
 
-const WriteButton = styled.button`
-  font-size: 18px;
+const WriteAddButton = styled.button`
+  font-size: 16px;
   color: #ffffff;
   background-color: #e24c4b;
   border: none;
   border-radius: 15px;
-  margin: 0 10px;
-  padding: 9px 30px;
+  margin: 50px 0;
+  padding: 7px 35px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #bb3535;
+  }
 `;
