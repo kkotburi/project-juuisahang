@@ -3,37 +3,42 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import useValidator from 'hooks/useValidator';
+import { DEFAULT_PROFILE_IMAGE, PROFILE_BASE_URL } from 'constants/user';
 
 const Join = () => {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, isSubmitted, errors }
+    formState: { isSubmitting, isSubmitted, errors },
+    getValues
   } = useForm();
+
   const { validateEmail, validatePassword, validatePasswordConfirm, validateNickname } = useValidator();
 
   // 파일 업로드
   const [selectedFile, setSelectedFile] = useState(null);
-  const [previewImg, setPreviewImg] = useState('');
+  const [previewImg, setPreviewImg] = useState(DEFAULT_PROFILE_IMAGE);
 
   const signUp = async ({ email, password, nickname }) => {
-    // event.preventDefault();
     console.log(email, password, nickname, selectedFile);
 
     try {
       // 프로필이미지 storage에 업로드
-      const fileName = `./${email}/${selectedFile.name}`;
-      const { data: _imgData, error: imgError } = await supabase.storage
-        .from('profile')
-        .upload(fileName, selectedFile, {
-          upsert: true
-        });
+      let downloadURL = DEFAULT_PROFILE_IMAGE;
+      if (selectedFile) {
+        const fileName = `./${email}/${selectedFile.name}`;
+        const { data: _imgData, error: imgError } = await supabase.storage
+          .from('profile')
+          .upload(fileName, selectedFile, {
+            upsert: true
+          });
 
-      const PROFILE_BASE_URL = 'https://nogglsilnolluhkmrvqx.supabase.co/storage/v1/object/public/profile/';
+        if (imgError) {
+          alert(imgError);
+        }
 
-      if (imgError) {
-        console.error(imgError);
+        downloadURL = PROFILE_BASE_URL + fileName;
       }
 
       const { data, error } = await supabase.auth.signUp({
@@ -42,7 +47,7 @@ const Join = () => {
         options: {
           data: {
             nickname,
-            profileImg: PROFILE_BASE_URL + fileName
+            profileImg: downloadURL
           }
         }
       });
@@ -50,7 +55,7 @@ const Join = () => {
       if (data) {
         navigate('/');
         alert('회원가입이 완료되었습니다!');
-      } else if (error) console.error(error);
+      } else if (error) alert(error);
     } catch (error) {
       console.error(error);
     }
@@ -73,8 +78,7 @@ const Join = () => {
       };
       reader.readAsDataURL(theFile);
     } else {
-      // setPreviewImg(DEFAULT_URL);
-      setPreviewImg('');
+      setPreviewImg(DEFAULT_PROFILE_IMAGE);
     }
   };
 
@@ -115,7 +119,7 @@ const Join = () => {
               name="passwordConfirm"
               placeholder="비밀번호 확인"
               aria-invalid={isSubmitted ? (errors.passwordConfirm ? 'true' : 'false') : undefined}
-              {...register('passwordConfirm', validatePasswordConfirm)}
+              {...register('passwordConfirm', validatePasswordConfirm(getValues('password')))}
             />
             {errors.passwordConfirm && <small role="alert">{errors.passwordConfirm.message}</small>}
           </div>

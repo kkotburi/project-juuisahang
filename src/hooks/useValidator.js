@@ -1,10 +1,7 @@
-import { useForm } from 'react-hook-form';
 /* -------------------------------------------------------------------------- */
-// validator
+// react-hook-form validator
 /* -------------------------------------------------------------------------- */
 const useValidator = () => {
-  const { getValues } = useForm();
-
   /* -------------------------------------------------------------------------- */
   // 이메일 체크 유틸리티
   /* -------------------------------------------------------------------------- */
@@ -30,16 +27,20 @@ const useValidator = () => {
 
   /* -------------------------------------------------------------------------- */
   // 패스워드 확인 체크 유틸리티
+  // 사용 ▸ validatePasswordConfirm(getValues('password'))
   /* -------------------------------------------------------------------------- */
-  const validatePasswordConfirm = {
-    required: '비밀번호 확인은 필수 입력입니다.',
-    validate: {
-      check: (val) => {
-        if (getValues('password') !== val) {
-          return '비밀번호가 일치하지 않습니다.';
+  const validatePasswordConfirm = (passwordVal) => {
+    return {
+      required: '비밀번호 확인은 필수 입력입니다.',
+      validate: {
+        check: (val) => {
+          console.log(passwordVal, val);
+          if (passwordVal !== val) {
+            return '비밀번호가 일치하지 않습니다.';
+          }
         }
       }
-    }
+    };
   };
 
   /* -------------------------------------------------------------------------- */

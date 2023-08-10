@@ -21,9 +21,8 @@ const Login = () => {
       });
 
       if (data?.session) {
-        console.log('data => ', data);
         navigate('/');
-      } else if (error) console.error(error);
+      } else if (error) alert(error);
     } catch (error) {
       console.error(error);
     }
