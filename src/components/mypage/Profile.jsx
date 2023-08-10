@@ -77,7 +77,7 @@ const Profile = () => {
 
   return (
     // 테스트 코드
-    <>
+    <div>
       <p style={{ padding: '10px' }}>[TEST DATA]</p>
 
       <div style={{ padding: '10px' }} key={member.id}>
@@ -124,7 +124,7 @@ const Profile = () => {
         </form>
       </div> */}
       <MyPost />
-    </>
+    </div>
   );
 };
 export default Profile;
