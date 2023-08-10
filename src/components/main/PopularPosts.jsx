@@ -1,19 +1,26 @@
-import React from 'react';
-import { useQuery } from 'react-query';
-import { getPosts } from 'api/posts';
+import React, { useEffect, useState } from 'react';
+import supabase from 'lib/supabaseClient';
 
 const PopularPosts = () => {
-  const { isLoading, isError, data } = useQuery('posts', getPosts);
+  const [posts, setPosts] = useState([]);
 
-  if (isLoading) {
-    return <p>Loading…</p>;
-  }
+  useEffect(() => {
+    const getPosts = async () => {
+      const { data, error } = await supabase.from('posts').select();
 
-  if (isError) {
-    return <p>Error</p>;
-  }
+      if (error) {
+        console.log(error);
+      }
 
-  const posts = data.data;
+      if (data) {
+        setPosts(data);
+      }
+    };
+
+    getPosts();
+  }, []);
+
+  console.log(posts);
   const popularPosts = posts.sort((a, b) => b.like - a.like).slice(0, 2);
 
   return (

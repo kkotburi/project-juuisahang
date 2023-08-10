@@ -10,10 +10,10 @@ const Header = () => {
 
   return (
     <div>
-      <button onClick={() => clickCategory('a')}>술자리 팁</button>
-      <button onClick={() => clickCategory('b')}>건배사</button>
-      <button onClick={() => clickCategory('c')}>술 게임</button>
-      <button onClick={() => clickCategory('d')}>숙취해소법</button>
+      <button onClick={() => clickCategory('술자리 팁')}>술자리 팁</button>
+      <button onClick={() => clickCategory('건배사')}>건배사</button>
+      <button onClick={() => clickCategory('술 게임')}>술 게임</button>
+      <button onClick={() => clickCategory('숙취해소법')}>숙취해소법</button>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// page
+// pages
 import Login from 'pages/Login';
 import Join from 'pages/Join';
 import Main from '../pages/Main';
@@ -12,13 +12,13 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Join />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
         <Route path="/" element={<Main />} />
         <Route path="/category/:code" element={<Category />} />
-        {/* <Route path="/detail/:postId" element={<Detail />} />
+        <Route path="/detail/:postId" element={<Detail />} />
         <Route path="/write" element={<Write />} />
-        <Route path="/mypage" element={<Mypage />} /> */}
+        <Route path="/mypage" element={<Mypage />} />
       </Routes>
     </BrowserRouter>
   );
