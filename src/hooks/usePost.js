@@ -1,9 +1,16 @@
 import React from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-import { deletePost, updateLikes, updatePost } from 'api/post';
+import { addPost, deletePost, updateLikes, updatePost } from 'api/post';
 
 const usePost = () => {
   const queryClient = useQueryClient();
+
+  const addMutation = useMutation(addPost, {
+    onSuccess: () => {
+      queryClient.invalidateQueries('posts');
+    }
+  });
+
   const deleteMutation = useMutation(deletePost, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
@@ -39,7 +46,7 @@ const usePost = () => {
     }
   });
 
-  return { deleteMutation, updateMutation, updateLikesMutation };
+  return { addMutation, deleteMutation, updateMutation, updateLikesMutation };
 };
 
 export default usePost;

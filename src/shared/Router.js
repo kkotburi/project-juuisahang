@@ -64,7 +64,8 @@ const Router = () => {
           <Route path="/" element={<Main />} />
           <Route path="/category/:code" element={<Category />} />
           <Route path="/detail/:postId" element={<Detail />} />
-          <Route path="/write" element={<AuthRoute component={<Write />} authenticated={currentUser} />} />
+          {/* <Route path="/write" element={<AuthRoute component={<Write />} authenticated={currentUser} />} /> */}
+          <Route path="/write" element={<Write />} />
         </Routes>
       </Layout>
     </BrowserRouter>
