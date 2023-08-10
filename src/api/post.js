@@ -12,8 +12,6 @@ const getDetail = async (id) => {
 
 const deletePost = async (id) => {
   await supabaseClient.from('posts').delete().eq('id', id);
-  //   const { error } = await supabase.from('posts').delete().eq('id', `${id}`);
-  //   return error;
 };
 
 const updatePost = async (post) => {
