@@ -4,10 +4,10 @@ import Comments from 'components/detail/Comments';
 
 const Detail = () => {
   return (
-    <>
+    <div>
       <Post />
       <Comments />
-    </>
+    </div>
   );
 };
 
