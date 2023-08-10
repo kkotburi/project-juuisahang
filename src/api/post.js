@@ -1,3 +1,4 @@
+import supabase from 'lib/supabaseClient';
 import supabaseClient from 'lib/supabaseClient';
 
 const getPosts = async () => {
@@ -22,4 +23,10 @@ const updateLikes = async (post) => {
   await supabaseClient.from('posts').update(post).eq('id', post.id);
 };
 
-export { getPosts, getDetail, deletePost, updatePost, updateLikes };
+const insertPost = async ({ category, title, body }) => {
+  const { data } = await supabase
+    .from('posts')
+    .insert([{ category: `${category}`, title: `${title}`, body: `${body}` }]);
+};
+
+export { getPosts, getDetail, deletePost, updatePost, updateLikes, insertPost };
