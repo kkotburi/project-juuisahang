@@ -8,7 +8,8 @@ const usePost = () => {
   const addMutation = useMutation(addPost, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
-    }
+    },
+    refetchOnWindowFocus: false
   });
 
   const deleteMutation = useMutation(deletePost, {

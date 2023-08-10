@@ -6,9 +6,12 @@ import usePost from 'hooks/usePost';
 import useInput from 'hooks/useInput';
 import Share from './Share';
 import Likes from './Likes';
+import { useUserStore } from 'store';
 
 const Post = () => {
   const params = useParams();
+
+  const currentUser = useUserStore((state) => state.currentUser);
 
   const { data: posts, isLoading, isError } = useQuery('posts', () => getDetail(params.postId));
   const { deleteMutation, updateMutation } = usePost();
@@ -82,7 +85,7 @@ const Post = () => {
                 ) : (
                   <div>제목 : {post.title}</div>
                 )}
-                <div>작성자: {post.writer} </div>
+                <div>작성자: {currentUser.nickname} </div>
               </div>
               <div>날짜 : {post.created_at}</div>
             </div>
