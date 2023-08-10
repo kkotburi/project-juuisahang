@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import supabase from 'lib/supabaseClient';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// page
+// pages
 import Login from 'pages/Login';
 import Join from 'pages/Join';
 import Main from '../pages/Main';
@@ -61,7 +61,7 @@ const Router = () => {
           <Route path="/join" element={<Join />} />
           <Route path="/mypage" element={<AuthRoute component={<Mypage />} authenticated={currentUser} />} />
           <Route path="/" element={<Main />} />
-          <Route path="/category" element={<Category />} />
+          <Route path="/category/:code" element={<Category />} />
           <Route path="/detail/:postId" element={<Detail />} />
           <Route path="/write" element={<AuthRoute component={<Write />} authenticated={currentUser} />} />
         </Routes>
