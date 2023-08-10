@@ -1,64 +1,46 @@
-import { insertPost } from 'api/post';
-import supabase from 'lib/supabaseClient';
-import React, { useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
+import React from 'react';
+import { useUserStore } from 'store';
+import useInput from 'hooks/useInput';
+import usePost from 'hooks/usePost';
 
 const Write = () => {
-  const [category, setCategory] = useState('');
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const currentUser = useUserStore((state) => state.currentUser);
+  console.log(currentUser);
 
-  const submitPost = async (e) => {
+  const [title, onChangeTitle, setTitle] = useInput();
+  const [body, onChangeBody, setBody] = useInput();
+  const [category, onChangeCategory, setCategory] = useInput();
+
+  const { addMutation } = usePost();
+
+  const handleSubmitPost = (e) => {
     e.preventDefault();
-    if (!title || !title || !body) {
-      alert('내용을 모두 입력해 주세요!');
-      return;
-    }
 
-    // const { data } = await supabase.from('posts').insert([{}]);
+    const newPost = {
+      userId: currentUser.uid,
+      title,
+      body,
+      writer: currentUser.nickname,
+      likes: [],
+      category
+    };
 
-    const { data, error } = await supabase.from('posts').insert([{ category, title, body }]).select();
-
-    console.log(data);
+    addMutation.mutate(newPost);
+    setTitle('');
+    setBody('');
+    setCategory('');
   };
 
-  // const queryQlient = useQueryClient();
-
-  // const insertMutation = useMutation(insertPost, {
-  //   onSuccess: () => {
-  //     queryQlient.invalidateQueries('posts');
-  //   }
-  // });
-
-  // const submitPost = () => {
-  //   insertMutation.mutate({ category, title, body });
-  // };
-
   return (
-    <div>
-      Write
-      <form onSubmit={submitPost}>
-        <input
-          value={category}
-          onChange={(e) => {
-            setCategory(e.target.value);
-          }}
-        />
-        <input
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        />
-        <input
-          value={body}
-          onChange={(e) => {
-            setBody(e.target.value);
-          }}
-        />
-        <button type="submit">test</button>
-      </form>
-    </div>
+    <form style={{ border: '2px solid black', margin: '10px', padding: '10px' }} onSubmit={handleSubmitPost}>
+      <label>제목 : </label>
+      <input type="text" placeholder="제목 입력" value={title} onChange={onChangeTitle} />
+      <label>내용 : </label>
+      <input type="text" placeholder="내용 입력" value={body} onChange={onChangeBody} />
+      <label>카테고리 : </label>
+      <input type="text" placeholder="카테고리 입력" value={category} onChange={onChangeCategory} />
+      <button>등록</button>
+    </form>
   );
 };
 

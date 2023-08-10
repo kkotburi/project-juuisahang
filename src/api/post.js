@@ -11,6 +11,10 @@ const getDetail = async (id) => {
   return data;
 };
 
+const addPost = async (post) => {
+  await supabaseClient.from('posts').insert(post);
+};
+
 const deletePost = async (id) => {
   await supabaseClient.from('posts').delete().eq('id', id);
 };
@@ -23,10 +27,4 @@ const updateLikes = async (post) => {
   await supabaseClient.from('posts').update(post).eq('id', post.id);
 };
 
-const insertPost = async ({ category, title, body }) => {
-  const { data } = await supabase
-    .from('posts')
-    .insert([{ category: `${category}`, title: `${title}`, body: `${body}` }]);
-};
-
-export { getPosts, getDetail, deletePost, updatePost, updateLikes, insertPost };
+export { getPosts, getDetail, addPost, deletePost, updatePost, updateLikes };
