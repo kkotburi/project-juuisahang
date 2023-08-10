@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { getProfile, updateProfileNickname, updateProfileImage } from 'api/profile';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import MyPost from './MyPost';
-import { useUserStore } from 'store';
 import { St } from './ProfileStyle';
 
 const Profile = () => {
   const [nickname, setNickname] = useState('');
-  const [profileImage, setProfileImage] = useState('');
   const [isUpdateProfile, setIsUpdateProfile] = useState(false);
-  const [selectedFile, setSelectedFile] = useState('');
 
   const {
     data: member,
@@ -80,11 +77,6 @@ const Profile = () => {
   }
 
   return (
-    // <St.PageContainer>
-    //   <St.ProfileContainer>왼</St.ProfileContainer>
-    //   <St.MyPostWarp>오</St.MyPostWarp>
-    // </St.PageContainer>
-    // 테스트 코드
     <St.PageContainer>
       <div key={member.id}>
         <St.ProfileWarp>
@@ -119,22 +111,3 @@ const Profile = () => {
   );
 };
 export default Profile;
-
-{
-  /* 유저 정보 받아와서 사용할 기본 코드 */
-}
-{
-  /* <div style={{ padding: '10px' }}>
-        <img src={profileImage} alt="이미지 준비중" />
-        <input type="file" />
-        <form onSubmit={profileUpdateHandler}>
-          <p>Email</p>
-          <input type="email" placeholder={getProfile.email} disabled={true} />
-          <p>Nickname</p>
-          <input type="text" maxLength={6} value={nickname} onChange={nicknameChangeHandler} />
-          <button type="submit" onClick={updateProfile}>
-            프로필 수정
-          </button>
-        </form>
-      </div> */
-}
