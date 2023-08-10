@@ -1,27 +1,28 @@
-import useInput from 'hooks/useInput';
 import supabase from 'lib/supabaseClient';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import useValidator from 'hooks/useValidator';
 
 const Login = () => {
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, isSubmitted, errors }
+  } = useForm();
+  const { validateEmail, validatePassword } = useValidator();
 
-  const [email, onChangeEmailHandler] = useInput();
-  const [password, onChangePasswordHandler] = useInput();
-
-  const signInWithEmail = async (event) => {
-    event.preventDefault();
-
+  const signInWithEmail = async ({ email, password }) => {
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password
       });
 
-      if (data) {
-        console.log('data => ', data);
+      if (data?.session) {
         navigate('/');
-      } else if (error) console.error(error);
+      } else if (error) alert(error);
     } catch (error) {
       console.error(error);
     }
@@ -30,28 +31,28 @@ const Login = () => {
   return (
     <div>
       <div>
-        <form onSubmit={signInWithEmail}>
+        <form onSubmit={handleSubmit(signInWithEmail)}>
           <div>
             <input
               type="email"
-              value={email}
               name="email"
-              onChange={onChangeEmailHandler}
               placeholder="이메일"
-              required
-            ></input>
+              aria-invalid={isSubmitted ? (errors.email ? 'true' : 'false') : undefined}
+              {...register('email', validateEmail)}
+            />
+            {errors.email && <small role="alert">{errors.email.message}</small>}
           </div>
           <div>
             <input
               type="password"
-              value={password}
               name="password"
-              onChange={onChangePasswordHandler}
               placeholder="비밀번호"
-              required
-            ></input>
+              aria-invalid={isSubmitted ? (errors.password ? 'true' : 'false') : undefined}
+              {...register('password', validatePassword)}
+            />
+            {errors.password && <small role="alert">{errors.password.message}</small>}
           </div>
-          <button>로그인</button>
+          <button disabled={isSubmitting}>로그인</button>
           <Link to="/join">회원가입</Link>
         </form>
       </div>

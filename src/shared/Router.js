@@ -16,20 +16,20 @@ import MyPage from 'pages/MyPage';
 const Router = () => {
   const { addCurrentUser, deleteCurrentUser } = useUserStore((state) => state);
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        addCurrentUser({
-          uid: session.user.id,
-          email: session.user.email,
-          email: session.user.email,
-          nickname: session.user.user_metadata.nickname,
-          profileImg: session.user.user_metadata.profileImg
-        });
-      } else {
-        deleteCurrentUser();
-      }
-    });
+  useEffect(async () => {
+    const {
+      data: { session }
+    } = await supabase.auth.getSession();
+    if (session) {
+      addCurrentUser({
+        uid: session.user.id,
+        email: session.user.email,
+        nickname: session.user.user_metadata.nickname,
+        profileImg: session.user.user_metadata.profileImg
+      });
+    } else {
+      deleteCurrentUser();
+    }
 
     const {
       data: { subscription }
@@ -51,7 +51,7 @@ const Router = () => {
 
   // 조회
   const currentUser = useUserStore((state) => state.currentUser);
-  // console.log('주스탠드 => ', currentUser);
+  console.log('주스탠드 => ', currentUser);
 
   return (
     <BrowserRouter>
