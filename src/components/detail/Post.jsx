@@ -7,6 +7,8 @@ import useInput from 'hooks/useInput';
 import Share from './Share';
 import Likes from './Likes';
 import { useUserStore } from 'store';
+import { Viewer } from '@toast-ui/react-editor';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 
 const Post = () => {
   const params = useParams();
@@ -19,6 +21,8 @@ const Post = () => {
   const [title, handleOnChangeTitle, setTitle] = useInput();
   const [body, handleOnChangeBody, setBody] = useInput();
   const [isEdit, setIsEdit] = useState(false);
+
+  console.log(posts);
 
   const handleDeletePost = (id) => {
     deleteMutation.mutate(id);
@@ -85,7 +89,7 @@ const Post = () => {
                 ) : (
                   <div>제목 : {post.title}</div>
                 )}
-                <div>작성자: {currentUser.nickname} </div>
+                <div>작성자: {currentUser?.nickname} </div>
               </div>
               <div>날짜 : {post.created_at}</div>
             </div>
@@ -100,7 +104,8 @@ const Post = () => {
                   padding: '10px'
                 }}
               >
-                내용 : {post.body}
+                내용 :
+                <Viewer initialValue={post.body} />
               </div>
             )}
             <Likes />
