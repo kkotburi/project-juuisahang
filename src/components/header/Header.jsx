@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useUserStore } from 'store';
+import { styled } from 'styled-components';
+
 import LoginUtil from './LoginUtil';
 import LogoutUtil from './LogoutUtil';
-import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,3 +31,5 @@ const Header = () => {
 };
 
 export default Header;
+
+const Test = styled.main``;

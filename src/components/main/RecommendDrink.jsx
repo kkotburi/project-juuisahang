@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import supabase from 'lib/supabaseClient';
-import { useQuery } from 'react-query';
-import { getDrinks } from 'api/main';
 
 const RecommendDrink = () => {
   const [mood, setMood] = useState();
-
-  // supabase
   const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
@@ -25,19 +21,6 @@ const RecommendDrink = () => {
 
     getDrinks();
   }, []);
-
-  // react-query
-  // const { isLoading, isError, data } = useQuery('drinks', getDrinks);
-
-  // if (isLoading) {
-  //   return <p>Loading…</p>;
-  // }
-
-  // if (isError) {
-  //   return <p>Error</p>;
-  // }
-
-  // const drinks = data.data;
 
   const moodDrinks = drinks.filter((item) => item.mood === `${mood}`);
   const recommendDrink = _.sample(moodDrinks);

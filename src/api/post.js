@@ -1,4 +1,3 @@
-import supabase from 'lib/supabaseClient';
 import supabaseClient from 'lib/supabaseClient';
 
 const getPosts = async () => {
