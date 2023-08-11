@@ -4,6 +4,7 @@ import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { FaGlassCheers } from 'react-icons/fa';
+import { St } from 'components/mypage/MyPostStyle';
 
 const PopularPosts = () => {
   const navigate = useNavigate();
@@ -48,8 +49,10 @@ const PopularPosts = () => {
               <FaGlassCheers size="25" color="#eea100" />
               <div>{post.likes.length}</div>
             </div>
-            <div>{post.nickname}</div>
-            <img src={post.profileImg} />
+            <St.ListProfileImgBox>
+              <St.ListProfileImg src={post.profileImg} />
+            </St.ListProfileImgBox>
+            <St.ListNickname>{post.nickname}</St.ListNickname>
           </PopularPost>
         );
       })}

@@ -53,7 +53,7 @@ const MyPost = () => {
                     <p>{post.likes.length}</p>
                   </St.ListLikeBox>
                   <St.ListProfileImgBox>
-                    <St.ListProfileImg alt="이미지 준비중" src={member.user_metadata.profileImg}></St.ListProfileImg>
+                    <St.ListProfileImg alt="이미지 준비중" src={member.user_metadata.profileImg} />
                   </St.ListProfileImgBox>
                   <St.ListNickname>{member.user_metadata.nickname}</St.ListNickname>
                 </St.ListWriterWrap>
