@@ -5,7 +5,7 @@ import { getDetail } from 'api/post';
 import { useUserStore } from 'store';
 import usePost from 'hooks/usePost';
 import { FaGlassCheers } from 'react-icons/fa';
-import { styled } from 'styled-components';
+import { St } from './ShareLikesStyle';
 
 const Like = () => {
   const params = useParams();
@@ -40,35 +40,21 @@ const Like = () => {
   }
 
   return (
-    <LikesContainer>
+    <St.LikesContainer>
       {posts.map((post, index) => {
         return (
-          <LikesButtonBox key={index}>
+          <St.LikesButtonBox key={index}>
             {post.likes.includes(currentUser?.uid) ? (
               <FaGlassCheers size="32" color="#EEA100" onClick={() => handleUpdateLikes(post)} />
             ) : (
               <FaGlassCheers size="32" color="#000000" onClick={() => handleUpdateLikes(post)} />
             )}
             {post.likes.length ? post.likes.length : 0}
-          </LikesButtonBox>
+          </St.LikesButtonBox>
         );
       })}
-    </LikesContainer>
+    </St.LikesContainer>
   );
 };
 
 export default Like;
-
-const LikesContainer = styled.div``;
-
-const LikesButtonBox = styled.div`
-  width: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  /* background-color: #cfcfcfdb; */
-  border-radius: 10px;
-  margin-left: 20px;
-  /* padding: 10px 23px; */
-`;
