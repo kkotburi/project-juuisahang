@@ -3,8 +3,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getComments, deleteComment, updateComment, AddComment } from 'api/comment';
 import { useUserStore } from 'store';
 import { useParams } from 'react-router-dom/dist';
-import { styled } from 'styled-components';
 import dayjs from 'dayjs';
+import { St } from './CommentsStyle';
 
 const Comments = () => {
   const currentUser = useUserStore((state) => state.currentUser);
@@ -45,6 +45,8 @@ const Comments = () => {
     }
     const newComment = {
       userId: currentUser.uid,
+      nickname: currentUser.nickname,
+      profileImg: currentUser.profileImg,
       body,
       postId: params.postId
     };
@@ -63,9 +65,9 @@ const Comments = () => {
 
   return (
     <div>
-      <CommentsTitle>댓글</CommentsTitle>
-      <CommentsAddForm onSubmit={handleSubmitComment}>
-        <CommentsTextarea
+      <St.CommentsTitle>댓글</St.CommentsTitle>
+      <St.CommentsAddForm onSubmit={handleSubmitComment}>
+        <St.CommentsTextarea
           type="text"
           id="body"
           value={body}
@@ -73,19 +75,27 @@ const Comments = () => {
             setBody(e.target.value);
           }}
         />
-        <CommentsAddButton>등록</CommentsAddButton>
-      </CommentsAddForm>
+        <St.CommentsAddButton>등록</St.CommentsAddButton>
+      </St.CommentsAddForm>
       <div>
         {comments
           .filter((comment) => comment.postId === params.postId)
           .map((comment) => (
-            <CommentsBox>
-              <p>{dayjs(comment.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</p>
-              <p>{comment.body}</p>
+            <St.CommentsBox key={comment.id}>
+              <St.CommentsUserInfoBox>
+                <St.CommentsImageBox>
+                  <St.CommentsUserProfileImg src={comment.profileImg} />
+                </St.CommentsImageBox>
+                <St.CommentsUserNickname>{comment.nickname}</St.CommentsUserNickname>
+              </St.CommentsUserInfoBox>
+              <St.CommentsContentsBox>
+                <St.CommentsDate>{dayjs(comment.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</St.CommentsDate>
+                <St.CommentsBody>{comment.body}</St.CommentsBody>
+              </St.CommentsContentsBox>
               {comment.userId === currentUser.uid && (
-                <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+                <St.CommentsDeleteButton onClick={() => handleDeleteComment(comment.id)}>삭제</St.CommentsDeleteButton>
               )}
-            </CommentsBox>
+            </St.CommentsBox>
           ))}
       </div>
     </div>
@@ -93,39 +103,3 @@ const Comments = () => {
 };
 
 export default Comments;
-
-const CommentsTitle = styled.div`
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-`;
-
-const CommentsAddForm = styled.form`
-  margin: 10px;
-`;
-
-const CommentsTextarea = styled.textarea`
-  width: 90%;
-  border-radius: 10px;
-  margin-right: 20px;
-  padding: 10px;
-`;
-
-const CommentsAddButton = styled.button`
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #e24c4b;
-  border: none;
-  border-radius: 15px;
-  padding: 7px 20px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #bb3535;
-  }
-`;
-
-const CommentsBox = styled.div`
-  border-bottom: 1px solid black;
-  padding: 20px;
-`;

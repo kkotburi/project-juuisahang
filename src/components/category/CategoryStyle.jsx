@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const St = {
   CategoryHeader: styled.div`
@@ -23,20 +24,24 @@ export const St = {
     font-size: 18px;
     padding-left: 10px;
   `,
-  WriteBtn: styled.div`
+  WriteBtn: styled(Link)`
     color: white;
     background-color: #e24c4b;
-    width: 85%;
+    width: 20%;
     height: 45px;
     border-radius: 8px;
     margin: 40px auto 50px auto;
     font-weight: bolder;
-    //padding-left: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    text-decoration-line: none;
   `,
-  PostList: styled.div`
+  PostListWrap: styled.div`
+    min-height: 25vh;
+  `,
+  PostList: styled(Link)`
     width: 88%;
     height: 60px;
     border-radius: 8px;
@@ -44,6 +49,9 @@ export const St = {
     display: flex;
     align-items: center;
     background-color: white;
+    cursor: pointer;
+    text-decoration-line: none;
+    color: black;
   `,
   PostTime: styled.div`
     font-size: 13px;
@@ -54,17 +62,34 @@ export const St = {
   PostTitle: styled.div`
     font-size: 18px;
     font-weight: 800;
+    width: 70%;
   `,
   PostRight: styled.div`
     display: flex;
     align-items: center;
-    margin-left: auto;
   `,
   Postlike: styled.div`
     font-size: 20px;
     color: red;
   `,
-  PostUser: styled.div`
-    margin: auto 15px;
+  PostUser: styled.div``,
+  ListLikeBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  `,
+  ListProfileImgBox: styled.div`
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 1px solid #d7d7d7;
+    overflow: hidden;
+    margin: auto 10px;
+  `,
+  ListProfileImg: styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   `
 };

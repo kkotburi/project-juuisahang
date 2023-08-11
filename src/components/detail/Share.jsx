@@ -1,9 +1,7 @@
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
-import { Dropdown } from 'antd';
-import { ShareAltOutlined } from '@ant-design/icons';
-import { styled } from 'styled-components';
+import { St } from './ShareLikesStyle';
 
 const Share = () => {
   const currentUrl = window.location.href;
@@ -13,7 +11,7 @@ const Share = () => {
       key: '1',
       label: (
         <CopyToClipboard text={currentUrl} onCopy={() => alert('주소가 복사되었습니다.')}>
-          <LinkIconImg src={'/linkIcon.png'} alt="링크 아이콘" />
+          <St.LinkIconImg src={'/linkIcon.png'} alt="링크 아이콘" />
         </CopyToClipboard>
       )
     },
@@ -37,32 +35,17 @@ const Share = () => {
 
   return (
     <div>
-      <ShareDropdown
+      <St.ShareDropdown
         menu={{
           items
         }}
         placement="bottomRight"
         arrow
       >
-        <ShareIcon />
-      </ShareDropdown>
+        <St.ShareIcon />
+      </St.ShareDropdown>
     </div>
   );
 };
 
 export default Share;
-
-const ShareDropdown = styled(Dropdown)`
-  display: flex;
-  flex-direction: row;
-`;
-
-const ShareIcon = styled(ShareAltOutlined)`
-  font-size: 28px;
-  cursor: pointer;
-`;
-
-const LinkIconImg = styled.img`
-  width: 35px;
-  border-radius: 50%;
-`;
