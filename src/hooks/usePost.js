@@ -13,13 +13,13 @@ const usePost = () => {
       alert('글이 작성되었습니다');
       queryClient.invalidateQueries('posts');
       navigate(-1);
-    },
-    refetchOnWindowFocus: false
+    }
   });
 
   const deleteMutation = useMutation(deletePost, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
+      navigate(-1);
     }
   });
 
