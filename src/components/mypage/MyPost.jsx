@@ -13,7 +13,7 @@ const MyPost = () => {
     isLoading: myPostsLoading,
     error: myPostsError
   } = useQuery('posts', getMyPosts, {
-    refetchOnWindowFocus: false
+    // refetchOnWindowFocus: false
   });
 
   const {
