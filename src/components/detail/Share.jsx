@@ -2,7 +2,9 @@ import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
 import { Button, Dropdown } from 'antd';
-import { ShareAltOutlined } from '@ant-design/icons';
+import { ShareAltOutlined, FacebookFilled } from '@ant-design/icons';
+import { styled } from 'styled-components';
+import linkIcon from '../../assets/linkIcon.png';
 
 const Share = () => {
   const currentUrl = window.location.href;
@@ -12,7 +14,7 @@ const Share = () => {
       key: '1',
       label: (
         <CopyToClipboard text={currentUrl} onCopy={() => alert('주소가 복사되었습니다.')}>
-          <button>URL</button>
+          <LinkIconImg src={linkIcon} alt="링크 아이콘" />
         </CopyToClipboard>
       )
     },
@@ -36,19 +38,32 @@ const Share = () => {
 
   return (
     <div>
-      <Dropdown
+      <ShareDropdown
         menu={{
           items
         }}
         placement="topRight"
         arrow
       >
-        {/* <IoShareSocialSharp size="30" /> */}
-        <ShareAltOutlined />
-      </Dropdown>
-      {/* <button>카카오톡</button> */}
+        <ShareIcon />
+      </ShareDropdown>
     </div>
   );
 };
 
 export default Share;
+
+const ShareDropdown = styled(Dropdown)`
+  display: flex;
+  flex-direction: row;
+`;
+
+const ShareIcon = styled(ShareAltOutlined)`
+  font-size: 28px;
+  cursor: pointer;
+`;
+
+const LinkIconImg = styled.img`
+  width: 35px;
+  border-radius: 50%;
+`;

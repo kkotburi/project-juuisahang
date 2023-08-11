@@ -60,13 +60,13 @@ const Post = () => {
       {posts.map((post) => {
         return (
           <div key={post.id}>
-            {' '}
             <PostTitleBox>
-              <PostButtonBox>
-                <PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</PostButton>
-                {/* <div> | </div> */}
-                <PostButton onClick={() => handleDeletePost(post.id)}>삭제</PostButton>
-              </PostButtonBox>
+              {currentUser.uid === post.userId && (
+                <PostButtonBox>
+                  <PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</PostButton>
+                  <PostButton onClick={() => handleDeletePost(post.id)}>삭제</PostButton>
+                </PostButtonBox>
+              )}
               <div>
                 <div>
                   {isEdit ? (
@@ -81,7 +81,9 @@ const Post = () => {
             {isEdit ? (
               <textarea type="text" placeholder="내용 입력" value={body} onChange={handleOnChangeBody} />
             ) : (
-              <Viewer initialValue={post.body} />
+              <PostBody>
+                <Viewer initialValue={post.body} />
+              </PostBody>
             )}
             <PostBottomBox>
               <PostUserBox>
@@ -123,6 +125,10 @@ const PostButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+
+  &:hover {
+    font-weight: 600;
+  }
 `;
 
 const PostTitleBox = styled.div`
@@ -134,6 +140,10 @@ const PostTitle = styled.div`
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 10px;
+`;
+
+const PostBody = styled.div`
+  padding: 10px 20px;
 `;
 
 const PostBottomBox = styled.div`

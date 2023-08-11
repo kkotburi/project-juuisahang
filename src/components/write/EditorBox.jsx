@@ -1,14 +1,9 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from 'store';
 import usePost from 'hooks/usePost';
 import useInput from 'hooks/useInput';
-import { Editor } from '@toast-ui/react-editor';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
-import 'tui-color-picker/dist/tui-color-picker.css';
-import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
-import '@toast-ui/editor/dist/i18n/ko-kr';
+import EditorContents from './EditorContents';
 import { styled } from 'styled-components';
 
 const EditorBox = () => {
@@ -22,14 +17,6 @@ const EditorBox = () => {
   const [title, onChangeTitle, setTitle] = useInput();
   const [body, onChangeBody, setBody] = useInput();
   const [category, onChangeCategory, setCategory] = useInput();
-
-  const editorRef = useRef();
-  //   console.log(editorRef.current);
-
-  const onChangeGetHTML = () => {
-    const data = editorRef.current.getInstance().getHTML();
-    setBody(data);
-  };
 
   const handleSubmitPost = (e) => {
     e.preventDefault();
@@ -80,19 +67,7 @@ const EditorBox = () => {
           </WriteCategory>
           <WriteTitle type="text" placeholder="제목을 입력해주세요" value={title} onChange={onChangeTitle} />
         </WriteBox>
-        <Editor
-          initialValue={body}
-          previewStyle="vertical"
-          height="600px"
-          initialEditType="wysiwyg"
-          hideModeSwitch="true"
-          useCommandShortcut={false}
-          usageStatistics={false}
-          ref={editorRef}
-          plugins={[colorSyntax]}
-          language="ko-KR"
-          onChange={onChangeGetHTML}
-        />
+        <EditorContents body={body} setBody={setBody} />
         <WriteAddButtonBox>
           <WriteAddButton>작성</WriteAddButton>
         </WriteAddButtonBox>

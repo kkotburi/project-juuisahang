@@ -45,6 +45,7 @@ const Comments = () => {
 
   return (
     <div>
+      댓글
       <div className="page add">
         <form onSubmit={handleSubmitComment}>
           <label htmlFor="name">Name :</label>
