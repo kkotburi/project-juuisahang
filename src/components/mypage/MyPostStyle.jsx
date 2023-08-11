@@ -4,54 +4,54 @@ import ReactPaginate from 'react-paginate';
 
 export const St = {
   MyPostContainer: styled.div`
-    padding: 10px;
     margin: auto;
-    position: relative;
+    padding: 10px;
     display: flex;
+    position: relative;
     flex-direction: column;
   `,
   PostList: styled.div`
-    display: flex;
     gap: 20px;
+    display: flex;
     cursor: pointer;
   `,
   ListBtn: styled.button`
-    background-color: transparent;
     border: none;
     outline: none;
     font-size: 16px;
     cursor: pointer;
+    background-color: transparent;
     &:focus {
       font-weight: bold;
     }
   `,
   ListBox: styled.div`
-    background-color: #fff;
-    border-radius: 10px;
     width: 800px;
     height: 400px;
     padding: 10px;
-    margin-top: 15px;
     display: flex;
+    margin-top: 15px;
+    border-radius: 10px;
     align-items: center;
     justify-content: center;
+    background-color: #fff;
   `,
   PostLink: styled(Link)`
-    text-decoration-line: none;
     color: #000;
+    text-decoration-line: none;
   `,
   Lists: styled.div`
     width: 630px;
     height: 60px;
-    margin: 20px auto;
-    background-color: #f3f3f3;
-    border-radius: 10px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
     padding: 5px;
     cursor: pointer;
+    margin: 20px auto;
+    border-radius: 10px;
+    flex-direction: row;
+    align-items: center;
     word-break: break-all;
+    background-color: #f3f3f3;
   `,
   ListDate: styled.p`
     font-size: 14px;
@@ -59,38 +59,38 @@ export const St = {
   `,
 
   ListTitleBox: styled.div`
+    gap: 5px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
   `,
   ListCategory: styled.p`
-    text-align: left;
     font-size: 14px;
+    text-align: left;
     margin-left: 35px;
   `,
   ListTitle: styled.p`
-    margin-left: 35px;
     font-size: 16px;
+    margin-left: 35px;
     font-weight: bold;
   `,
   ListLikeBox: styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
   `,
   ListWriterWrap: styled.div`
+    gap: 10px;
     display: flex;
+    margin-left: auto;
     flex-direction: row;
     align-items: center;
-    margin-left: auto;
-    gap: 10px;
   `,
   ListProfileImgBox: styled.div`
     width: 40px;
     height: 40px;
-    border-radius: 100%;
     overflow: hidden;
+    border-radius: 100%;
   `,
   ListProfileImg: styled.img`
     width: 100%;
@@ -104,11 +104,11 @@ export const St = {
   Paginate: styled(ReactPaginate).attrs({
     activeClassName: 'active'
   })`
-    margin-top: 1.3rem;
     display: flex;
-    justify-content: center;
-    list-style-type: none;
     padding: 0 5rem;
+    margin-top: 1.3rem;
+    list-style-type: none;
+    justify-content: center;
     li a {
       padding: 0.1rem 1rem;
       cursor: pointer;

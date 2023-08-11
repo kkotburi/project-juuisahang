@@ -9,6 +9,9 @@ const PAGE_SIZE = 4;
 
 const MyPost = () => {
   const listRef = useRef();
+  const [myPostsActive, setMyPostsActive] = useState(true);
+  const [likedPostsActive, setLikedPostsActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const { data: myPostsData, isLoading: myPostsLoading, error: myPostsError } = useQuery('posts', getMyPosts);
 
@@ -19,10 +22,6 @@ const MyPost = () => {
   } = useQuery('likes', getMyLikes, {
     refetchOnWindowFocus: false
   });
-
-  const [myPostsActive, setMyPostsActive] = useState(true);
-  const [likedPostsActive, setLikedPostsActive] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
 
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected);
