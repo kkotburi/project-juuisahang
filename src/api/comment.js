@@ -14,8 +14,8 @@ const updateComment = async (comment) => {
   await supabase.from('comments').update(comment).eq('id', comment.id);
 };
 
-const insertComment = async ({ name, body }) => {
-  const { data } = await supabase.from('comments').insert([{ name: `${name}`, body: `${body}` }]);
+const AddComment = async (comment) => {
+  await supabase.from('comments').insert(comment);
 };
 
-export { getComments, deleteComment, updateComment, insertComment };
+export { getComments, deleteComment, updateComment, AddComment };

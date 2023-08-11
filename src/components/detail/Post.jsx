@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { useUserStore } from 'store';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -10,6 +10,7 @@ import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import Share from './Share';
 import Likes from './Likes';
 import { styled } from 'styled-components';
+import Comments from './Comments';
 
 const Post = () => {
   const params = useParams();
