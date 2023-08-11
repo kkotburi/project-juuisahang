@@ -45,6 +45,8 @@ const Comments = () => {
     }
     const newComment = {
       userId: currentUser.uid,
+      nickname: currentUser.nickname,
+      profileImg: currentUser.profileImg,
       body,
       postId: params.postId
     };
@@ -79,11 +81,17 @@ const Comments = () => {
         {comments
           .filter((comment) => comment.postId === params.postId)
           .map((comment) => (
-            <CommentsBox>
-              <p>{dayjs(comment.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</p>
-              <p>{comment.body}</p>
+            <CommentsBox key={comment.id}>
+              <CommentsUserInfoBox>
+                <CommentsUserProfileImg src={comment.profileImg} />
+                <CommentsUserNickname>{comment.nickname}</CommentsUserNickname>
+              </CommentsUserInfoBox>
+              <CommentsContentsBox>
+                <CommentsDate>{dayjs(comment.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</CommentsDate>
+                <CommentsBody>{comment.body}</CommentsBody>
+              </CommentsContentsBox>
               {comment.userId === currentUser.uid && (
-                <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+                <CommentsDeleteButton onClick={() => handleDeleteComment(comment.id)}>삭제</CommentsDeleteButton>
               )}
             </CommentsBox>
           ))}
@@ -101,6 +109,9 @@ const CommentsTitle = styled.div`
 `;
 
 const CommentsAddForm = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 10px;
 `;
 
@@ -126,6 +137,57 @@ const CommentsAddButton = styled.button`
 `;
 
 const CommentsBox = styled.div`
-  border-bottom: 1px solid black;
-  padding: 20px;
+  position: relative;
+  display: flex;
+  border-bottom: 1px solid #989898;
+  padding: 15px 20px;
+`;
+
+const CommentsUserInfoBox = styled.div`
+  width: 60px;
+`;
+
+const CommentsUserProfileImg = styled.img`
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 3px;
+`;
+
+const CommentsUserNickname = styled.div`
+  font-size: 14px;
+`;
+
+const CommentsContentsBox = styled.div`
+  width: 90%;
+  padding: 10px 20px;
+`;
+
+const CommentsDate = styled.div`
+  font-size: 14px;
+  margin-bottom: 10px;
+`;
+
+const CommentsBody = styled.div`
+  width: 93%;
+  word-wrap: break-word;
+`;
+
+const CommentsDeleteButton = styled.button`
+  position: absolute;
+  top: 40%;
+  right: 2%;
+  height: 26px;
+  font-size: 14px;
+  color: #ffffff;
+  background-color: #515151;
+  border: none;
+  border-radius: 10px;
+  padding: 3px 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #343434;
+  }
 `;

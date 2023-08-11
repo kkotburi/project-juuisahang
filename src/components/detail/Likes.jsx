@@ -41,9 +41,9 @@ const Like = () => {
 
   return (
     <LikesContainer>
-      {posts.map((post) => {
+      {posts.map((post, index) => {
         return (
-          <LikesButtonBox key={post.id}>
+          <LikesButtonBox key={index}>
             {post.likes.includes(currentUser?.uid) ? (
               <FaGlassCheers size="32" color="#EEA100" onClick={() => handleUpdateLikes(post)} />
             ) : (
