@@ -4,6 +4,9 @@ import { useQuery } from 'react-query';
 import { getDetail } from 'api/post';
 import { useUserStore } from 'store';
 import usePost from 'hooks/usePost';
+// import { GoHeartFill, GoHeart } from 'react-icons/go';
+import { IoHeart, IoHeartOutline } from 'react-icons/io5';
+import { styled } from 'styled-components';
 
 const Like = () => {
   const params = useParams();
@@ -39,17 +42,27 @@ const Like = () => {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      <button onClick={handleUpdateLikes}>{posts[0].likes.includes(currentUser?.uid) ? '❤️' : '🖤'}</button>
+    <LikesButtonBox>
+      {posts[0].likes.includes(currentUser?.uid) ? (
+        <IoHeart size="36" onClick={handleUpdateLikes} />
+      ) : (
+        <IoHeartOutline size="36" onClick={handleUpdateLikes} />
+      )}
       {posts[0].likes.length ? posts[0].likes.length : 0}
-    </div>
+    </LikesButtonBox>
   );
 };
 
 export default Like;
+
+const LikesButtonBox = styled.div`
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #cfcfcfdb;
+  border-radius: 10px;
+  padding: 12px 5px;
+  cursor: pointer;
+`;

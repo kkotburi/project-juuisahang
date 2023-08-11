@@ -86,10 +86,10 @@ const Post = () => {
                 <PostUserProfileImg src={currentUser?.profileImg} />
                 {currentUser?.nickname}
               </PostUserBox>
-              <div>
+              <PostShareLikeBox>
                 <Share />
                 <Likes />
-              </div>
+              </PostShareLikeBox>
             </PostBottomBox>
           </div>
         );
@@ -134,6 +134,12 @@ const PostTitle = styled.div`
   margin-bottom: 10px;
 `;
 
+const PostBottomBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+`;
+
 const PostUserBox = styled.div`
   display: flex;
   align-items: center;
@@ -148,8 +154,6 @@ const PostUserProfileImg = styled.img`
   margin-right: 10px;
 `;
 
-const PostBottomBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 50px;
+const PostShareLikeBox = styled.div`
+  display: inline-flex;
 `;
