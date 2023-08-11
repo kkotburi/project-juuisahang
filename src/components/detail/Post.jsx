@@ -7,6 +7,8 @@ import usePost from 'hooks/usePost';
 import useInput from 'hooks/useInput';
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+// import dayjs from 'dayjs';
+// import 'dayjs/locale/ko';
 import Share from './Share';
 import Likes from './Likes';
 import { styled } from 'styled-components';
@@ -155,5 +157,7 @@ const PostUserProfileImg = styled.img`
 `;
 
 const PostShareLikeBox = styled.div`
-  display: inline-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

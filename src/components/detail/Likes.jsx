@@ -4,8 +4,7 @@ import { useQuery } from 'react-query';
 import { getDetail } from 'api/post';
 import { useUserStore } from 'store';
 import usePost from 'hooks/usePost';
-// import { GoHeartFill, GoHeart } from 'react-icons/go';
-import { IoHeart, IoHeartOutline } from 'react-icons/io5';
+import { HeartOutlined, HeartFilled, LikeOutlined, LikeFilled } from '@ant-design/icons';
 import { styled } from 'styled-components';
 
 const Like = () => {
@@ -44,9 +43,9 @@ const Like = () => {
   return (
     <LikesButtonBox>
       {posts[0].likes.includes(currentUser?.uid) ? (
-        <IoHeart size="36" onClick={handleUpdateLikes} />
+        <LikesFillIcon onClick={handleUpdateLikes} />
       ) : (
-        <IoHeartOutline size="36" onClick={handleUpdateLikes} />
+        <LikesIcon onClick={handleUpdateLikes} />
       )}
       {posts[0].likes.length ? posts[0].likes.length : 0}
     </LikesButtonBox>
@@ -63,6 +62,28 @@ const LikesButtonBox = styled.div`
   flex-direction: column;
   background-color: #cfcfcfdb;
   border-radius: 10px;
-  padding: 12px 5px;
+  margin-left: 20px;
+  padding: 10px 2px;
+`;
+
+const LikesFillIcon = styled(LikeFilled)`
+  font-size: 28px;
+  margin-bottom: 3px;
   cursor: pointer;
 `;
+
+const LikesIcon = styled(LikeOutlined)`
+  font-size: 28px;
+  margin-bottom: 3px;
+  cursor: pointer;
+`;
+
+// const LikesFillIcon = styled(HeartFilled)`
+//   font-size: 28px;
+//   cursor: pointer;
+// `;
+
+// const LikesIcon = styled(HeartOutlined)`
+//   font-size: 28px;
+//   cursor: pointer;
+// `;
