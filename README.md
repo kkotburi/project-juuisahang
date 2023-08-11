@@ -6,7 +6,7 @@
 
 - 술자리 팁, 건배사 추천, 술 게임, 숙취해소법 등 건강한 음주 문화를 위한 커뮤니티
 
-## 📕 [S.A(Starting Assignments)] (https://www.notion.so/5e115ec1634b4af9a51cb951e7a1cd4f)
+## 📕 [S.A(Starting Assignments)](https://www.notion.so/5e115ec1634b4af9a51cb951e7a1cd4f)
 
 ## 🎬 구현 사이트
 
