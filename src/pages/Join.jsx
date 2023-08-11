@@ -1,9 +1,11 @@
 import supabase from 'lib/supabaseClient';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useValidator from 'hooks/useValidator';
 import { DEFAULT_PROFILE_IMAGE, PROFILE_BASE_URL } from 'constants/user';
+import { St } from '../components/login/LoginStyle';
+import { Alert, Button, Space } from 'antd';
 
 const Join = () => {
   const navigate = useNavigate();
@@ -83,75 +85,95 @@ const Join = () => {
   };
 
   return (
-    <div>
+    <St.FormContainer>
+      <St.InfoBox>
+        <Alert
+          description="이 정보내용은 청소년 유해매체물로서 정보통신망 이용촉진법 및 정보보호 등에 관한 법률 및 청소년 보호법의 규정에
+        의하여 19세 미만의 청소년은 사용할 수 없습니다."
+          type="error"
+          action={
+            <Space direction="horizontal">
+              <Button
+                size="small"
+                danger
+                onClick={() => {
+                  navigate('/');
+                }}
+              >
+                19세 미만 나가기
+              </Button>
+            </Space>
+          }
+          closable
+        />
+      </St.InfoBox>
+
       <form onSubmit={handleSubmit(signUp)}>
-        <div>
+        <St.FormRow>
           <label>이메일</label>
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="이메일"
-              aria-invalid={isSubmitted ? (errors.email ? 'true' : 'false') : undefined}
-              {...register('email', validateEmail)}
-            />
-            {errors.email && <small role="alert">{errors.email.message}</small>}
-          </div>
-        </div>
-        <div>
+          <St.FormInput
+            type="email"
+            name="email"
+            placeholder="이메일"
+            className={errors.email ? 'error' : undefined}
+            aria-invalid={isSubmitted ? (errors.email ? 'true' : 'false') : undefined}
+            {...register('email', validateEmail)}
+          />
+          {errors.email && <St.FormAlert role="alert">{errors.email.message}</St.FormAlert>}
+        </St.FormRow>
+        <St.FormRow>
           <label>비밀번호</label>
-          <div>
-            <input
-              type="password"
-              name="password"
-              placeholder="영문, 숫자, 특수문자 조합 8자리 이상 입력"
-              aria-invalid={isSubmitted ? (errors.password ? 'true' : 'false') : undefined}
-              {...register('password', validatePassword)}
-            />
-            {errors.password && <small role="alert">{errors.password.message}</small>}
-          </div>
-        </div>
-        <div>
+          <St.FormInput
+            type="password"
+            name="password"
+            placeholder="영문, 숫자, 특수문자 조합 8자리 이상 입력"
+            className={errors.password ? 'error' : undefined}
+            aria-invalid={isSubmitted ? (errors.password ? 'true' : 'false') : undefined}
+            {...register('password', validatePassword)}
+          />
+          {errors.password && <St.FormAlert role="alert">{errors.password.message}</St.FormAlert>}
+        </St.FormRow>
+        <St.FormRow>
           <label>비밀번호 확인</label>
-          <div>
-            <input
-              type="password"
-              name="passwordConfirm"
-              placeholder="비밀번호 확인"
-              aria-invalid={isSubmitted ? (errors.passwordConfirm ? 'true' : 'false') : undefined}
-              {...register('passwordConfirm', validatePasswordConfirm(getValues('password')))}
-            />
-            {errors.passwordConfirm && <small role="alert">{errors.passwordConfirm.message}</small>}
-          </div>
-        </div>
+          <St.FormInput
+            type="password"
+            name="passwordConfirm"
+            placeholder="비밀번호 확인"
+            className={errors.passwordConfirm ? 'error' : undefined}
+            aria-invalid={isSubmitted ? (errors.passwordConfirm ? 'true' : 'false') : undefined}
+            {...register('passwordConfirm', validatePasswordConfirm(getValues('password')))}
+          />
+          {errors.passwordConfirm && <St.FormAlert role="alert">{errors.passwordConfirm.message}</St.FormAlert>}
+        </St.FormRow>
 
-        <div>
+        <St.FormRow>
           <label>닉네임</label>
-          <div>
-            <input
-              type="text"
-              name="nickname"
-              aria-invalid={isSubmitted ? (errors.nickname ? 'true' : 'false') : undefined}
-              {...register('nickname', validateNickname)}
-            />
-          </div>
-          {errors.nickname && <small role="alert">{errors.nickname.message}</small>}
-        </div>
+          <St.FormInput
+            type="text"
+            name="nickname"
+            className={errors.nickname ? 'error' : undefined}
+            aria-invalid={isSubmitted ? (errors.nickname ? 'true' : 'false') : undefined}
+            {...register('nickname', validateNickname)}
+          />
+          {errors.nickname && <St.FormAlert role="alert">{errors.nickname.message}</St.FormAlert>}
+        </St.FormRow>
 
-        <div>
+        <St.FormRow>
           <label>프로필사진</label>
-          <div>
-            <div>
-              <img src={previewImg} alt="프로필 사진" />
-            </div>
-            <input type="file" onChange={handleFileSelect} />
-          </div>
-        </div>
-        <div>
-          <button disabled={isSubmitting}>회원가입</button>
-        </div>
+          <input type="file" onChange={handleFileSelect} />
+          <St.ProfileBox>
+            <img src={previewImg} alt="프로필 사진" />
+          </St.ProfileBox>
+        </St.FormRow>
+        <St.ButtonBox>
+          <St.ButtonPrimary disabled={isSubmitting}>회원가입</St.ButtonPrimary>
+        </St.ButtonBox>
+        <St.JoinLinkBox>
+          이미 회원이세요?
+          <Link to="/login">로그인하러 가기</Link>
+        </St.JoinLinkBox>
       </form>
-    </div>
+    </St.FormContainer>
   );
 };
 
