@@ -7,14 +7,14 @@ export const St = {
     margin-top: 1.5rem;
   `,
   ProfileWarp: styled.div`
-    width: 30%;
+    width: 40%;
     float: left;
-    margin-top: 50px;
+    margin-top: 12rem;
     box-sizing: border-box;
   `,
 
   MyPostWarp: styled.div`
-    width: 70%;
+    width: 60%;
     float: right;
     margin-top: 30px;
   `,

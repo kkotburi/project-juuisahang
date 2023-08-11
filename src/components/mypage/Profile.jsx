@@ -107,7 +107,7 @@ const Profile = () => {
                   onChange={nicknameChangeHandler}
                 />
               </div>
-              <St.NicknameChangeBtn onClick={() => nicknameUpdateBtn(member)}>닉네임 변경</St.NicknameChangeBtn>
+              <St.NicknameChangeBtn onClick={() => nicknameUpdateBtn(member)}>프로필 수정</St.NicknameChangeBtn>
             </St.ContentsForm>
           </St.ContentsBox>
         </St.ProfileWarp>
