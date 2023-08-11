@@ -53,8 +53,6 @@ const EditorBox = () => {
     setTitle('');
     setBody('');
     setCategory('');
-
-    navigate(-1);
   };
 
   const handleClickCancel = () => {
