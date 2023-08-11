@@ -7,16 +7,17 @@ ${reset}
 
 * {
   font-family: 'Noto Sans KR', sans-serif;
+  max-width: 100%;
 }
 
 body {
-
   font-family: 'Noto Sans KR', sans-serif;
   background-color:#F3F3F3;
   max-width: 1200px;
-  margin: 0 auto;
-  
+  margin: 0 auto; 
 }
 `;
+
+// const CustomComponent = styled.div``;
 
 export default GlobalStyle;

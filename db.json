@@ -186,31 +186,5 @@
       "name": "호랑이 막걸리",
       "explanation": "막걸리에 파전을 먹으면서 마음은 외롭지만 뱃 속은 외롭지 않게"
     }
-  ],
-  "posts": [
-    {
-      "id": "",
-      "category": "술자리 팁",
-      "title": "popularity test",
-      "like": "0"
-    },
-    {
-      "id": "",
-      "category": "건배사",
-      "title": "Is this popular?",
-      "like": "41"
-    },
-    {
-      "id": "",
-      "category": "술 게임",
-      "title": "이거슨 제이슨 서버",
-      "like": "8"
-    },
-    {
-      "id": "",
-      "category": "숙취해소법",
-      "title": "리액트 퀴리네",
-      "like": "239"
-    }
   ]
 }
