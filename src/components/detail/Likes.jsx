@@ -5,14 +5,14 @@ import { getDetail } from 'api/post';
 import { useUserStore } from 'store';
 import usePost from 'hooks/usePost';
 
-const Like = () => {
+const Likes = () => {
   const params = useParams();
 
   const currentUser = useUserStore((state) => state.currentUser);
 
   const { data: posts, isLoading, isError } = useQuery('likes', () => getDetail(params.postId));
   const { updateLikesMutation } = usePost();
-  // console.log(posts[0].likes);
+  // // console.log(posts[0].likes);
 
   const handleUpdateLikes = () => {
     if (!posts[0].likes.includes(currentUser?.uid) && currentUser) {
@@ -46,10 +46,10 @@ const Like = () => {
         justifyContent: 'center'
       }}
     >
-      <button onClick={handleUpdateLikes}>{posts[0].likes.includes(currentUser?.uid) ? '❤️' : '🖤'}</button>
+      <button onClick={handleUpdateLikes}>{posts[0].likes?.includes(currentUser?.uid) ? '❤️' : '🖤'}</button>
       {posts[0].likes.length ? posts[0].likes.length : 0}
     </div>
   );
 };
 
-export default Like;
+export default Likes;
