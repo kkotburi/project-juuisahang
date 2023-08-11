@@ -77,13 +77,3 @@ const LikesIcon = styled(LikeOutlined)`
   margin-bottom: 3px;
   cursor: pointer;
 `;
-
-// const LikesFillIcon = styled(HeartFilled)`
-//   font-size: 28px;
-//   cursor: pointer;
-// `;
-
-// const LikesIcon = styled(HeartOutlined)`
-//   font-size: 28px;
-//   cursor: pointer;
-// `;

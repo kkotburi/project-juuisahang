@@ -12,6 +12,8 @@ import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import Share from './Share';
 import Likes from './Likes';
 import { styled } from 'styled-components';
+import EditorContents from 'components/write/EditorContents';
+import WriteContents from 'components/write/WriteContents';
 
 const Post = () => {
   const params = useParams();
@@ -21,8 +23,9 @@ const Post = () => {
   const { data: posts, isLoading, isError } = useQuery('posts', () => getDetail(params.postId));
   const { deleteMutation, updateMutation } = usePost();
 
-  const [title, handleOnChangeTitle, setTitle] = useInput();
-  const [body, handleOnChangeBody, setBody] = useInput();
+  const [title, onChangeTitle, setTitle] = useInput();
+  const [body, onChangeBody, setBody] = useInput();
+  // const [category, onChangeCategory, setCategory] = useInput();
   const [isEdit, setIsEdit] = useState(false);
 
   console.log(posts);
@@ -60,41 +63,42 @@ const Post = () => {
       {posts.map((post) => {
         return (
           <div key={post.id}>
+            {currentUser.uid === post.userId && (
+              <PostButtonBox>
+                <PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</PostButton>
+                <PostButton onClick={() => handleDeletePost(post.id)}>삭제</PostButton>
+              </PostButtonBox>
+            )}
             <PostTitleBox>
-              {currentUser.uid === post.userId && (
-                <PostButtonBox>
-                  <PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</PostButton>
-                  <PostButton onClick={() => handleDeletePost(post.id)}>삭제</PostButton>
-                </PostButtonBox>
+              {!isEdit && (
+                <>
+                  <PostTitle>{post.title}</PostTitle>
+                  <div>{post.created_at}</div>
+                </>
               )}
-              <div>
-                <div>
-                  {isEdit ? (
-                    <textarea type="text" placeholder="제목 입력" value={title} onChange={handleOnChangeTitle} />
-                  ) : (
-                    <PostTitle>{post.title}</PostTitle>
-                  )}
-                </div>
-                <div>{post.created_at}</div>
-              </div>
             </PostTitleBox>
             {isEdit ? (
-              <textarea type="text" placeholder="내용 입력" value={body} onChange={handleOnChangeBody} />
+              <>
+                <WriteContents title={title} onChangeTitle={onChangeTitle} />
+                <EditorContents body={body} setBody={setBody} />
+              </>
             ) : (
-              <PostBody>
-                <Viewer initialValue={post.body} />
-              </PostBody>
+              <>
+                <PostBody>
+                  <Viewer initialValue={post.body} />
+                </PostBody>
+                <PostBottomBox>
+                  <PostUserBox>
+                    <PostUserProfileImg src={currentUser?.profileImg} />
+                    {currentUser?.nickname}
+                  </PostUserBox>
+                  <PostShareLikeBox>
+                    <Share />
+                    <Likes />
+                  </PostShareLikeBox>
+                </PostBottomBox>
+              </>
             )}
-            <PostBottomBox>
-              <PostUserBox>
-                <PostUserProfileImg src={currentUser?.profileImg} />
-                {currentUser?.nickname}
-              </PostUserBox>
-              <PostShareLikeBox>
-                <Share />
-                <Likes />
-              </PostShareLikeBox>
-            </PostBottomBox>
           </div>
         );
       })}
@@ -105,10 +109,6 @@ const Post = () => {
 export default Post;
 
 const PostContainer = styled.div`
-  /* width: 100%; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
   background-color: #ffffff;
   border-radius: 15px;
   margin: 30px 0;

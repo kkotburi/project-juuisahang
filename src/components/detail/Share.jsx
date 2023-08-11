@@ -1,10 +1,9 @@
 import React from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
-import { Button, Dropdown } from 'antd';
-import { ShareAltOutlined, FacebookFilled } from '@ant-design/icons';
+import { Dropdown } from 'antd';
+import { ShareAltOutlined } from '@ant-design/icons';
 import { styled } from 'styled-components';
-import linkIcon from '../../assets/linkIcon.png';
 
 const Share = () => {
   const currentUrl = window.location.href;
@@ -14,7 +13,7 @@ const Share = () => {
       key: '1',
       label: (
         <CopyToClipboard text={currentUrl} onCopy={() => alert('주소가 복사되었습니다.')}>
-          <LinkIconImg src={linkIcon} alt="링크 아이콘" />
+          <LinkIconImg src={'/linkIcon.png'} alt="링크 아이콘" />
         </CopyToClipboard>
       )
     },
@@ -42,7 +41,7 @@ const Share = () => {
         menu={{
           items
         }}
-        placement="topRight"
+        placement="bottomRight"
         arrow
       >
         <ShareIcon />

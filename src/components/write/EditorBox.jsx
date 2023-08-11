@@ -5,6 +5,7 @@ import usePost from 'hooks/usePost';
 import useInput from 'hooks/useInput';
 import EditorContents from './EditorContents';
 import { styled } from 'styled-components';
+import WriteContents from './WriteContents';
 
 const EditorBox = () => {
   const navigate = useNavigate();
@@ -54,19 +55,15 @@ const EditorBox = () => {
   return (
     <WriteContainer>
       <WriteCancelButtonBox>
-        <WriteCancelButton onClick={handleClickCancel}>취소</WriteCancelButton>
+        <WriteCancelButton onClick={handleClickCancel}>글 작성 취소</WriteCancelButton>
       </WriteCancelButtonBox>
       <form onSubmit={handleSubmitPost}>
-        <WriteBox>
-          <WriteCategory value={category} onChange={onChangeCategory}>
-            <option>카테고리 선택</option>
-            <option>술자리 팁</option>
-            <option>건배사</option>
-            <option>술 게임</option>
-            <option>숙취해소법</option>
-          </WriteCategory>
-          <WriteTitle type="text" placeholder="제목을 입력해주세요" value={title} onChange={onChangeTitle} />
-        </WriteBox>
+        <WriteContents
+          title={title}
+          onChangeTitle={onChangeTitle}
+          category={category}
+          onChangeCategory={onChangeCategory}
+        />
         <EditorContents body={body} setBody={setBody} />
         <WriteAddButtonBox>
           <WriteAddButton>작성</WriteAddButton>
@@ -90,12 +87,13 @@ const WriteCancelButtonBox = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  width: 90%;
+  width: 100%;
 `;
 
 const WriteCancelButton = styled.button`
   font-size: 16px;
   color: #000000;
+  text-decoration: underline;
   /* background-color: #4b4b4b; */
   background-color: transparent;
   border: none;
@@ -108,29 +106,6 @@ const WriteCancelButton = styled.button`
     font-weight: 600;
     /* font-style: italic; */
   }
-`;
-
-const WriteBox = styled.div`
-  display: inline-flex;
-  margin: 15px 0;
-`;
-
-const WriteCategory = styled.select`
-  font-size: 14px;
-  background-color: #f7f9fc;
-  border: 1px solid #dbdde6;
-  border-radius: 5px;
-  padding: 10px;
-  margin-right: 10px;
-`;
-
-const WriteTitle = styled.input`
-  width: 886px;
-  font-size: 18px;
-  background-color: #f7f9fc;
-  border: 1px solid #dbdde6;
-  border-radius: 5px;
-  padding: 7px;
 `;
 
 const WriteAddButtonBox = styled.div`
