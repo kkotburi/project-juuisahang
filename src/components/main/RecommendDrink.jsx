@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import supabase from 'lib/supabaseClient';
-import { useQuery } from 'react-query';
-import { getDrinks } from 'api/main';
+import { St } from './MainStyle';
 
 const RecommendDrink = () => {
   const [mood, setMood] = useState();
-
-  // supabase
   const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
@@ -26,19 +23,6 @@ const RecommendDrink = () => {
     getDrinks();
   }, []);
 
-  // react-query
-  // const { isLoading, isError, data } = useQuery('drinks', getDrinks);
-
-  // if (isLoading) {
-  //   return <p>Loading…</p>;
-  // }
-
-  // if (isError) {
-  //   return <p>Error</p>;
-  // }
-
-  // const drinks = data.data;
-
   const moodDrinks = drinks.filter((item) => item.mood === `${mood}`);
   const recommendDrink = _.sample(moodDrinks);
 
@@ -51,7 +35,7 @@ const RecommendDrink = () => {
   };
 
   return (
-    <div>
+    <St.RecommendContainer>
       <div>오늘의 나는?</div>
       {mood ? (
         <div>
@@ -60,15 +44,31 @@ const RecommendDrink = () => {
           <button onClick={clickAgain}>다시하기</button>
         </div>
       ) : (
-        <div>
-          <button onClick={() => clickMood('설렘')}>설렘</button>
-          <button onClick={() => clickMood('즐거움')}>즐거움</button>
-          <button onClick={() => clickMood('뿌듯함')}>뿌듯함</button>
-          <button onClick={() => clickMood('화남')}>화남</button>
-          <button onClick={() => clickMood('외로움')}>외로움</button>
-        </div>
+        <St.MoodContainer>
+          <div onClick={() => clickMood('즐거움')}>
+            <St.MoodImg src="/즐거움.png" />
+            <div>즐거움</div>
+          </div>
+          <div onClick={() => clickMood('화남')}>
+            <St.MoodImg src="/화남.png" />
+            <div>화남</div>
+          </div>
+          <div onClick={() => clickMood('설렘')}>
+            <St.MoodImg src="/설렘.png" />
+            <div>설렘</div>
+          </div>
+          <div onClick={() => clickMood('뿌듯함')}>
+            <St.MoodImg src="/뿌듯함.png" />
+            <div>뿌듯함</div>
+          </div>
+
+          <div onClick={() => clickMood('외로움')}>
+            <St.MoodImg src="/외로움.png" />
+            <div>외로움</div>
+          </div>
+        </St.MoodContainer>
       )}
-    </div>
+    </St.RecommendContainer>
   );
 };
 

@@ -7,6 +7,7 @@ import { St } from './LoginUtilStyle';
 
 const LoginUtil = ({ currentUser }) => {
   const navigate = useNavigate();
+
   const signOut = async () => {
     await supabase.auth.signOut();
     navigate('/');

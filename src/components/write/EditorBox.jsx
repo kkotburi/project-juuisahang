@@ -42,6 +42,8 @@ const EditorBox = () => {
 
     const newPost = {
       userId: currentUser.uid,
+      nickname: currentUser.nickname,
+      profileImg: currentUser.profileImg,
       title,
       body,
       likes: [],
