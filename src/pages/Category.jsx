@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import supabase from 'lib/supabaseClient';
-import { useQuery } from 'react-query';
-import { getPosts } from 'api/main';
 // components
 import Tip from 'components/category/Tip';
 import Toast from 'components/category/Toast';
@@ -11,8 +9,6 @@ import Hangover from 'components/category/Hangover';
 
 const Category = () => {
   const { code } = useParams();
-
-  // supabase
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -30,19 +26,6 @@ const Category = () => {
 
     getPosts();
   }, []);
-
-  // react-query
-  // const { isLoading, isError, data } = useQuery('posts', getPosts);
-
-  // if (isLoading) {
-  //   return <p>Loading…</p>;
-  // }
-
-  // if (isError) {
-  //   return <p>Error</p>;
-  // }
-
-  // const posts = data.data;
 
   return (
     <div>
