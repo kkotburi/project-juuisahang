@@ -8,13 +8,7 @@ import { FaGlassCheers } from 'react-icons/fa';
 const MyPost = () => {
   const listRef = useRef();
 
-  const {
-    data: myPostsData,
-    isLoading: myPostsLoading,
-    error: myPostsError
-  } = useQuery('posts', getMyPosts, {
-    refetchOnWindowFocus: false
-  });
+  const { data: myPostsData, isLoading: myPostsLoading, error: myPostsError } = useQuery('posts', getMyPosts);
 
   const {
     data: likedPostsData,
