@@ -62,7 +62,7 @@ export const St = {
     width: 160px;
     height: 30px;
     outline: none;
-    font-size: 12px;
+    font-size: 13px;
     padding-left: 10px;
     margin-left: 10px;
     border: 1px solid gray;

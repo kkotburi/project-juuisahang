@@ -5,6 +5,8 @@ import { getMyPosts, getMyLikes } from 'api/myPost';
 import dayjs from 'dayjs';
 import { FaGlassCheers } from 'react-icons/fa';
 
+const PAGE_SIZE = 4;
+
 const MyPost = () => {
   const listRef = useRef();
 
@@ -20,6 +22,11 @@ const MyPost = () => {
 
   const [myPostsActive, setMyPostsActive] = useState(true);
   const [likedPostsActive, setLikedPostsActive] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
 
   const renderPosts = (posts) => {
     if (!posts) {
@@ -66,10 +73,19 @@ const MyPost = () => {
   };
 
   let content = null;
+  let pageCount = 1;
   if (myPostsActive) {
-    content = renderPosts(myPostsData);
+    if (myPostsData) {
+      const paginatedPosts = myPostsData.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
+      content = renderPosts(paginatedPosts);
+      pageCount = Math.ceil(myPostsData.length / PAGE_SIZE);
+    }
   } else if (likedPostsActive) {
-    content = renderPosts(likedPostsData);
+    if (likedPostsData) {
+      const paginatedLikedPosts = likedPostsData.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
+      content = renderPosts(paginatedLikedPosts);
+      pageCount = Math.ceil(likedPostsData.length / PAGE_SIZE);
+    }
   }
 
   if (myPostsLoading || likedPostsLoading) {
@@ -89,6 +105,16 @@ const MyPost = () => {
         <St.ListBtn onClick={handleMyLikedPostsClick}>좋아요 목록</St.ListBtn>
       </St.PostList>
       <St.ListBox ref={listRef}>{content}</St.ListBox>
+      <St.Paginate
+        previousLabel={'<'}
+        nextLabel={'>'}
+        breakLabel={'...'}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={4}
+        onPageChange={handlePageChange}
+        activeClassName={'active'}
+      />
     </St.MyPostContainer>
   );
 };

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
+import ReactPaginate from 'react-paginate';
 
 export const St = {
   MyPostContainer: styled.div`
@@ -18,7 +19,7 @@ export const St = {
     background-color: transparent;
     border: none;
     outline: none;
-    font-size: 15px;
+    font-size: 16px;
     cursor: pointer;
     &:focus {
       font-weight: bold;
@@ -28,20 +29,19 @@ export const St = {
     background-color: #fff;
     border-radius: 10px;
     width: 800px;
-    height: 600px;
+    height: 400px;
     padding: 10px;
-    margin-top: 20px;
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
   PostLink: styled(Link)`
     text-decoration-line: none;
     color: #000;
   `,
   Lists: styled.div`
-    width: 90%;
+    width: 630px;
     height: 60px;
     margin: 20px auto;
     background-color: #f3f3f3;
@@ -49,7 +49,7 @@ export const St = {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px;
+    padding: 5px;
     cursor: pointer;
     word-break: break-all;
   `,
@@ -68,7 +68,6 @@ export const St = {
     font-size: 14px;
     margin-left: 35px;
   `,
-
   ListTitle: styled.p`
     margin-left: 35px;
     font-size: 16px;
@@ -101,5 +100,29 @@ export const St = {
   ListNickname: styled.p`
     font-size: 14px;
     margin-right: 10px;
+  `,
+  Paginate: styled(ReactPaginate).attrs({
+    activeClassName: 'active'
+  })`
+    margin-top: 1.3rem;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0 5rem;
+    li a {
+      padding: 0.1rem 1rem;
+      cursor: pointer;
+    }
+    li.previous a {
+      font-weight: bold;
+    }
+    li.active a {
+      font-weight: bold;
+      min-width: 30px;
+    }
+    li.disable,
+    li.disabled a {
+      cursor: default;
+    }
   `
 };
