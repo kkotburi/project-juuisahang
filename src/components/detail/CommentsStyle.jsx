@@ -44,14 +44,23 @@ export const St = {
 
   CommentsUserInfoBox: styled.div`
     width: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  `,
+
+  CommentsImageBox: styled.div`
+    width: 40px;
+    height: 40px;
+    border-radius: 70px;
+    overflow: hidden;
   `,
 
   CommentsUserProfileImg: styled.img`
-    max-width: 40px;
-    max-height: 40px;
-    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    margin-bottom: 3px;
+    image-rendering: crisp-edges;
   `,
 
   CommentsUserNickname: styled.div`

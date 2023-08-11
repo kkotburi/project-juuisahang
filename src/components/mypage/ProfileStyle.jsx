@@ -36,6 +36,7 @@ export const St = {
     height: 100%;
     cursor: pointer;
     object-fit: cover;
+    image-rendering: crisp-edges;
   `,
 
   ImageInput: styled.input`

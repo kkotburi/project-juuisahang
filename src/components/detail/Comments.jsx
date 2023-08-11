@@ -83,7 +83,9 @@ const Comments = () => {
           .map((comment) => (
             <St.CommentsBox key={comment.id}>
               <St.CommentsUserInfoBox>
-                <St.CommentsUserProfileImg src={comment.profileImg} />
+                <St.CommentsImageBox>
+                  <St.CommentsUserProfileImg src={comment.profileImg} />
+                </St.CommentsImageBox>
                 <St.CommentsUserNickname>{comment.nickname}</St.CommentsUserNickname>
               </St.CommentsUserInfoBox>
               <St.CommentsContentsBox>
