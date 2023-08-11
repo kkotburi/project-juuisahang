@@ -42,7 +42,7 @@ export const St = {
   PostListWrap: styled.div`
     min-height: 25vh;
   `,
-  PostList: styled.div`
+  PostList: styled(Link)`
     width: 88%;
     height: 60px;
     border-radius: 8px;
@@ -51,6 +51,8 @@ export const St = {
     align-items: center;
     background-color: white;
     cursor: pointer;
+    text-decoration-line: none;
+    color: black;
   `,
   PostTime: styled.div`
     font-size: 13px;

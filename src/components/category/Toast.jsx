@@ -15,7 +15,7 @@ const Toast = ({ code, posts }) => {
       <St.WriteBtn to={`/write`}>글 작성하기</St.WriteBtn>
       <St.PostListWrap>
         {categoryPosts.map((post) => (
-          <St.PostList>
+          <St.PostList to={`/detail/${post.id}`}>
             <St.PostTime>{dayjs(post.created_at).format('YYYY-MM-DD')}</St.PostTime>
             <St.PostTitle key={post.id}>{post.title}</St.PostTitle>
             <St.PostRight>
