@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useUserStore } from 'store';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getDetail } from 'api/post';
 import usePost from 'hooks/usePost';
