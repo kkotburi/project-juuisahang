@@ -15,7 +15,7 @@ const Like = () => {
   // console.log(posts[0].likes);
 
   const handleUpdateLikes = () => {
-    if (!posts[0].likes.includes(currentUser?.uid)) {
+    if (!posts[0].likes.includes(currentUser?.uid) && currentUser) {
       const updateLikesUser = {
         ...posts[0],
         likes: [...posts[0].likes, currentUser?.uid]
