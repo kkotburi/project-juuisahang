@@ -71,7 +71,7 @@ const CategoryLink = styled(Link)`
   color: black;
   font-size: 18px;
 
-  margin: 0px 40px;
+  margin: 0px 50px;
 
   display: flex;
   align-items: center;
