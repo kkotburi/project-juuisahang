@@ -3,8 +3,8 @@ import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { getComments, deleteComment, updateComment, AddComment } from 'api/comment';
 import { useUserStore } from 'store';
 import { useParams } from 'react-router-dom/dist';
-import { styled } from 'styled-components';
 import dayjs from 'dayjs';
+import { St } from './CommentsStyle';
 
 const Comments = () => {
   const currentUser = useUserStore((state) => state.currentUser);
@@ -65,9 +65,9 @@ const Comments = () => {
 
   return (
     <div>
-      <CommentsTitle>댓글</CommentsTitle>
-      <CommentsAddForm onSubmit={handleSubmitComment}>
-        <CommentsTextarea
+      <St.CommentsTitle>댓글</St.CommentsTitle>
+      <St.CommentsAddForm onSubmit={handleSubmitComment}>
+        <St.CommentsTextarea
           type="text"
           id="body"
           value={body}
@@ -75,25 +75,25 @@ const Comments = () => {
             setBody(e.target.value);
           }}
         />
-        <CommentsAddButton>등록</CommentsAddButton>
-      </CommentsAddForm>
+        <St.CommentsAddButton>등록</St.CommentsAddButton>
+      </St.CommentsAddForm>
       <div>
         {comments
           .filter((comment) => comment.postId === params.postId)
           .map((comment) => (
-            <CommentsBox key={comment.id}>
-              <CommentsUserInfoBox>
-                <CommentsUserProfileImg src={comment.profileImg} />
-                <CommentsUserNickname>{comment.nickname}</CommentsUserNickname>
-              </CommentsUserInfoBox>
-              <CommentsContentsBox>
-                <CommentsDate>{dayjs(comment.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</CommentsDate>
-                <CommentsBody>{comment.body}</CommentsBody>
-              </CommentsContentsBox>
+            <St.CommentsBox key={comment.id}>
+              <St.CommentsUserInfoBox>
+                <St.CommentsUserProfileImg src={comment.profileImg} />
+                <St.CommentsUserNickname>{comment.nickname}</St.CommentsUserNickname>
+              </St.CommentsUserInfoBox>
+              <St.CommentsContentsBox>
+                <St.CommentsDate>{dayjs(comment.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</St.CommentsDate>
+                <St.CommentsBody>{comment.body}</St.CommentsBody>
+              </St.CommentsContentsBox>
               {comment.userId === currentUser.uid && (
-                <CommentsDeleteButton onClick={() => handleDeleteComment(comment.id)}>삭제</CommentsDeleteButton>
+                <St.CommentsDeleteButton onClick={() => handleDeleteComment(comment.id)}>삭제</St.CommentsDeleteButton>
               )}
-            </CommentsBox>
+            </St.CommentsBox>
           ))}
       </div>
     </div>
@@ -101,93 +101,3 @@ const Comments = () => {
 };
 
 export default Comments;
-
-const CommentsTitle = styled.div`
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-`;
-
-const CommentsAddForm = styled.form`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px;
-`;
-
-const CommentsTextarea = styled.textarea`
-  width: 90%;
-  border-radius: 10px;
-  margin-right: 20px;
-  padding: 10px;
-`;
-
-const CommentsAddButton = styled.button`
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #e24c4b;
-  border: none;
-  border-radius: 15px;
-  padding: 7px 20px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #bb3535;
-  }
-`;
-
-const CommentsBox = styled.div`
-  position: relative;
-  display: flex;
-  border-bottom: 1px solid #989898;
-  padding: 15px 20px;
-`;
-
-const CommentsUserInfoBox = styled.div`
-  width: 60px;
-`;
-
-const CommentsUserProfileImg = styled.img`
-  max-width: 40px;
-  max-height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 3px;
-`;
-
-const CommentsUserNickname = styled.div`
-  font-size: 14px;
-`;
-
-const CommentsContentsBox = styled.div`
-  width: 90%;
-  padding: 10px 20px;
-`;
-
-const CommentsDate = styled.div`
-  font-size: 14px;
-  margin-bottom: 10px;
-`;
-
-const CommentsBody = styled.div`
-  width: 93%;
-  word-wrap: break-word;
-`;
-
-const CommentsDeleteButton = styled.button`
-  position: absolute;
-  top: 40%;
-  right: 2%;
-  height: 26px;
-  font-size: 14px;
-  color: #ffffff;
-  background-color: #515151;
-  border: none;
-  border-radius: 10px;
-  padding: 3px 10px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #343434;
-  }
-`;
