@@ -3,15 +3,10 @@ import { St } from './MyPostStyle';
 import { useQuery } from 'react-query';
 import { getMyPosts, getMyLikes } from 'api/myPost';
 import dayjs from 'dayjs';
-import { getProfile } from 'api/profile';
 import { FaGlassCheers } from 'react-icons/fa';
 
 const MyPost = () => {
   const listRef = useRef();
-
-  const { data: member } = useQuery('members', getProfile, {
-    refetchOnWindowFocus: false
-  });
 
   const {
     data: myPostsData,

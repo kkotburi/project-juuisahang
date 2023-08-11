@@ -15,7 +15,7 @@ export const St = {
     cursor: pointer;
   `,
   ListBtn: styled.button`
-    background-color: transform;
+    background-color: transparent;
     border: none;
     outline: none;
     font-size: 15px;
