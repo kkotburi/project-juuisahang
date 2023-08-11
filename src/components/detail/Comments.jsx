@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getComments, deleteComment, updateComment, insertComment } from 'api/comment';
+import { getComments, deleteComment, updateComment, AddComment } from 'api/comment';
+import { useUserStore } from 'store';
+import { useParams } from 'react-router-dom/dist';
 
 const Comments = () => {
+  const currentUser = useUserStore((state) => state.currentUser);
+  const params = useParams();
+
   const queryQlient = useQueryClient();
   const { data: comments, isLoading, error } = useQuery('comments', getComments);
 
@@ -18,21 +23,32 @@ const Comments = () => {
     }
   });
 
-  const insertMutation = useMutation(insertComment, {
+  const insertMutation = useMutation(AddComment, {
     onSuccess: () => {
       queryQlient.invalidateQueries('comments');
     }
   });
 
-  const [name, setName] = useState('');
   const [body, setBody] = useState('');
 
   const handleDeleteComment = (id) => {
     deleteMutation.mutate(id);
   };
 
-  const handleSubmitComment = () => {
-    insertMutation.mutate({ name, body });
+  const handleSubmitComment = (e) => {
+    e.preventDefault();
+
+    if (!body) {
+      return alert('내용을 입력해주세요');
+    }
+    const newComment = {
+      userId: currentUser.uid,
+      body,
+      postId: params.postId
+    };
+    insertMutation.mutate(newComment);
+
+    setBody('');
   };
 
   if (isLoading) {
@@ -47,15 +63,6 @@ const Comments = () => {
     <div>
       <div className="page add">
         <form onSubmit={handleSubmitComment}>
-          <label htmlFor="name">Name :</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
           <label htmlFor="body">Body :</label>
           <textarea
             type="text"
@@ -69,20 +76,21 @@ const Comments = () => {
         </form>
       </div>
       <div className="comments">
-        {comments.map((comment) => (
-          <div
-            className="comment-card"
-            style={{
-              border: '2px solid black',
-              margin: '10px',
-              padding: '10px'
-            }}
-          >
-            <h3>이름 : {comment.name}</h3>
-            <p>내용 : {comment.body}</p>
-            <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
-          </div>
-        ))}
+        {comments
+          .filter((comment) => comment.postId === params.postId)
+          .map((comment) => (
+            <div
+              className="comment-card"
+              style={{
+                border: '2px solid black',
+                margin: '10px',
+                padding: '10px'
+              }}
+            >
+              <p>내용 : {comment.body}</p>
+              <button onClick={() => handleDeleteComment(comment.id)}>삭제</button>
+            </div>
+          ))}
       </div>
     </div>
   );

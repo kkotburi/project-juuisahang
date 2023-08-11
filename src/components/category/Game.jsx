@@ -1,13 +1,29 @@
 import React from 'react';
+import { St } from './CategoryStyle';
+import dayjs from 'dayjs';
 
 const Game = ({ code, posts }) => {
   const categoryPosts = posts.filter((post) => post.category === code);
 
   return (
     <div>
-      Game
+      <St.CategoryHeader>
+        <St.CategotyTitle>술 게임</St.CategotyTitle>
+        <St.CategorySubTitle>내가 알고있는 재밌는 술 게임을 공유해주세요 !</St.CategorySubTitle>
+      </St.CategoryHeader>
+      <St.WriteBtn>글 작성하기</St.WriteBtn>
       {categoryPosts.map((post) => (
-        <div key={post.id}>{post.title}</div>
+        <St.PostList>
+          <St.PostTime>{dayjs(post.created_at).format('YYYY-MM-DD')}</St.PostTime>
+          <St.PostTitle key={post.id}>{post.title}</St.PostTitle>
+          <St.PostRight>
+            <div>
+              <St.Postlike>♥</St.Postlike>
+              <span>13</span>
+            </div>
+            <St.PostUser>알쓰입니다</St.PostUser>
+          </St.PostRight>
+        </St.PostList>
       ))}
     </div>
   );
