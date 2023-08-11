@@ -4,6 +4,7 @@ export const St = {
   PageContainer: styled.div`
     width: 100%;
     display: flex;
+    margin-top: 1.5rem;
   `,
   ProfileWarp: styled.div`
     width: 30%;
@@ -19,13 +20,13 @@ export const St = {
   `,
 
   ProfileImageBox: styled.div`
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
     overflow: hidden;
     background-color: #d9d9d9;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   `,
   ProfileImage: styled.img`
     width: 100%;
@@ -33,18 +34,19 @@ export const St = {
     object-fit: cover;
   `,
 
+  ImageInput: styled.input`
+    display: none;
+  `,
+
   ContentsBox: styled.div`
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 15px;
-    gap: 20px;
   `,
   ContentsForm: styled.form`
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 18px;
   `,
 
   ContentsLabel: styled.label`
@@ -52,8 +54,8 @@ export const St = {
   `,
 
   ContentsInput: styled.input`
-    width: 120px;
-    height: 22px;
+    width: 160px;
+    height: 30px;
     outline: none;
     font-size: 12px;
     padding-left: 10px;
@@ -64,8 +66,8 @@ export const St = {
   `,
 
   NicknameChangeBtn: styled.button`
-    width: 85px;
-    height: 22px;
+    width: 90px;
+    height: 30px;
     outline: none;
     border: none;
     color: white;
