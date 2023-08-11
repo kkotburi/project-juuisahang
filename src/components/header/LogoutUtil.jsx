@@ -1,11 +1,22 @@
 import React from 'react';
-import { St } from './HeaderStyle';
+import { useNavigate } from 'react-router-dom';
+import { LoginOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 
 const LogoutUtil = () => {
+  const navigate = useNavigate();
+
   return (
-    <St.AuthContainder>
-      <St.LoginLink to="/login">로그인</St.LoginLink>
-    </St.AuthContainder>
+    <div>
+      <Button
+        icon={<LoginOutlined />}
+        onClick={() => {
+          navigate('/login');
+        }}
+      >
+        로그인
+      </Button>
+    </div>
   );
 };
 
