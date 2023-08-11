@@ -13,7 +13,7 @@
     "@toast-ui/react-editor": "^3.2.3",
     "@toast-ui/react-image-editor": "^3.15.2",
     "@types/react-copy-to-clipboard": "^5.0.4",
-    "antd": "^5.8.2",
+    "antd": "^5.8.3",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
     "force": "^0.0.3",

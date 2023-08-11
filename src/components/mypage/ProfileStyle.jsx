@@ -34,6 +34,7 @@ export const St = {
   ProfileImage: styled.img`
     width: 100%;
     height: 100%;
+    cursor: pointer;
     object-fit: cover;
   `,
 
@@ -77,6 +78,7 @@ export const St = {
     margin: auto;
     font-size: 12px;
     font-weight: 600;
+    cursor: pointer;
     border-radius: 15px;
     background-color: #e24c4b;
   `
