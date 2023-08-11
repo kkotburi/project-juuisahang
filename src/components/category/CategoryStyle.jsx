@@ -55,5 +55,17 @@ export const St = {
   PostTitle: styled.div`
     font-size: 18px;
     font-weight: 800;
+  `,
+  PostRight: styled.div`
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  `,
+  Postlike: styled.div`
+    font-size: 20px;
+    color: red;
+  `,
+  PostUser: styled.div`
+    margin: auto 15px;
   `
 };

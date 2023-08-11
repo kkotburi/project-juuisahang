@@ -16,6 +16,13 @@ const Tip = ({ code, posts }) => {
         <St.PostList>
           <St.PostTime>{dayjs(post.created_at).format('YYYY-MM-DD')}</St.PostTime>
           <St.PostTitle key={post.id}>{post.title}</St.PostTitle>
+          <St.PostRight>
+            <div>
+              <St.Postlike>♥</St.Postlike>
+              <span>13</span>
+            </div>
+            <St.PostUser>알쓰입니다</St.PostUser>
+          </St.PostRight>
         </St.PostList>
       ))}
     </div>
