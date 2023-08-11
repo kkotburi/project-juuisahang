@@ -40,8 +40,20 @@ export const St = {
   PostList: styled.div`
     border: 1px solid black;
     width: 88%;
-    height: 45px;
+    height: 60px;
     border-radius: 8px;
     margin: 10px auto 10px auto;
+    display: flex;
+    align-items: center;
+  `,
+  PostTime: styled.div`
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 15px;
+    padding-right: 15px;
+  `,
+  PostTitle: styled.div`
+    font-size: 18px;
+    font-weight: 800;
   `
 };

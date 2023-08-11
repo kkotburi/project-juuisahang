@@ -1,5 +1,6 @@
 import React from 'react';
 import { St } from './CategoryStyle';
+import dayjs from 'dayjs';
 
 const Tip = ({ code, posts }) => {
   const categoryPosts = posts.filter((post) => post.category === code);
@@ -13,7 +14,8 @@ const Tip = ({ code, posts }) => {
       <St.WriteBtn>글 작성하기</St.WriteBtn>
       {categoryPosts.map((post) => (
         <St.PostList>
-          <div key={post.id}>{post.title}</div>
+          <St.PostTime>{dayjs(post.created_at).format('YYYY-MM-DD')}</St.PostTime>
+          <St.PostTitle key={post.id}>{post.title}</St.PostTitle>
         </St.PostList>
       ))}
     </div>
