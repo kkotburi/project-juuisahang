@@ -12,7 +12,7 @@ const Toast = ({ code, posts }) => {
         <St.CategotyTitle>건배사</St.CategotyTitle>
         <St.CategorySubTitle>모두에 앞에서 센스쟁이가 될 수 있는 재밌는 건배사를 공유해주세요 !</St.CategorySubTitle>
       </St.CategoryHeader>
-      <St.WriteBtn>글 작성하기</St.WriteBtn>
+      <St.WriteBtn to={`/write`}>글 작성하기</St.WriteBtn>
       <St.PostListWrap>
         {categoryPosts.map((post) => (
           <St.PostList>
@@ -23,6 +23,9 @@ const Toast = ({ code, posts }) => {
                 <FaGlassCheers size="25" color="#eea100" />
                 <p>{post.likes.length}</p>
               </St.ListLikeBox>
+              <St.ListProfileImgBox>
+                <St.ListProfileImg alt="이미지 준비중" src={post.profileImg}></St.ListProfileImg>
+              </St.ListProfileImgBox>
               <St.PostUser>{post.nickname}</St.PostUser>
             </St.PostRight>
           </St.PostList>
