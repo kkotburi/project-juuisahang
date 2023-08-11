@@ -43,7 +43,10 @@ const MyPost = () => {
             <St.PostLink to={`/detail/${post.id}`}>
               <St.Lists>
                 <St.ListDate>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</St.ListDate>
-                <St.ListTitle>{post.title}</St.ListTitle>
+                <St.ListTitleBox>
+                  <St.ListCategory>{post.category}</St.ListCategory>
+                  <St.ListTitle>{post.title}</St.ListTitle>
+                </St.ListTitleBox>
                 <St.ListWriterWrap>
                   <St.ListLikeBox>
                     <FaGlassCheers size="25" color="#eea100" />
