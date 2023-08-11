@@ -5,7 +5,6 @@ import { getDetail } from 'api/post';
 import { useUserStore } from 'store';
 import usePost from 'hooks/usePost';
 import { FaGlassCheers } from 'react-icons/fa';
-import { LiaGlassCheersSolid } from 'react-icons/lia';
 import { styled } from 'styled-components';
 
 const Like = () => {
@@ -15,19 +14,18 @@ const Like = () => {
 
   const { data: posts, isLoading, isError } = useQuery('likes', () => getDetail(params.postId));
   const { updateLikesMutation } = usePost();
-  // console.log(posts[0].likes);
 
-  const handleUpdateLikes = () => {
-    if (!posts[0].likes.includes(currentUser?.uid) && currentUser) {
+  const handleUpdateLikes = (post) => {
+    if (!post.likes.includes(currentUser?.uid) && currentUser) {
       const updateLikesUser = {
-        ...posts[0],
-        likes: [...posts[0].likes, currentUser?.uid]
+        ...post,
+        likes: [...post.likes, currentUser?.uid]
       };
       updateLikesMutation.mutate(updateLikesUser);
     } else {
       const updateLikesUser = {
-        ...posts[0],
-        likes: posts[0].likes.filter((userId) => userId !== currentUser?.uid)
+        ...post,
+        likes: post.likes.filter((userId) => userId !== currentUser?.uid)
       };
       updateLikesMutation.mutate(updateLikesUser);
     }
@@ -42,18 +40,26 @@ const Like = () => {
   }
 
   return (
-    <LikesButtonBox>
-      {posts[0].likes.includes(currentUser?.uid) ? (
-        <FaGlassCheers size="32" color="#EEA100" onClick={handleUpdateLikes} />
-      ) : (
-        <FaGlassCheers size="32" color="#000000" onClick={handleUpdateLikes} />
-      )}
-      {posts[0].likes.length ? posts[0].likes.length : 0}
-    </LikesButtonBox>
+    <LikesContainer>
+      {posts.map((post) => {
+        return (
+          <LikesButtonBox key={post.id}>
+            {post.likes.includes(currentUser?.uid) ? (
+              <FaGlassCheers size="32" color="#EEA100" onClick={() => handleUpdateLikes(post)} />
+            ) : (
+              <FaGlassCheers size="32" color="#000000" onClick={() => handleUpdateLikes(post)} />
+            )}
+            {post.likes.length ? post.likes.length : 0}
+          </LikesButtonBox>
+        );
+      })}
+    </LikesContainer>
   );
 };
 
 export default Like;
+
+const LikesContainer = styled.div``;
 
 const LikesButtonBox = styled.div`
   width: 45px;
@@ -61,20 +67,8 @@ const LikesButtonBox = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #cfcfcfdb;
+  /* background-color: #cfcfcfdb; */
   border-radius: 10px;
   margin-left: 20px;
-  padding: 10px 2px;
+  /* padding: 10px 23px; */
 `;
-
-// const LikesFillIcon = styled(LikeFilled)`
-//   font-size: 28px;
-//   margin-bottom: 3px;
-//   cursor: pointer;
-// `;
-
-// const LikesIcon = styled(LikeOutlined)`
-//   font-size: 28px;
-//   margin-bottom: 3px;
-//   cursor: pointer;
-// `;
