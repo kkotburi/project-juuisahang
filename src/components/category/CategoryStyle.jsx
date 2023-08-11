@@ -27,7 +27,7 @@ export const St = {
   WriteBtn: styled.div`
     color: white;
     background-color: #e24c4b;
-    width: 85%;
+    width: 20%;
     height: 45px;
     border-radius: 8px;
     margin: 40px auto 50px auto;
@@ -55,11 +55,11 @@ export const St = {
   PostTitle: styled.div`
     font-size: 18px;
     font-weight: 800;
+    width: 75%;
   `,
   PostRight: styled.div`
     display: flex;
     align-items: center;
-    margin-left: auto;
   `,
   Postlike: styled.div`
     font-size: 20px;
@@ -67,5 +67,11 @@ export const St = {
   `,
   PostUser: styled.div`
     margin: auto 15px;
+  `,
+  ListLikeBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
   `
 };

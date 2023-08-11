@@ -1,6 +1,7 @@
 import React from 'react';
 import { St } from './CategoryStyle';
 import dayjs from 'dayjs';
+import { FaGlassCheers } from 'react-icons/fa';
 
 const Toast = ({ code, posts }) => {
   const categoryPosts = posts.filter((post) => post.category === code);
@@ -17,11 +18,11 @@ const Toast = ({ code, posts }) => {
           <St.PostTime>{dayjs(post.created_at).format('YYYY-MM-DD')}</St.PostTime>
           <St.PostTitle key={post.id}>{post.title}</St.PostTitle>
           <St.PostRight>
-            <div>
-              <St.Postlike>♥</St.Postlike>
-              <span>13</span>
-            </div>
-            <St.PostUser>알쓰입니다</St.PostUser>
+            <St.ListLikeBox>
+              <FaGlassCheers size="25" color="#eea100" />
+              <p>{post.likes.length}</p>
+            </St.ListLikeBox>
+            <St.PostUser>{post.nickname}</St.PostUser>
           </St.PostRight>
         </St.PostList>
       ))}
