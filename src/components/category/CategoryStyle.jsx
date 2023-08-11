@@ -38,13 +38,13 @@ export const St = {
     justify-content: center;
   `,
   PostList: styled.div`
-    border: 1px solid black;
     width: 88%;
     height: 60px;
     border-radius: 8px;
     margin: 10px auto 10px auto;
     display: flex;
     align-items: center;
+    background-color: white;
   `,
   PostTime: styled.div`
     font-size: 13px;
