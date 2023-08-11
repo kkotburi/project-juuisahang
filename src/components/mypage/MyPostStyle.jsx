@@ -54,10 +54,16 @@ export const St = {
     font-weight: bold;
   `,
   ListLike: styled.p``,
-  ListProfileImgBox: styled.img``,
-  ListProfileImg: styled.img`
+  ListProfileImgBox: styled.div`
     width: 40px;
     height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+  `,
+  ListProfileImg: styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   `,
   ListWriter: styled.p``
 };

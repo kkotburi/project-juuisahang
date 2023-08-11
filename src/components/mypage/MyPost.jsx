@@ -13,8 +13,6 @@ const MyPost = () => {
     refetchOnWindowFocus: false
   });
 
-  console.log(member.user_metadata.profileImg);
-
   const { data, isLoading, error } = useQuery('posts', getMyPosts, {
     refetchOnWindowFocus: false
   });
@@ -33,7 +31,10 @@ const MyPost = () => {
                 <St.ListDate>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</St.ListDate>
                 <St.ListTitle>{post.title}</St.ListTitle>
                 <St.ListLike>{post.likes.length}</St.ListLike>
-                {/* <St.ListWriter>{post.writer}</St.ListWriter> */}
+                <St.ListProfileImgBox>
+                  <St.ListProfileImg alt="이미지 준비중" src={member.user_metadata.profileImg}></St.ListProfileImg>
+                </St.ListProfileImgBox>
+                <St.ListWriter>{member.user_metadata.nickname}</St.ListWriter>
               </St.Lists>
             </St.PostLink>
           </div>
@@ -52,10 +53,10 @@ const MyPost = () => {
                 <St.ListDate>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</St.ListDate>
                 <St.ListTitle>{post.title}</St.ListTitle>
                 <St.ListLike>{post.likes.length}</St.ListLike>
-                <div>
+                <St.ListProfileImgBox>
                   <St.ListProfileImg alt="이미지 준비중" src={member.user_metadata.profileImg}></St.ListProfileImg>
-                </div>
-                {/* <St.ListWriter>{post.writer}</St.ListWriter> */}
+                </St.ListProfileImgBox>
+                <St.ListWriter>{member.user_metadata.nickname}</St.ListWriter>
               </St.Lists>
             </St.PostLink>
           </div>
