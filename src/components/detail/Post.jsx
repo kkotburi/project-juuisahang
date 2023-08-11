@@ -28,8 +28,6 @@ const Post = () => {
   // const [category, onChangeCategory, setCategory] = useInput();
   const [isEdit, setIsEdit] = useState(false);
 
-  console.log(posts);
-
   const handleDeletePost = (id) => {
     deleteMutation.mutate(id);
   };
@@ -63,7 +61,7 @@ const Post = () => {
       {posts.map((post) => {
         return (
           <div key={post.id}>
-            {currentUser.uid === post.userId && (
+            {currentUser?.uid === post.userId && (
               <PostButtonBox>
                 <PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</PostButton>
                 <PostButton onClick={() => handleDeletePost(post.id)}>삭제</PostButton>
@@ -89,8 +87,8 @@ const Post = () => {
                 </PostBody>
                 <PostBottomBox>
                   <PostUserBox>
-                    <PostUserProfileImg src={currentUser?.profileImg} />
-                    {currentUser?.nickname}
+                    <PostUserProfileImg src={post.profileImg} />
+                    {post.nickname}
                   </PostUserBox>
                   <PostShareLikeBox>
                     <Share />
