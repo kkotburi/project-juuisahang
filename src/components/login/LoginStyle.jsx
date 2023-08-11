@@ -4,6 +4,7 @@ export const St = {
   FormContainer: styled.div`
     width: 460px;
     margin: 0 auto;
+    padding: 80px 0 0;
   `,
   Logo: styled.div`
     text-align: center;
@@ -75,7 +76,7 @@ export const St = {
   `,
   ButtonPrimary: styled.button`
     width: 460px;
-    font-size: 14px;
+    font-size: 16px;
     height: 55px;
     padding: 4px 16px;
     border-radius: 28px;
