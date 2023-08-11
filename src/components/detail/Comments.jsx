@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getComments, deleteComment, updateComment, insertComment } from 'api/comment';
+import { getComments, deleteComment, updateComment, AddComment } from 'api/comment';
+import { useUserStore } from 'store';
 
 const Comments = () => {
+  const currentUser = useUserStore((state) => state.currentUser);
+
   const queryQlient = useQueryClient();
   const { data: comments, isLoading, error } = useQuery('comments', getComments);
 
@@ -18,7 +21,7 @@ const Comments = () => {
     }
   });
 
-  const insertMutation = useMutation(insertComment, {
+  const insertMutation = useMutation(AddComment, {
     onSuccess: () => {
       queryQlient.invalidateQueries('comments');
     }
@@ -31,8 +34,21 @@ const Comments = () => {
     deleteMutation.mutate(id);
   };
 
-  const handleSubmitComment = () => {
-    insertMutation.mutate({ name, body });
+  const handleSubmitComment = (e) => {
+    e.preventDefault();
+
+    if (!name || !body) {
+      return alert('내용을 입력해주세요');
+    }
+    const newComment = {
+      userId: currentUser.uid,
+      name,
+      body
+    };
+    insertMutation.mutate(newComment);
+
+    setName('');
+    setBody('');
   };
 
   if (isLoading) {
