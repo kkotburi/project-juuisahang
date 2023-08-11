@@ -3,15 +3,10 @@ import { St } from './MyPostStyle';
 import { useQuery } from 'react-query';
 import { getMyPosts, getMyLikes } from 'api/myPost';
 import dayjs from 'dayjs';
-import { getProfile } from 'api/profile';
 import { FaGlassCheers } from 'react-icons/fa';
 
 const MyPost = () => {
   const listRef = useRef();
-
-  const { data: member } = useQuery('members', getProfile, {
-    refetchOnWindowFocus: false
-  });
 
   const {
     data: myPostsData,
@@ -29,7 +24,8 @@ const MyPost = () => {
     refetchOnWindowFocus: false
   });
 
-  const [activeContent, setActiveContent] = useState('myPosts');
+  const [myPostsActive, setMyPostsActive] = useState(true);
+  const [likedPostsActive, setLikedPostsActive] = useState(false);
 
   const renderPosts = (posts) => {
     if (!posts) {
@@ -53,9 +49,9 @@ const MyPost = () => {
                     <p>{post.likes.length}</p>
                   </St.ListLikeBox>
                   <St.ListProfileImgBox>
-                    <St.ListProfileImg alt="이미지 준비중" src={member.user_metadata.profileImg}></St.ListProfileImg>
+                    <St.ListProfileImg alt="이미지 준비중" src={post.profileImg}></St.ListProfileImg>
                   </St.ListProfileImgBox>
-                  <St.ListNickname>{member.user_metadata.nickname}</St.ListNickname>
+                  <St.ListNickname>{post.nickname}</St.ListNickname>
                 </St.ListWriterWrap>
               </St.Lists>
             </St.PostLink>
@@ -66,17 +62,19 @@ const MyPost = () => {
   };
 
   const handleMyPostsClick = () => {
-    setActiveContent('myPosts');
+    setMyPostsActive(true);
+    setLikedPostsActive(false);
   };
 
   const handleMyLikedPostsClick = () => {
-    setActiveContent('likedPosts');
+    setMyPostsActive(false);
+    setLikedPostsActive(true);
   };
 
   let content = null;
-  if (activeContent === 'myPosts') {
+  if (myPostsActive) {
     content = renderPosts(myPostsData);
-  } else if (activeContent === 'likedPosts') {
+  } else if (likedPostsActive) {
     content = renderPosts(likedPostsData);
   }
 
@@ -91,12 +89,10 @@ const MyPost = () => {
   return (
     <St.MyPostContainer>
       <St.PostList>
-        <St.ListBtn active={activeContent === 'myPosts'} onClick={handleMyPostsClick}>
+        <St.ListBtn onClick={handleMyPostsClick} autoFocus>
           내가 쓴 글
         </St.ListBtn>
-        <St.ListBtn active={activeContent === 'likedPosts'} onClick={handleMyLikedPostsClick}>
-          좋아요 목록
-        </St.ListBtn>
+        <St.ListBtn onClick={handleMyLikedPostsClick}>좋아요 목록</St.ListBtn>
       </St.PostList>
       <St.ListBox ref={listRef}>{content}</St.ListBox>
     </St.MyPostContainer>
