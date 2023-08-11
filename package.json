@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.2.1",
     "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
     "@toast-ui/react-editor": "^3.2.3",
+    "@toast-ui/react-image-editor": "^3.15.2",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "antd": "^5.8.2",
     "axios": "^1.4.0",

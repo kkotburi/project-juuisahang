@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { useUserStore } from 'store';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -14,6 +14,7 @@ import Likes from './Likes';
 import { styled } from 'styled-components';
 import EditorContents from 'components/write/EditorContents';
 import WriteContents from 'components/write/WriteContents';
+import Comments from './Comments';
 
 const Post = () => {
   const params = useParams();
