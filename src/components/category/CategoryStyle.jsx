@@ -37,6 +37,9 @@ export const St = {
     align-items: center;
     justify-content: center;
   `,
+  PostListWrap: styled.div`
+    min-height: 25vh;
+  `,
   PostList: styled.div`
     width: 88%;
     height: 60px;

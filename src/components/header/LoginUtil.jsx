@@ -39,7 +39,7 @@ const LoginUtil = ({ currentUser }) => {
               <St.ProfileMini>
                 <img src={currentUser?.profileImg} alt="프로필 사진" />
               </St.ProfileMini>
-              {currentUser?.nickname}
+              <St.UserName>{currentUser?.nickname}</St.UserName>
               <small>님</small>
             </St.UtilBox>
             <DownOutlined />
