@@ -91,10 +91,10 @@ const MyPost = () => {
   return (
     <St.MyPostContainer>
       <St.PostList>
-        <St.ListBtn active={activeContent === 'myPosts'} onClick={handleMyPostsClick}>
+        <St.ListBtn active={(activeContent === 'myPosts').toString()} onClick={handleMyPostsClick}>
           내가 쓴 글
         </St.ListBtn>
-        <St.ListBtn active={activeContent === 'likedPosts'} onClick={handleMyLikedPostsClick}>
+        <St.ListBtn active={(activeContent === 'likedPosts').toString()} onClick={handleMyLikedPostsClick}>
           좋아요 목록
         </St.ListBtn>
       </St.PostList>
