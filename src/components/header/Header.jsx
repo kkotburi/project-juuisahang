@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useUserStore } from 'store';
-import { styled } from 'styled-components';
+import { St } from './HeaderStyle';
 
 import LoginUtil from './LoginUtil';
 import LogoutUtil from './LogoutUtil';
@@ -23,62 +23,17 @@ const Header = () => {
   };
 
   return (
-    <HeaderContainer>
-      <HeaderImg src="/logo.png" onClick={clickLogo} />
-      <CategoryWrapper>
-        <CategoryLink to="/category/술자리 팁">술자리 팁</CategoryLink>
-        <CategoryLink to="/category/건배사">건배사</CategoryLink>
-        <CategoryLink to="/category/술 게임">술 게임</CategoryLink>
-        <CategoryLink to="/category/숙취해소법">숙취해소법</CategoryLink>
-      </CategoryWrapper>
+    <St.HeaderContainer>
+      <St.HeaderImg src="/logo.png" onClick={clickLogo} />
+      <St.CategoryWrapper>
+        <St.CategoryLink to="/category/술자리 팁">술자리 팁</St.CategoryLink>
+        <St.CategoryLink to="/category/건배사">건배사</St.CategoryLink>
+        <St.CategoryLink to="/category/술 게임">술 게임</St.CategoryLink>
+        <St.CategoryLink to="/category/숙취해소법">숙취해소법</St.CategoryLink>
+      </St.CategoryWrapper>
       {currentUser ? <LoginUtil currentUser={currentUser} /> : <LogoutUtil />}
-    </HeaderContainer>
+    </St.HeaderContainer>
   );
 };
 
 export default Header;
-
-const HeaderContainer = styled.div`
-  height: 100px;
-  background-color: white;
-  border-bottom: solid 1px #969696;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const HeaderImg = styled.img`
-  width: 80px;
-  height: auto;
-  background-color: black;
-
-  cursor: pointer;
-`;
-
-const CategoryWrapper = styled.div`
-  background-color: yellow;
-
-  width: 1000px;
-
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-`;
-
-const CategoryLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  font-size: 18px;
-
-  margin: 0px 50px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-  &:hover {
-    font-weight: 900;
-  }
-`;

@@ -1,35 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
+import { St } from './HeaderStyle';
 
 const LogoutUtil = () => {
   return (
-    <AuthContainder>
-      <LoginLink to="/login">로그인</LoginLink>
-    </AuthContainder>
+    <St.AuthContainder>
+      <St.LoginLink to="/login">로그인</St.LoginLink>
+    </St.AuthContainder>
   );
 };
 
 export default LogoutUtil;
-
-const AuthContainder = styled.div`
-  background-color: pink;
-
-  width: 100px;
-`;
-
-const LoginLink = styled(Link)`
-  background-color: red;
-
-  text-decoration: none;
-  color: black;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-  &:hover {
-    font-weight: 900;
-  }
-`;

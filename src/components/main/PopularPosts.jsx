@@ -30,7 +30,6 @@ const PopularPosts = () => {
     <PopularContainer>
       <div>Popularity</div>
       {popularPosts.map((post) => {
-        console.log('요거', post);
         return (
           <PopularPost
             key={post.id}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import supabase from 'lib/supabaseClient';
-import { styled } from 'styled-components';
+import { St } from './MainStyle';
 
 const RecommendDrink = () => {
   const [mood, setMood] = useState();
@@ -35,7 +35,7 @@ const RecommendDrink = () => {
   };
 
   return (
-    <RecommendContainer>
+    <St.RecommendContainer>
       <div>오늘의 나는?</div>
       {mood ? (
         <div>
@@ -44,57 +44,32 @@ const RecommendDrink = () => {
           <button onClick={clickAgain}>다시하기</button>
         </div>
       ) : (
-        <MoodContainer>
+        <St.MoodContainer>
           <div onClick={() => clickMood('즐거움')}>
-            <MoodImg src="/즐거움.png" />
+            <St.MoodImg src="/즐거움.png" />
             <div>즐거움</div>
           </div>
           <div onClick={() => clickMood('화남')}>
-            <MoodImg src="/화남.png" />
+            <St.MoodImg src="/화남.png" />
             <div>화남</div>
           </div>
           <div onClick={() => clickMood('설렘')}>
-            <MoodImg src="/설렘.jpg" />
+            <St.MoodImg src="/설렘.png" />
             <div>설렘</div>
           </div>
           <div onClick={() => clickMood('뿌듯함')}>
-            <MoodImg src="/뿌듯함.jpg" />
+            <St.MoodImg src="/뿌듯함.png" />
             <div>뿌듯함</div>
           </div>
 
           <div onClick={() => clickMood('외로움')}>
-            <MoodImg src="/외로움.jpg" />
+            <St.MoodImg src="/외로움.png" />
             <div>외로움</div>
           </div>
-        </MoodContainer>
+        </St.MoodContainer>
       )}
-    </RecommendContainer>
+    </St.RecommendContainer>
   );
 };
 
 export default RecommendDrink;
-
-const RecommendContainer = styled.div`
-  width: 1200px;
-  height: 400px;
-
-  margin: 100px 0px;
-  background-color: white;
-  border-radius: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const MoodContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const MoodImg = styled.img`
-  width: 200px;
-  height: auto;
-`;
