@@ -58,31 +58,39 @@ const Post = () => {
       {posts.map((post) => {
         return (
           <div key={post.id}>
-            <PostButtonBox>
-              <PostButton onClick={() => handleDeletePost(post.id)}>삭제</PostButton>
-              <PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</PostButton>
-            </PostButtonBox>
-            <div>
+            {' '}
+            <PostTitleBox>
+              <PostButtonBox>
+                <PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</PostButton>
+                {/* <div> | </div> */}
+                <PostButton onClick={() => handleDeletePost(post.id)}>삭제</PostButton>
+              </PostButtonBox>
               <div>
-                {isEdit ? (
-                  <textarea type="text" placeholder="제목 입력" value={title} onChange={handleOnChangeTitle} />
-                ) : (
-                  <PostTitle>{post.title}</PostTitle>
-                )}
-                <div>작성자: {currentUser?.nickname} </div>
+                <div>
+                  {isEdit ? (
+                    <textarea type="text" placeholder="제목 입력" value={title} onChange={handleOnChangeTitle} />
+                  ) : (
+                    <PostTitle>{post.title}</PostTitle>
+                  )}
+                </div>
+                <div>{post.created_at}</div>
               </div>
-              <div>{post.created_at}</div>
-            </div>
+            </PostTitleBox>
             {isEdit ? (
-              <textarea type="text" placeholder="제목 입력" value={body} onChange={handleOnChangeBody} />
+              <textarea type="text" placeholder="내용 입력" value={body} onChange={handleOnChangeBody} />
             ) : (
-              <div>
-                내용 :
-                <Viewer initialValue={post.body} />
-              </div>
+              <Viewer initialValue={post.body} />
             )}
-            <Likes />
-            <Share />
+            <PostBottomBox>
+              <PostUserBox>
+                <PostUserProfileImg src={currentUser?.profileImg} />
+                {currentUser?.nickname}
+              </PostUserBox>
+              <div>
+                <Share />
+                <Likes />
+              </div>
+            </PostBottomBox>
           </div>
         );
       })}
@@ -93,14 +101,19 @@ const Post = () => {
 export default Post;
 
 const PostContainer = styled.div`
+  /* width: 100%; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
   background-color: #ffffff;
   border-radius: 15px;
+  margin: 30px 0;
+  padding: 20px 30px;
 `;
 
 const PostButtonBox = styled.div`
   display: flex;
   justify-content: flex-end;
-  padding: 20px 20px 0 0;
 `;
 
 const PostButton = styled.button`
@@ -110,7 +123,33 @@ const PostButton = styled.button`
   cursor: pointer;
 `;
 
+const PostTitleBox = styled.div`
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+`;
+
 const PostTitle = styled.div`
   font-size: 24px;
   font-weight: 600;
+  margin-bottom: 10px;
+`;
+
+const PostUserBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+`;
+
+const PostUserProfileImg = styled.img`
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+`;
+
+const PostBottomBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
 `;
