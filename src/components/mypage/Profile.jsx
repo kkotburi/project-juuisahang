@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { getProfile, updateProfileNickname, updateProfileImage } from 'api/profile';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import MyPost from './MyPost';
@@ -31,6 +31,10 @@ const Profile = () => {
   });
 
   const nicknameChangeHandler = (e) => setNickname(e.target.value);
+
+  const imageFileInput = useRef();
+
+  const onClickImageFile = () => imageFileInput.current.click();
 
   const profileImageUpdate = async (e) => {
     setIsUpdateProfile(true);
@@ -81,10 +85,14 @@ const Profile = () => {
       <div key={member.id}>
         <St.ProfileWarp>
           <St.ProfileImageBox>
-            <St.ProfileImage alt="이미지 준비중" src={member.user_metadata.profileImg}></St.ProfileImage>
+            <St.ProfileImage
+              alt="이미지 준비중"
+              src={member.user_metadata.profileImg}
+              onClick={onClickImageFile}
+            ></St.ProfileImage>
           </St.ProfileImageBox>
           <St.ContentsBox>
-            <input type="file" accept="image/*" onChange={profileImageUpdate} />
+            <St.ImageInput type="file" accept="image/*" ref={imageFileInput} onChange={profileImageUpdate} />
             <St.ContentsForm onSubmit={(e) => e.preventDefault()}>
               <div>
                 <St.ContentsLabel>이메일</St.ContentsLabel>
@@ -99,7 +107,7 @@ const Profile = () => {
                   onChange={nicknameChangeHandler}
                 />
               </div>
-              <St.NicknameChangeBtn onClick={() => nicknameUpdateBtn(member)}>닉네임 변경</St.NicknameChangeBtn>
+              <St.NicknameChangeBtn onClick={() => nicknameUpdateBtn(member)}>프로필 수정</St.NicknameChangeBtn>
             </St.ContentsForm>
           </St.ContentsBox>
         </St.ProfileWarp>
