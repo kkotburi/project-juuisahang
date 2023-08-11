@@ -4,6 +4,8 @@ import { LoginOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 const LogoutUtil = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Button
