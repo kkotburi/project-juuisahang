@@ -1,5 +1,6 @@
 import Category from 'pages/Category';
 import { styled } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const St = {
   CategoryHeader: styled.div`
@@ -24,7 +25,7 @@ export const St = {
     font-size: 18px;
     padding-left: 10px;
   `,
-  WriteBtn: styled.div`
+  WriteBtn: styled(Link)`
     color: white;
     background-color: #e24c4b;
     width: 20%;
@@ -32,10 +33,11 @@ export const St = {
     border-radius: 8px;
     margin: 40px auto 50px auto;
     font-weight: bolder;
-    //padding-left: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+    text-decoration-line: none;
   `,
   PostListWrap: styled.div`
     min-height: 25vh;
@@ -48,6 +50,7 @@ export const St = {
     display: flex;
     align-items: center;
     background-color: white;
+    cursor: pointer;
   `,
   PostTime: styled.div`
     font-size: 13px;
@@ -58,7 +61,7 @@ export const St = {
   PostTitle: styled.div`
     font-size: 18px;
     font-weight: 800;
-    width: 75%;
+    width: 70%;
   `,
   PostRight: styled.div`
     display: flex;
@@ -68,13 +71,24 @@ export const St = {
     font-size: 20px;
     color: red;
   `,
-  PostUser: styled.div`
-    margin: auto 15px;
-  `,
+  PostUser: styled.div``,
   ListLikeBox: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
+  `,
+  ListProfileImgBox: styled.div`
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 1px solid #d7d7d7;
+    overflow: hidden;
+    margin: auto 10px;
+  `,
+  ListProfileImg: styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   `
 };
