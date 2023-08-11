@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 export const St = {
   Test: styled.div``,
 
-  HeaderContainer: styled.div`
+  HeaderContainer: styled.header`
     height: 100px;
     background-color: white;
     border-bottom: solid 1px #969696;

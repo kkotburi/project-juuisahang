@@ -14,7 +14,7 @@ const Footer = () => {
 
 export default Footer;
 
-const FooterContain = styled.div`
+const FooterContain = styled.footer`
   background-color: bisque;
 
   height: 200px;
@@ -25,6 +25,6 @@ const FooterContain = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  bottom: 0;
-  left: 0;
+  /* position: absolute;
+  bottom: 0; */
 `;

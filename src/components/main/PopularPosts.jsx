@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import supabase from 'lib/supabaseClient';
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
+import { FaGlassCheers } from 'react-icons/fa';
 
 const PopularPosts = () => {
   const navigate = useNavigate();
@@ -24,11 +26,11 @@ const PopularPosts = () => {
     getPosts();
   }, []);
 
-  const popularPosts = posts.sort((a, b) => b.like - a.like).slice(0, 2);
+  const popularPosts = posts.sort((a, b) => b.likes.length - a.likes.length).slice(0, 2);
 
   return (
     <PopularContainer>
-      <div>Popularity</div>
+      <PopularTitle>Popularity</PopularTitle>
       {popularPosts.map((post) => {
         return (
           <PopularPost
@@ -37,11 +39,17 @@ const PopularPosts = () => {
               navigate(`/detail/${post.id}`);
             }}
           >
-            <div>{post.created_at}</div>
-            <div>{post.category}</div>
-            <div>{post.title}</div>
-            <div>{post.likes.length}</div>
-            <div>{post.userId}</div>
+            <div>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</div>
+            <div>
+              <div>{post.category}</div>
+              <div>{post.title}</div>
+            </div>
+            <div>
+              <FaGlassCheers size="25" color="#eea100" />
+              <div>{post.likes.length}</div>
+            </div>
+            <div>{post.nickname}</div>
+            <img src={post.profileImg} />
           </PopularPost>
         );
       })}
@@ -62,8 +70,20 @@ const PopularContainer = styled.div`
   flex-direction: column;
 `;
 
+const PopularTitle = styled.div`
+  background-color: #a785c7;
+
+  font-size: 20px;
+  margin: 10px;
+`;
+
 const PopularPost = styled.div`
   background-color: aliceblue;
+
+  width: 100%;
+  height: 60px;
+  margin: 10px;
+  border-radius: 10px;
 
   display: flex;
   align-items: center;
