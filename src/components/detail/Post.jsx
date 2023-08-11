@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useUserStore } from 'store';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -7,14 +7,13 @@ import usePost from 'hooks/usePost';
 import useInput from 'hooks/useInput';
 import { Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
-// import dayjs from 'dayjs';
-// import 'dayjs/locale/ko';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 import Share from './Share';
 import Likes from './Likes';
 import { styled } from 'styled-components';
 import EditorContents from 'components/write/EditorContents';
 import WriteContents from 'components/write/WriteContents';
-import Comments from './Comments';
 
 const Post = () => {
   const params = useParams();
@@ -74,7 +73,7 @@ const Post = () => {
               {!isEdit && (
                 <>
                   <PostTitle>{post.title}</PostTitle>
-                  <div>{post.created_at}</div>
+                  <div>{dayjs(post.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</div>
                 </>
               )}
             </PostTitleBox>
@@ -112,7 +111,7 @@ export default Post;
 const PostContainer = styled.div`
   background-color: #ffffff;
   border-radius: 15px;
-  margin: 30px 0;
+  margin: 40px 0 60px 0;
   padding: 20px 30px;
 `;
 

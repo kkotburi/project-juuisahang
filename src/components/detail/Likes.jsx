@@ -4,7 +4,8 @@ import { useQuery } from 'react-query';
 import { getDetail } from 'api/post';
 import { useUserStore } from 'store';
 import usePost from 'hooks/usePost';
-import { HeartOutlined, HeartFilled, LikeOutlined, LikeFilled } from '@ant-design/icons';
+import { FaGlassCheers } from 'react-icons/fa';
+import { LiaGlassCheersSolid } from 'react-icons/lia';
 import { styled } from 'styled-components';
 
 const Like = () => {
@@ -43,9 +44,9 @@ const Like = () => {
   return (
     <LikesButtonBox>
       {posts[0].likes.includes(currentUser?.uid) ? (
-        <LikesFillIcon onClick={handleUpdateLikes} />
+        <FaGlassCheers size="32" color="#EEA100" onClick={handleUpdateLikes} />
       ) : (
-        <LikesIcon onClick={handleUpdateLikes} />
+        <FaGlassCheers size="32" color="#000000" onClick={handleUpdateLikes} />
       )}
       {posts[0].likes.length ? posts[0].likes.length : 0}
     </LikesButtonBox>
@@ -66,14 +67,14 @@ const LikesButtonBox = styled.div`
   padding: 10px 2px;
 `;
 
-const LikesFillIcon = styled(LikeFilled)`
-  font-size: 28px;
-  margin-bottom: 3px;
-  cursor: pointer;
-`;
+// const LikesFillIcon = styled(LikeFilled)`
+//   font-size: 28px;
+//   margin-bottom: 3px;
+//   cursor: pointer;
+// `;
 
-const LikesIcon = styled(LikeOutlined)`
-  font-size: 28px;
-  margin-bottom: 3px;
-  cursor: pointer;
-`;
+// const LikesIcon = styled(LikeOutlined)`
+//   font-size: 28px;
+//   margin-bottom: 3px;
+//   cursor: pointer;
+// `;
