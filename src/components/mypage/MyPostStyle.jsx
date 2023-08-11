@@ -3,7 +3,6 @@ import { styled } from 'styled-components';
 
 export const St = {
   MyPostContainer: styled.div`
-    left: 3rem;
     padding: 10px;
     margin: auto;
     position: relative;
@@ -20,6 +19,8 @@ export const St = {
     border: none;
     outline: none;
     font-size: 15px;
+    cursor: pointer;
+    font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
     &:focus {
       font-weight: bold;
     }
@@ -27,7 +28,7 @@ export const St = {
   ListBox: styled.div`
     background-color: #fff;
     border-radius: 10px;
-    width: 940px;
+    width: 800px;
     height: 600px;
     padding: 10px;
     margin-top: 20px;
@@ -50,13 +51,25 @@ export const St = {
     flex-direction: row;
     align-items: center;
     padding: 10px;
+    cursor: pointer;
     word-break: break-all;
-    justify-content: space-between;
   `,
   ListDate: styled.p`
     font-size: 14px;
     margin-left: 10px;
   `,
+
+  ListTitleBox: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  `,
+  ListCategory: styled.p`
+    text-align: left;
+    font-size: 14px;
+    margin-left: 35px;
+  `,
+
   ListTitle: styled.p`
     margin-left: 35px;
     font-size: 16px;

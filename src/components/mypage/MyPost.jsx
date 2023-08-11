@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { getMyPosts, getMyLikes } from 'api/myPost';
 import dayjs from 'dayjs';
 import { getProfile } from 'api/profile';
-import { BsFillSuitHeartFill } from 'react-icons/bs';
+import { FaGlassCheers } from 'react-icons/fa';
 
 const MyPost = () => {
   const listRef = useRef();
@@ -43,10 +43,13 @@ const MyPost = () => {
             <St.PostLink to={`/detail/${post.id}`}>
               <St.Lists>
                 <St.ListDate>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</St.ListDate>
-                <St.ListTitle>{post.title}</St.ListTitle>
+                <St.ListTitleBox>
+                  <St.ListCategory>{post.category}</St.ListCategory>
+                  <St.ListTitle>{post.title}</St.ListTitle>
+                </St.ListTitleBox>
                 <St.ListWriterWrap>
                   <St.ListLikeBox>
-                    <BsFillSuitHeartFill color="e24c4b" />
+                    <FaGlassCheers size="25" color="#eea100" />
                     <p>{post.likes.length}</p>
                   </St.ListLikeBox>
                   <St.ListProfileImgBox>
@@ -88,8 +91,12 @@ const MyPost = () => {
   return (
     <St.MyPostContainer>
       <St.PostList>
-        <St.ListBtn onClick={handleMyPostsClick}>내가 쓴 글</St.ListBtn>
-        <St.ListBtn onClick={handleMyLikedPostsClick}>좋아요 목록</St.ListBtn>
+        <St.ListBtn active={activeContent === 'myPosts'} onClick={handleMyPostsClick}>
+          내가 쓴 글
+        </St.ListBtn>
+        <St.ListBtn active={activeContent === 'likedPosts'} onClick={handleMyLikedPostsClick}>
+          좋아요 목록
+        </St.ListBtn>
       </St.PostList>
       <St.ListBox ref={listRef}>{content}</St.ListBox>
     </St.MyPostContainer>

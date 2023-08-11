@@ -3,25 +3,28 @@ import { styled } from 'styled-components';
 export const St = {
   PageContainer: styled.div`
     width: 100%;
-    display: flex;
     margin-top: 1.5rem;
+    display: flex;
   `,
   ProfileWarp: styled.div`
-    width: 40%;
+    width: 30%;
+    height: 100%;
     float: left;
-    margin-top: 12rem;
     box-sizing: border-box;
+    text-align: center;
+    display: inline-grid;
+    align-content: center;
   `,
 
   MyPostWarp: styled.div`
-    width: 60%;
+    width: 70%;
     float: right;
     margin-top: 30px;
   `,
 
   ProfileImageBox: styled.div`
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border-radius: 100%;
     overflow: hidden;
     background-color: #d9d9d9;
@@ -31,6 +34,7 @@ export const St = {
   ProfileImage: styled.img`
     width: 100%;
     height: 100%;
+    cursor: pointer;
     object-fit: cover;
   `,
 
@@ -73,6 +77,8 @@ export const St = {
     color: white;
     margin: auto;
     font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
     border-radius: 15px;
     background-color: #e24c4b;
   `

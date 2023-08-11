@@ -4,6 +4,9 @@ import { useQuery } from 'react-query';
 import { getDetail } from 'api/post';
 import { useUserStore } from 'store';
 import usePost from 'hooks/usePost';
+import { FaGlassCheers } from 'react-icons/fa';
+import { LiaGlassCheersSolid } from 'react-icons/lia';
+import { styled } from 'styled-components';
 
 const Like = () => {
   const params = useParams();
@@ -39,17 +42,39 @@ const Like = () => {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-      }}
-    >
-      <button onClick={handleUpdateLikes}>{posts[0].likes.includes(currentUser?.uid) ? '❤️' : '🖤'}</button>
+    <LikesButtonBox>
+      {posts[0].likes.includes(currentUser?.uid) ? (
+        <FaGlassCheers size="32" color="#EEA100" onClick={handleUpdateLikes} />
+      ) : (
+        <FaGlassCheers size="32" color="#000000" onClick={handleUpdateLikes} />
+      )}
       {posts[0].likes.length ? posts[0].likes.length : 0}
-    </div>
+    </LikesButtonBox>
   );
 };
 
 export default Like;
+
+const LikesButtonBox = styled.div`
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #cfcfcfdb;
+  border-radius: 10px;
+  margin-left: 20px;
+  padding: 10px 2px;
+`;
+
+// const LikesFillIcon = styled(LikeFilled)`
+//   font-size: 28px;
+//   margin-bottom: 3px;
+//   cursor: pointer;
+// `;
+
+// const LikesIcon = styled(LikeOutlined)`
+//   font-size: 28px;
+//   margin-bottom: 3px;
+//   cursor: pointer;
+// `;

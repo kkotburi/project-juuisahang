@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import supabase from 'lib/supabaseClient';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useUserStore } from 'store';
 // pages
 import Login from 'pages/Login';
 import Join from 'pages/Join';
@@ -9,9 +10,8 @@ import Category from 'pages/Category';
 import Detail from 'pages/Detail';
 import Write from 'pages/Write';
 import AuthRoute from './AuthRoute';
-import Layout from './Layout';
-import { useUserStore } from 'store';
 import MyPage from 'pages/MyPage';
+import Layout from './Layout';
 
 const Router = () => {
   const { addCurrentUser, deleteCurrentUser } = useUserStore((state) => state);
