@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getComments, deleteComment, updateComment, AddComment } from 'api/comment';
+import { getComments, deleteComment, AddComment } from 'api/comment';
 import { useParams } from 'react-router-dom/dist';
 import { useUserStore } from 'store';
 import dayjs from 'dayjs';
@@ -9,6 +10,7 @@ import { St } from './CommentsStyle';
 const Comments = () => {
   const currentUser = useUserStore((state) => state.currentUser);
   const params = useParams();
+  const navigate = useNavigate();
 
   const queryQlient = useQueryClient();
   const { data: comments, isLoading, error } = useQuery('comments', getComments);
@@ -41,10 +43,16 @@ const Comments = () => {
     if (!body) {
       return alert('내용을 입력해주세요');
     }
+
+    if (!currentUser?.uid) {
+      alert('로그인이 필요합니다.');
+      navigate(`/login`);
+    }
+
     const newComment = {
       userId: currentUser?.uid,
-      nickname: currentUser.nickname,
-      profileImg: currentUser.profileImg,
+      nickname: currentUser?.nickname,
+      profileImg: currentUser?.profileImg,
       body,
       postId: params.postId
     };
