@@ -79,6 +79,7 @@ export const St = {
     border-radius: 50%;
     margin-right: 10px;
     object-fit: cover;
+    border: 1px solid #e24c4b;
   `,
 
   PostShareLikeBox: styled.div`

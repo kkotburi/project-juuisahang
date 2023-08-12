@@ -41,7 +41,7 @@ export const St = {
     text-decoration-line: none;
   `,
   Lists: styled.div`
-    width: 630px;
+    width: 640px;
     height: 60px;
     display: flex;
     padding: 5px;
