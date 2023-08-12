@@ -51,7 +51,7 @@ export const St = {
   `,
 
   DrinkBody: styled.div`
-    width: 60%;
+    width: 50%;
     height: 100%;
 
     display: flex;
@@ -70,7 +70,7 @@ export const St = {
   DrinkExplanation: styled.div`
     font-size: 18px;
     width: 80%;
-    height: 40%;
+    height: 36%;
   `,
 
   AginBtn: styled.div`
