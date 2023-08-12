@@ -7,7 +7,7 @@ export const St = {
     font-size: 13px;
 
     height: 80px;
-    margin-top: 300px;
+    margin-top: 100px;
 
     display: flex;
     justify-content: center;
