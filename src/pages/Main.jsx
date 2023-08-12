@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 
 const Main = () => {
   const currentUser = useUserStore((state) => state.currentUser);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <MainContainer>

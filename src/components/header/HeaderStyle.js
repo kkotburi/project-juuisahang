@@ -42,8 +42,12 @@ export const St = {
 
     cursor: pointer;
     &:hover {
+      color: #000;
+      font-weight: 700;
+    }
+    &:focus {
       color: #e24c4b;
-      font-weight: 900;
+      font-weight: 700;
     }
   `
 };

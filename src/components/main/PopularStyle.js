@@ -118,6 +118,9 @@ export const St = {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
   `,
 
   ListNickname: styled.p`
