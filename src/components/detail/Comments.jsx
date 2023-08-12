@@ -19,11 +19,11 @@ const Comments = () => {
     }
   });
 
-  const updateMutation = useMutation(updateComment, {
-    onSuccess: () => {
-      queryQlient.invalidateQueries('comments');
-    }
-  });
+  // const updateMutation = useMutation(updateComment, {
+  //   onSuccess: () => {
+  //     queryQlient.invalidateQueries('comments');
+  //   }
+  // });
 
   const insertMutation = useMutation(AddComment, {
     onSuccess: () => {
