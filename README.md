@@ -10,7 +10,7 @@
 
 ## 🎬 구현 사이트
 
-- 배포 링크 :
+### [주(酒)의사항](https://drink-cautions.vercel.app/)
 
 ## ⏰ 개발 기간
 
