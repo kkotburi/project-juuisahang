@@ -30,7 +30,7 @@ const usePost = () => {
 
   const updateLikesMutation = useMutation(updateLikes, {
     onMutate: async (updateLikes) => {
-      console.log('onMutate 호출');
+      // console.log('onMutate 호출');
       await queryClient.cancelQueries('likes');
 
       const previousPosts = queryClient.getQueryData('likes');
@@ -43,12 +43,12 @@ const usePost = () => {
     },
 
     onError: (err, updateLikes, context) => {
-      console.log('onError', err);
+      // console.log('onError', err);
       queryClient.setQueryData('likes', context.previousPosts);
     },
 
     onSettled: () => {
-      console.log('onSettled');
+      // console.log('onSettled');
       queryClient.invalidateQueries('likes');
     }
   });
