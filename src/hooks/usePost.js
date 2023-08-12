@@ -28,30 +28,32 @@ const usePost = () => {
     }
   });
 
-  // const updateLikesMutation = useMutation(updateLikes, {
-  //   onMutate: async (updateLikes) => {
-  //     console.log('onMutate 호출');
-  //     await queryClient.cancelQueries('likes');
+  const updateLikesMutation = useMutation(updateLikes, {
+    onMutate: async (updateLikes) => {
+      // console.log('onMutate 호출');
+      await queryClient.cancelQueries('likes');
 
-  //     const previousPosts = queryClient.getQueriesData('likes');
+      const previousPosts = queryClient.getQueryData('likes');
 
-  //     queryClient.setQueryData('likes', (prev) => [...prev, updateLikes]);
+      queryClient.setQueryData('likes', (prev) =>
+        prev.map((p) => (p.id === updateLikes.id ? { ...p, likes: updateLikes.likes } : p))
+      );
 
-  //     return { previousPosts };
-  //   },
+      return { previousPosts };
+    },
 
-  //   onError: (err, updateLikes, context) => {
-  //     console.log('onError', err);
-  //     queryClient.setQueryData('likes', context.previousPosts);
-  //   },
+    onError: (err, updateLikes, context) => {
+      // console.log('onError', err);
+      queryClient.setQueryData('likes', context.previousPosts);
+    },
 
-  //   onSettled: () => {
-  //     console.log('onSettled');
-  //     queryClient.invalidateQueries('likes');
-  //   }
-  // });
+    onSettled: () => {
+      // console.log('onSettled');
+      queryClient.invalidateQueries('likes');
+    }
+  });
 
-  return { addMutation, deleteMutation, updateMutation };
+  return { addMutation, deleteMutation, updateMutation, updateLikesMutation };
 };
 
 export default usePost;
