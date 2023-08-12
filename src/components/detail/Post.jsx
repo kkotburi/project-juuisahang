@@ -25,11 +25,15 @@ const Post = () => {
 
   const [title, onChangeTitle, setTitle] = useInput();
   const [body, onChangeBody, setBody] = useInput();
-  // const [category, onChangeCategory, setCategory] = useInput();
+  const [category, onChangeCategory, setCategory] = useInput();
   const [isEdit, setIsEdit] = useState(false);
 
   const handleDeletePost = (id) => {
-    deleteMutation.mutate(id);
+    if (window.confirm('글을 삭제하시겠습니까?')) {
+      deleteMutation.mutate(id);
+    } else {
+      alert('글 삭제를 취소합니다.');
+    }
   };
 
   const handleUpdatePost = (post) => {
@@ -37,11 +41,19 @@ const Post = () => {
       setIsEdit(true);
       setTitle(post.title);
       setBody(post.body);
+      setCategory(post.category);
     } else {
+      if (!title || !body) {
+        return alert('내용을 입력해주세요');
+      } else if (!category) {
+        return alert('카테고리를 선택해주세요');
+      }
+
       const editedPost = {
         ...post,
         title,
-        body
+        body,
+        category
       };
       updateMutation.mutate(editedPost);
       setIsEdit(false);
@@ -73,6 +85,7 @@ const Post = () => {
               <St.PostTitleBox>
                 {!isEdit && (
                   <>
+                    <St.PostCategory>{post.category}</St.PostCategory>
                     <St.PostTitle>{post.title}</St.PostTitle>
                     <St.PostDate>{dayjs(post.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</St.PostDate>
                   </>
@@ -80,7 +93,12 @@ const Post = () => {
               </St.PostTitleBox>
               {isEdit ? (
                 <>
-                  <WriteContents title={title} onChangeTitle={onChangeTitle} />
+                  <WriteContents
+                    title={title}
+                    onChangeTitle={onChangeTitle}
+                    category={category}
+                    onChangeCategory={onChangeCategory}
+                  />
                   <EditorContents body={body} setBody={setBody} />
                 </>
               ) : (

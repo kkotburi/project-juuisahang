@@ -37,6 +37,12 @@ export const St = {
     padding: 0 0 15px 10px;
   `,
 
+  PostCategory: styled.div`
+    color: #e24c4b;
+    font-size: 16px;
+    margin-bottom: 20px;
+  `,
+
   PostTitle: styled.div`
     font-size: 24px;
     font-weight: 600;
@@ -46,6 +52,7 @@ export const St = {
   PostDate: styled.div`
     font-size: 16px;
     color: #616161e5;
+    padding-left: 3px;
   `,
 
   PostBody: styled.div`

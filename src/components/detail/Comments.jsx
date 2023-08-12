@@ -19,12 +19,6 @@ const Comments = () => {
     }
   });
 
-  // const updateMutation = useMutation(updateComment, {
-  //   onSuccess: () => {
-  //     queryQlient.invalidateQueries('comments');
-  //   }
-  // });
-
   const insertMutation = useMutation(AddComment, {
     onSuccess: () => {
       queryQlient.invalidateQueries('comments');
@@ -34,7 +28,11 @@ const Comments = () => {
   const [body, setBody] = useState('');
 
   const handleDeleteComment = (id) => {
-    deleteMutation.mutate(id);
+    if (window.confirm('댓글을 삭제하시겠습니까?')) {
+      deleteMutation.mutate(id);
+    } else {
+      alert('댓글 삭제를 취소합니다.');
+    }
   };
 
   const handleSubmitComment = (e) => {
