@@ -4,7 +4,7 @@ export const St = {
   CommentsTitle: styled.div`
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin: 0 0 20px 15px;
   `,
 
   CommentsAddForm: styled.form`

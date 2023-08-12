@@ -2,6 +2,14 @@ import { styled } from 'styled-components';
 
 export const St = {
   PostContainer: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `,
+
+  PostWrapper: styled.div`
+    width: 85%;
+    height: 150%;
     background-color: #ffffff;
     border-radius: 15px;
     margin: 40px 0 60px 0;
@@ -14,9 +22,10 @@ export const St = {
   `,
 
   PostButton: styled.button`
-    font-size: 20px;
+    font-size: 18px;
     background-color: transparent;
     border: none;
+    margin-left: 15px;
     cursor: pointer;
 
     &:hover {
@@ -26,7 +35,7 @@ export const St = {
 
   PostTitleBox: styled.div`
     border-bottom: 1px solid black;
-    padding-bottom: 20px;
+    padding: 0 0 20px 10px;
   `,
 
   PostTitle: styled.div`
@@ -36,7 +45,7 @@ export const St = {
   `,
 
   PostBody: styled.div`
-    padding: 10px 20px;
+    padding: 10px 0 20px 10px;
   `,
 
   PostBottomBox: styled.div`

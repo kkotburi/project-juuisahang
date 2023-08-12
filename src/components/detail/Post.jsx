@@ -58,48 +58,50 @@ const Post = () => {
 
   return (
     <St.PostContainer>
-      {posts.map((post) => {
-        return (
-          <div key={post.id}>
-            {currentUser?.uid === post.userId && (
-              <St.PostButtonBox>
-                <St.PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</St.PostButton>
-                <St.PostButton onClick={() => handleDeletePost(post.id)}>삭제</St.PostButton>
-              </St.PostButtonBox>
-            )}
-            <St.PostTitleBox>
-              {!isEdit && (
+      <St.PostWrapper>
+        {posts.map((post) => {
+          return (
+            <div key={post.id}>
+              {currentUser?.uid === post.userId && (
+                <St.PostButtonBox>
+                  <St.PostButton onClick={() => handleUpdatePost(post)}>{isEdit ? '저장' : '수정'}</St.PostButton>
+                  <St.PostButton onClick={() => handleDeletePost(post.id)}>삭제</St.PostButton>
+                </St.PostButtonBox>
+              )}
+              <St.PostTitleBox>
+                {!isEdit && (
+                  <>
+                    <St.PostTitle>{post.title}</St.PostTitle>
+                    <div>{dayjs(post.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</div>
+                  </>
+                )}
+              </St.PostTitleBox>
+              {isEdit ? (
                 <>
-                  <St.PostTitle>{post.title}</St.PostTitle>
-                  <div>{dayjs(post.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</div>
+                  <WriteContents title={title} onChangeTitle={onChangeTitle} />
+                  <EditorContents body={body} setBody={setBody} />
+                </>
+              ) : (
+                <>
+                  <St.PostBody>
+                    <Viewer initialValue={post.body} />
+                  </St.PostBody>
+                  <St.PostBottomBox>
+                    <St.PostUserBox>
+                      <St.PostUserProfileImg src={post.profileImg} />
+                      {post.nickname}
+                    </St.PostUserBox>
+                    <St.PostShareLikeBox>
+                      <Share />
+                      <Likes />
+                    </St.PostShareLikeBox>
+                  </St.PostBottomBox>
                 </>
               )}
-            </St.PostTitleBox>
-            {isEdit ? (
-              <>
-                <WriteContents title={title} onChangeTitle={onChangeTitle} />
-                <EditorContents body={body} setBody={setBody} />
-              </>
-            ) : (
-              <>
-                <St.PostBody>
-                  <Viewer initialValue={post.body} />
-                </St.PostBody>
-                <St.PostBottomBox>
-                  <St.PostUserBox>
-                    <St.PostUserProfileImg src={post.profileImg} />
-                    {post.nickname}
-                  </St.PostUserBox>
-                  <St.PostShareLikeBox>
-                    <Share />
-                    <Likes />
-                  </St.PostShareLikeBox>
-                </St.PostBottomBox>
-              </>
-            )}
-          </div>
-        );
-      })}
+            </div>
+          );
+        })}
+      </St.PostWrapper>
     </St.PostContainer>
   );
 };

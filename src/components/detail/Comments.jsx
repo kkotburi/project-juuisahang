@@ -65,7 +65,9 @@ const Comments = () => {
 
   return (
     <div>
-      <St.CommentsTitle>댓글</St.CommentsTitle>
+      <St.CommentsTitle>
+        {comments.filter((comment) => comment.postId === params.postId).length}명이 건배사를 외치고 있습니다!
+      </St.CommentsTitle>
       <St.CommentsAddForm onSubmit={handleSubmitComment}>
         <St.CommentsTextarea
           type="text"
