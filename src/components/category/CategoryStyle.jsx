@@ -50,7 +50,8 @@ export const St = {
     width: 88%;
     height: 60px;
     border-radius: 8px;
-    margin: 10px auto 10px auto;
+    padding: 5px;
+    margin: 10px auto 18px auto;
     display: flex;
     align-items: center;
     background-color: white;
@@ -86,10 +87,10 @@ export const St = {
     gap: 8px;
   `,
   ListProfileImgBox: styled.div`
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 100%;
-    border: 1px solid #d7d7d7;
+    border: 1px solid #e24c4b;
     overflow: hidden;
     margin: auto 10px;
   `,
