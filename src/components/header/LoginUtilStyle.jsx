@@ -22,6 +22,7 @@ export const St = {
     width: 50px;
     height: 50px;
     margin-right: 8px;
+    border: 1px solid #e24c4b;
 
     img {
       width: 100%;
