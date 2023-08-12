@@ -39,7 +39,12 @@ export const St = {
     text-decoration-line: none;
   `,
   PostListWrap: styled.div`
-    min-height: 25vh;
+    width: 100%;
+    height: 380px;
+    overflow: auto;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   `,
   PostList: styled(Link)`
     width: 88%;
@@ -52,6 +57,7 @@ export const St = {
     cursor: pointer;
     text-decoration-line: none;
     color: black;
+    word-break: break-all;
   `,
   PostTime: styled.div`
     font-size: 13px;
