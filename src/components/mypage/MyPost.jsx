@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { St } from './MyPostStyle';
 import { useQuery } from 'react-query';
 import { getMyPosts, getMyLikes } from 'api/myPost';
@@ -9,10 +9,10 @@ import { getProfile } from 'api/profile';
 const PAGE_SIZE = 5;
 
 const MyPost = () => {
-  const listRef = useRef();
-  const [myPostsActive, setMyPostsActive] = useState(true);
-  const [likedPostsActive, setLikedPostsActive] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [activeTab, setActiveTab] = useState('myPosts');
+  const [currentPageMyPosts, setCurrentPageMyPosts] = useState(0);
+  const [currentPageLikedPosts, setCurrentPageLikedPosts] = useState(0);
+  const [activeMember, setActiveMember] = useState({});
 
   const {
     data: myPostsData,
@@ -31,11 +31,18 @@ const MyPost = () => {
   });
 
   const { data: member } = useQuery('members', getProfile, {
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
+    onSuccess: (data) => {
+      setActiveMember(data);
+    }
   });
 
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
+  const handlePageChangeMyPosts = ({ selected }) => {
+    setCurrentPageMyPosts(selected);
+  };
+
+  const handlePageChangeLikedPosts = ({ selected }) => {
+    setCurrentPageLikedPosts(selected);
   };
 
   const renderPosts = (posts) => {
@@ -62,10 +69,18 @@ const MyPost = () => {
                   <St.ListProfileImgBox>
                     <St.ListProfileImg
                       alt="이미지 준비중"
-                      src={myPostsActive ? member.user_metadata.profileImg : post.profileImg}
+                      src={
+                        activeTab === 'myPosts'
+                          ? activeMember.user_metadata && activeMember.user_metadata.profileImg
+                          : post.profileImg
+                      }
                     ></St.ListProfileImg>
                   </St.ListProfileImgBox>
-                  <St.ListNickname>{myPostsActive ? member.user_metadata.nickname : post.nickname}</St.ListNickname>
+                  <St.ListNickname>
+                    {activeTab === 'myPosts'
+                      ? activeMember.user_metadata && activeMember.user_metadata.nickname
+                      : post.nickname}
+                  </St.ListNickname>
                 </St.ListWriterWrap>
               </St.Lists>
             </St.PostLink>
@@ -76,47 +91,57 @@ const MyPost = () => {
   };
 
   const handleMyPostsClick = () => {
-    setMyPostsActive(true);
-    setLikedPostsActive(false);
     refetchMyPosts();
+    setActiveTab('myPosts');
+    setCurrentPageMyPosts(0);
   };
 
   const handleMyLikedPostsClick = () => {
-    setMyPostsActive(false);
-    setLikedPostsActive(true);
     refetchLikedPosts();
+    setActiveTab('likedPosts');
+    setCurrentPageLikedPosts(0);
   };
 
   const renderContent = () => {
-    let postsData, pageCount;
+    let postsData, pageCount, currentPage, handlePageChange;
+    let noPostsMessage = '';
 
-    if (myPostsActive) {
+    if (activeTab === 'myPosts') {
       postsData = myPostsData;
-    } else if (likedPostsActive) {
+      currentPage = currentPageMyPosts;
+      handlePageChange = handlePageChangeMyPosts;
+      noPostsMessage = '작성된 글이 없습니다.';
+    } else if (activeTab === 'likedPosts') {
       postsData = likedPostsData;
+      currentPage = currentPageLikedPosts;
+      handlePageChange = handlePageChangeLikedPosts;
+      noPostsMessage = '건배한 글이 없습니다.';
     }
 
-    if (postsData) {
+    if (postsData && postsData.length > 0) {
       const paginatedPosts = postsData.slice(currentPage * PAGE_SIZE, (currentPage + 1) * PAGE_SIZE);
       pageCount = Math.ceil(postsData.length / PAGE_SIZE);
       return (
         <div>
           {renderPosts(paginatedPosts, member)}
-          <St.Paginate
-            previousLabel={'<'}
-            nextLabel={'>'}
-            breakLabel={'...'}
-            pageCount={pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={5}
-            onPageChange={handlePageChange}
-            activeClassName={'active'}
-          />
+          <St.PaginationBox>
+            <St.Paginate
+              previousLabel={''}
+              nextLabel={''}
+              breakLabel={'...'}
+              pageCount={pageCount}
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={handlePageChange}
+              activeClassName={'active'}
+              forcePage={currentPage}
+            />
+          </St.PaginationBox>
         </div>
       );
     }
 
-    return <div>No posts available.</div>;
+    return <div>{noPostsMessage}</div>;
   };
 
   if (myPostsLoading || likedPostsLoading) {
@@ -133,9 +158,9 @@ const MyPost = () => {
         <St.ListBtn onClick={handleMyPostsClick} autoFocus>
           내가 쓴 글
         </St.ListBtn>
-        <St.ListBtn onClick={handleMyLikedPostsClick}>좋아요 목록</St.ListBtn>
+        <St.ListBtn onClick={handleMyLikedPostsClick}>건배한 글</St.ListBtn>
       </St.PostList>
-      <St.ListBox ref={listRef}>{renderContent()}</St.ListBox>
+      <St.ListBox>{renderContent()}</St.ListBox>
     </St.MyPostContainer>
   );
 };

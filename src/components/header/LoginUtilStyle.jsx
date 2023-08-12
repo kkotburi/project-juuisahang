@@ -11,6 +11,7 @@ export const St = {
   `,
   UserName: styled.span`
     flex: none;
+    margin-right: 5px;
   `,
   ProfileMini: styled.div`
     display: flex;
@@ -23,6 +24,9 @@ export const St = {
     height: 50px;
     margin-right: 8px;
     border: 1px solid #e24c4b;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
 
     img {
       width: 100%;

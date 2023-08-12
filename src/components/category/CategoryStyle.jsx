@@ -40,7 +40,7 @@ export const St = {
   `,
   PostListWrap: styled.div`
     width: 100%;
-    height: 380px;
+    height: 30rem;
     overflow: auto;
     &::-webkit-scrollbar {
       display: none;
@@ -50,7 +50,7 @@ export const St = {
     width: 88%;
     height: 60px;
     border-radius: 8px;
-    padding: 5px;
+    padding: 10px;
     margin: 10px auto 18px auto;
     display: flex;
     align-items: center;
@@ -62,13 +62,13 @@ export const St = {
   `,
   PostTime: styled.div`
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 500;
     padding-left: 15px;
     padding-right: 15px;
   `,
   PostTitle: styled.div`
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 700;
     width: 70%;
   `,
   PostRight: styled.div`
@@ -98,5 +98,8 @@ export const St = {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    image-rendering: -webkit-optimize-contrast;
   `
 };

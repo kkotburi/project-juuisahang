@@ -57,7 +57,7 @@ const Router = () => {
 
   // 조회
   const currentUser = useUserStore((state) => state.currentUser);
-  console.log('주스탠드 => ', currentUser);
+  // console.log('주스탠드 => ', currentUser);
 
   return (
     <BrowserRouter>
@@ -65,12 +65,10 @@ const Router = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/join" element={<Join />} />
-          {/* <Route path="/mypage" element={<AuthRoute component={<MyPage />} authenticated={currentUser} />} /> */}
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/" element={<Main />} />
           <Route path="/category/:code" element={<Category />} />
           <Route path="/detail/:postId" element={<Detail />} />
-          {/* <Route path="/write" element={<AuthRoute component={<Write />} authenticated={currentUser} />} /> */}
           <Route path="/write" element={<Write />} />
         </Routes>
       </Layout>

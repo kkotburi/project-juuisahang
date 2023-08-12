@@ -7,15 +7,17 @@ export const St = {
     font-size: 13px;
 
     height: 80px;
-    margin-top: 200px;
+    margin-top: 100px;
 
     display: flex;
     justify-content: center;
     flex-direction: column;
+
+    bottom: 0;
   `,
 
   MemberGitHub: styled.div`
-    margin: 0px 0px 5px 60px;
+    text-align: center;
   `,
 
   GitHub: styled.div`
@@ -23,21 +25,21 @@ export const St = {
   `,
 
   MemberList: styled.div`
-    display: flex;
-    align-items: center;
+    display: block;
   `,
 
   MemberLink: styled.a`
     color: #3d3d3d;
     text-decoration: none;
 
-    margin: 2px 10px 8px 10px;
+    padding: 0 10px;
+    text-align: center;
   `,
 
   Copyright: styled.div`
-    margin: 0px 60px;
-
     display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
   `,
 
   TeamName: styled.div`

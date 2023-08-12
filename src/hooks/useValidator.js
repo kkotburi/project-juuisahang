@@ -34,7 +34,7 @@ const useValidator = () => {
       required: '비밀번호 확인은 필수 입력입니다.',
       validate: {
         check: (val) => {
-          console.log(passwordVal, val);
+          // console.log(passwordVal, val);
           if (passwordVal !== val) {
             return '비밀번호가 일치하지 않습니다.';
           }
