@@ -42,7 +42,7 @@ const Comments = () => {
       return alert('내용을 입력해주세요');
     }
     const newComment = {
-      userId: currentUser.uid,
+      userId: currentUser?.uid,
       nickname: currentUser.nickname,
       profileImg: currentUser.profileImg,
       body,
@@ -93,7 +93,7 @@ const Comments = () => {
                 <St.CommentsDate>{dayjs(comment.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</St.CommentsDate>
                 <St.CommentsBody>{comment.body}</St.CommentsBody>
               </St.CommentsContentsBox>
-              {comment.userId === currentUser.uid && (
+              {comment.userId === currentUser?.uid && (
                 <St.CommentsDeleteButton onClick={() => handleDeleteComment(comment.id)}>삭제</St.CommentsDeleteButton>
               )}
             </St.CommentsBox>
