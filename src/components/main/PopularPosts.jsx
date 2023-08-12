@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import supabase from 'lib/supabaseClient';
-import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import supabase from 'lib/supabaseClient';
+// style
 import dayjs from 'dayjs';
 import { FaGlassCheers } from 'react-icons/fa';
 import { St } from './PopularStyle';
