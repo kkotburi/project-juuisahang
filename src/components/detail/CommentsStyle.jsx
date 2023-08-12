@@ -44,7 +44,7 @@ export const St = {
   `,
 
   CommentsUserInfoBox: styled.div`
-    width: 65px;
+    width: 70px;
     display: flex;
     flex-direction: column;
     gap: 7px;
