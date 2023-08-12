@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { FaGlassCheers } from 'react-icons/fa';
 import { St } from './CategoryStyle';
 
-const Hangover = ({ code, posts }) => {
+const Hangover = ({ code, posts, currentUser }) => {
   const categoryPosts = posts.filter((post) => post.category === code);
 
   return (
@@ -12,7 +12,7 @@ const Hangover = ({ code, posts }) => {
         <St.CategotyTitle>숙취해소법</St.CategotyTitle>
         <St.CategorySubTitle>알고있는 최고의 숙취해소법을 공유해주세요 !</St.CategorySubTitle>
       </St.CategoryHeader>
-      <St.WriteBtn to={`/write`}>글 작성하기</St.WriteBtn>
+      {currentUser?.uid && <St.WriteBtn to={`/write`}>글 작성하기</St.WriteBtn>}
       <St.PostListWrap>
         {categoryPosts
           .sort((a, b) => dayjs(b.created_at) - dayjs(a.created_at))
