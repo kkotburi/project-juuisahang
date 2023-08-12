@@ -4,8 +4,6 @@ export const St = {
   Test: styled.div``,
 
   PopularContainer: styled.div`
-    /* background-color: blueviolet; */
-
     width: 1200px;
 
     display: flex;
@@ -15,8 +13,6 @@ export const St = {
   `,
 
   PopularTitle: styled.div`
-    /* background-color: #a785c7; */
-
     font-size: 24px;
     font-weight: 700;
     height: 10%;
@@ -65,15 +61,11 @@ export const St = {
   `,
 
   PopularPostDate: styled.div`
-    /* background-color: gainsboro; */
-
     width: 10%;
     margin: 20px;
   `,
 
   PopularPostBody: styled.div`
-    /* background-color: palegoldenrod; */
-
     width: 52%;
     height: 100%;
 
@@ -83,8 +75,6 @@ export const St = {
   `,
 
   PopularPostCategory: styled.div`
-    /* background-color: gray; */
-
     margin: 10px 10px 0px 20px;
     color: #e24c4b;
 
@@ -93,8 +83,6 @@ export const St = {
   `,
 
   PopularPostTitle: styled.div`
-    /* background-color: white; */
-
     font-weight: 700;
     margin: 10px;
 
@@ -103,8 +91,6 @@ export const St = {
   `,
 
   PopularPostLike: styled.div`
-    /* background-color: khaki; */
-
     width: 12%;
     height: 100%;
 
@@ -115,8 +101,6 @@ export const St = {
   `,
 
   PopularPostLikeNum: styled.div`
-    /* background-color: palegreen; */
-
     margin-top: 8px;
   `,
 
@@ -137,8 +121,6 @@ export const St = {
   `,
 
   ListNickname: styled.p`
-    /* background-color: blue; */
-
     width: 10%;
     margin-right: 10px;
 

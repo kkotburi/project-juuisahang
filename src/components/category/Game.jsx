@@ -1,7 +1,7 @@
 import React from 'react';
-import { St } from './CategoryStyle';
 import dayjs from 'dayjs';
 import { FaGlassCheers } from 'react-icons/fa';
+import { St } from './CategoryStyle';
 
 const Game = ({ code, posts }) => {
   const categoryPosts = posts.filter((post) => post.category === code);
