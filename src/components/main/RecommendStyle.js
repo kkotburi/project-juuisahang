@@ -135,6 +135,11 @@ export const St = {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: transform 0.5s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
   `,
 
   MoodImg: styled.img`
@@ -142,13 +147,15 @@ export const St = {
   `,
 
   MoodFlutterImg: styled.img`
-    width: 160px;
+    /* background-color: black; */
+
+    width: 158px;
     height: auto;
   `,
 
   MoodTitle: styled.div`
     font-size: 20px;
     height: 10%;
-    margin-top: 10px;
+    margin-top: 30px;
   `
 };

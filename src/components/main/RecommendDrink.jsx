@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import supabase from 'lib/supabaseClient';
-import { St } from './MainStyle';
+import { St } from './RecommendStyle';
 
 const RecommendDrink = () => {
   const [mood, setMood] = useState();

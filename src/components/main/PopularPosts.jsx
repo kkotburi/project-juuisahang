@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { FaGlassCheers } from 'react-icons/fa';
-import { St } from 'components/mypage/MyPostStyle';
+import { St } from './PopularStyle';
 
 const PopularPosts = () => {
   const navigate = useNavigate();
@@ -30,70 +30,36 @@ const PopularPosts = () => {
   const popularPosts = posts.sort((a, b) => b.likes.length - a.likes.length).slice(0, 10);
 
   return (
-    <PopularContainer>
-      <PopularTitle>Popularity</PopularTitle>
+    <St.PopularContainer>
+      <St.PopularTitle>인기 게시글</St.PopularTitle>
       {popularPosts.map((post, index) => {
         return (
-          <div
-            key={post.id}
-            onClick={() => {
-              navigate(`/detail/${post.id}`);
-            }}
-          >
-            <div>Top{index + 1}</div>
-            <PopularPost>
-              <div>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</div>
-              <div>
-                <div>{post.category}</div>
-                <div>{post.title}</div>
-              </div>
-              <div>
+          <St.PopularRateContainer key={post.id}>
+            <St.PopularRateText>Top {index + 1}</St.PopularRateText>
+            <St.PopularPost
+              onClick={() => {
+                navigate(`/detail/${post.id}`);
+              }}
+            >
+              <St.PopularPostDate>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</St.PopularPostDate>
+              <St.PopularPostBody>
+                <St.PopularPostCategory>{post.category}</St.PopularPostCategory>
+                <St.PopularPostTitle>{post.title}</St.PopularPostTitle>
+              </St.PopularPostBody>
+              <St.PopularPostLike>
                 <FaGlassCheers size="25" color="#eea100" />
-                <div>{post.likes.length}</div>
-              </div>
+                <St.PopularPostLikeNum>{post.likes.length}</St.PopularPostLikeNum>
+              </St.PopularPostLike>
               <St.ListProfileImgBox>
                 <St.ListProfileImg src={post.profileImg} />
               </St.ListProfileImgBox>
               <St.ListNickname>{post.nickname}</St.ListNickname>
-            </PopularPost>
-          </div>
+            </St.PopularPost>
+          </St.PopularRateContainer>
         );
       })}
-    </PopularContainer>
+    </St.PopularContainer>
   );
 };
 
 export default PopularPosts;
-
-const PopularContainer = styled.div`
-  background-color: blueviolet;
-
-  width: 1200px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const PopularTitle = styled.div`
-  background-color: #a785c7;
-
-  font-size: 20px;
-  margin: 10px;
-`;
-
-const PopularPost = styled.div`
-  background-color: aliceblue;
-
-  width: 100%;
-  height: 60px;
-  margin: 10px;
-  border-radius: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-`;
