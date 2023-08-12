@@ -15,8 +15,6 @@ export const St = {
   `,
 
   HeaderLogoImg: styled.img`
-    /* background-color: black; */
-
     width: auto;
     height: 80px;
 
@@ -24,8 +22,6 @@ export const St = {
   `,
 
   CategoryWrapper: styled.div`
-    /* background-color: yellow; */
-
     width: 1000px;
 
     justify-content: center;

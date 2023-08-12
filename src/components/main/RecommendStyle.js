@@ -18,8 +18,6 @@ export const St = {
   `,
 
   RecommendTitle: styled.div`
-    /* background-color: yellow; */
-
     font-size: 26px;
     font-weight: 700;
     height: 10%;
@@ -27,8 +25,6 @@ export const St = {
   `,
 
   DrinkContainder: styled.div`
-    /* background-color: aliceblue; */
-
     width: 100%;
     height: 70%;
 
@@ -47,8 +43,6 @@ export const St = {
   `,
 
   DrinkImg: styled.img`
-    /* background-color: palegreen; */
-
     width: 100%;
     height: 100%;
 
@@ -57,8 +51,6 @@ export const St = {
   `,
 
   DrinkBody: styled.div`
-    /* background-color: rebeccapurple; */
-
     width: 60%;
     height: 100%;
 
@@ -70,16 +62,12 @@ export const St = {
   `,
 
   DrinkName: styled.div`
-    /* background-color: yellow; */
-
     font-weight: 700;
     font-size: 20px;
     height: 24%;
   `,
 
   DrinkExplanation: styled.div`
-    /* background-color: yellow; */
-
     font-size: 18px;
     width: 80%;
     height: 40%;
@@ -103,8 +91,6 @@ export const St = {
   `,
 
   MoodContainer: styled.div`
-    /* background-color: aliceblue; */
-
     height: 70%;
 
     display: flex;
@@ -113,8 +99,6 @@ export const St = {
   `,
 
   MoodSelect: styled.div`
-    /* background-color: blueviolet; */
-
     height: 240px;
     margin: 10px;
 
@@ -127,8 +111,6 @@ export const St = {
   `,
 
   MoodImgeBox: styled.div`
-    /* background-color: aqua; */
-
     width: 200px;
     height: 90%;
 
@@ -142,13 +124,9 @@ export const St = {
     }
   `,
 
-  MoodImg: styled.img`
-    /* background-color: brown; */
-  `,
+  MoodImg: styled.img``,
 
   MoodFlutterImg: styled.img`
-    /* background-color: black; */
-
     width: 158px;
     height: auto;
   `,
