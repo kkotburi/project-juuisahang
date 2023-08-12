@@ -14,11 +14,11 @@ export const St = {
     justify-content: center;
   `,
 
-  HeaderImg: styled.img`
+  HeaderLogoImg: styled.img`
     /* background-color: black; */
 
-    width: 80px;
-    height: auto;
+    width: auto;
+    height: 80px;
 
     cursor: pointer;
   `,

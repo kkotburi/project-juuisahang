@@ -27,33 +27,36 @@ const PopularPosts = () => {
     getPosts();
   }, []);
 
-  const popularPosts = posts.sort((a, b) => b.likes.length - a.likes.length).slice(0, 2);
+  const popularPosts = posts.sort((a, b) => b.likes.length - a.likes.length).slice(0, 10);
 
   return (
     <PopularContainer>
       <PopularTitle>Popularity</PopularTitle>
-      {popularPosts.map((post) => {
+      {popularPosts.map((post, index) => {
         return (
-          <PopularPost
+          <div
             key={post.id}
             onClick={() => {
               navigate(`/detail/${post.id}`);
             }}
           >
-            <div>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</div>
-            <div>
-              <div>{post.category}</div>
-              <div>{post.title}</div>
-            </div>
-            <div>
-              <FaGlassCheers size="25" color="#eea100" />
-              <div>{post.likes.length}</div>
-            </div>
-            <St.ListProfileImgBox>
-              <St.ListProfileImg src={post.profileImg} />
-            </St.ListProfileImgBox>
-            <St.ListNickname>{post.nickname}</St.ListNickname>
-          </PopularPost>
+            <div>Top{index + 1}</div>
+            <PopularPost>
+              <div>{dayjs(post.created_at).locale('kr').format('YYYY-MM-DD')}</div>
+              <div>
+                <div>{post.category}</div>
+                <div>{post.title}</div>
+              </div>
+              <div>
+                <FaGlassCheers size="25" color="#eea100" />
+                <div>{post.likes.length}</div>
+              </div>
+              <St.ListProfileImgBox>
+                <St.ListProfileImg src={post.profileImg} />
+              </St.ListProfileImgBox>
+              <St.ListNickname>{post.nickname}</St.ListNickname>
+            </PopularPost>
+          </div>
         );
       })}
     </PopularContainer>
