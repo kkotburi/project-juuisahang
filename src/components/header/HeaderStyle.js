@@ -14,11 +14,11 @@ export const St = {
     justify-content: center;
   `,
 
-  HeaderImg: styled.img`
+  HeaderLogoImg: styled.img`
     /* background-color: black; */
 
-    width: 80px;
-    height: auto;
+    width: auto;
+    height: 80px;
 
     cursor: pointer;
   `,
@@ -46,27 +46,7 @@ export const St = {
 
     cursor: pointer;
     &:hover {
-      font-weight: 900;
-    }
-  `,
-  AuthContainder: styled.div`
-    /* background-color: pink; */
-
-    width: 100px;
-  `,
-
-  LoginLink: styled(Link)`
-    background-color: red;
-
-    text-decoration: none;
-    color: black;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-    &:hover {
+      color: #e24c4b;
       font-weight: 900;
     }
   `

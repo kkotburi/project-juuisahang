@@ -7,7 +7,7 @@ import usePost from 'hooks/usePost';
 import { FaGlassCheers } from 'react-icons/fa';
 import { St } from './ShareLikesStyle';
 
-const Like = () => {
+const Likes = () => {
   const params = useParams();
 
   const currentUser = useUserStore((state) => state.currentUser);
@@ -57,4 +57,4 @@ const Like = () => {
   );
 };
 
-export default Like;
+export default Likes;
