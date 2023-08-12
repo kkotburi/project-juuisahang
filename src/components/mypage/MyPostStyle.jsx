@@ -27,7 +27,7 @@ export const St = {
   `,
   ListBox: styled.div`
     width: 800px;
-    height: 400px;
+    height: 520px;
     padding: 10px;
     display: flex;
     margin-top: 15px;
