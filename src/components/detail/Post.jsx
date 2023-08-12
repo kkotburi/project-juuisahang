@@ -45,6 +45,8 @@ const Post = () => {
       };
       updateMutation.mutate(editedPost);
       setIsEdit(false);
+
+      post.body = body;
     }
   };
 
@@ -72,7 +74,7 @@ const Post = () => {
                 {!isEdit && (
                   <>
                     <St.PostTitle>{post.title}</St.PostTitle>
-                    <div>{dayjs(post.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</div>
+                    <St.PostDate>{dayjs(post.created_at).locale('kr').format(`YYYY-MM-DD HH:mm`)}</St.PostDate>
                   </>
                 )}
               </St.PostTitleBox>
@@ -92,8 +94,8 @@ const Post = () => {
                       {post.nickname}
                     </St.PostUserBox>
                     <St.PostShareLikeBox>
-                      <Share />
                       <Likes />
+                      <Share />
                     </St.PostShareLikeBox>
                   </St.PostBottomBox>
                 </>

@@ -82,6 +82,7 @@ const Comments = () => {
       <div>
         {comments
           .filter((comment) => comment.postId === params.postId)
+          .sort((a, b) => dayjs(b.created_at) - dayjs(a.created_at))
           .map((comment) => (
             <St.CommentsBox key={comment.id}>
               <St.CommentsUserInfoBox>

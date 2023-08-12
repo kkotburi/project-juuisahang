@@ -8,8 +8,7 @@ export const St = {
   `,
 
   PostWrapper: styled.div`
-    width: 85%;
-    height: 150%;
+    width: 90%;
     background-color: #ffffff;
     border-radius: 15px;
     margin: 40px 0 60px 0;
@@ -34,14 +33,19 @@ export const St = {
   `,
 
   PostTitleBox: styled.div`
-    border-bottom: 1px solid black;
-    padding: 0 0 20px 10px;
+    border-bottom: 1px solid #a1a1a1bf;
+    padding: 0 0 15px 10px;
   `,
 
   PostTitle: styled.div`
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 10px;
+  `,
+
+  PostDate: styled.div`
+    font-size: 16px;
+    color: #616161e5;
   `,
 
   PostBody: styled.div`
@@ -55,6 +59,7 @@ export const St = {
   `,
 
   PostUserBox: styled.div`
+    font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,7 +71,9 @@ export const St = {
     height: 45px;
     border-radius: 50%;
     margin-right: 10px;
+    object-fit: cover;
   `,
+
   PostShareLikeBox: styled.div`
     display: flex;
     align-items: center;
