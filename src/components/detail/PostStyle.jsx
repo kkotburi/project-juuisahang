@@ -62,7 +62,7 @@ export const St = {
   PostBottomBox: styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    margin-top: 100px;
   `,
 
   PostUserBox: styled.div`
