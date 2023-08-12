@@ -18,7 +18,7 @@ const usePost = () => {
   const deleteMutation = useMutation(deletePost, {
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
-      navigate(-1);
+      navigate(`/`);
     }
   });
 
