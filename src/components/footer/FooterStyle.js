@@ -6,19 +6,18 @@ export const St = {
     color: #3d3d3d;
     font-size: 13px;
 
-    height: 80px;
+    height: 140px;
     margin-top: 100px;
 
     display: flex;
     justify-content: center;
     flex-direction: column;
+    text-align: center;
 
     bottom: 0;
   `,
 
-  MemberGitHub: styled.div`
-    text-align: center;
-  `,
+  MemberGitHub: styled.div``,
 
   GitHub: styled.div`
     height: 20px;
@@ -26,6 +25,7 @@ export const St = {
 
   MemberList: styled.div`
     display: block;
+    margin-top: 10px;
   `,
 
   MemberLink: styled.a`
@@ -33,13 +33,12 @@ export const St = {
     text-decoration: none;
 
     padding: 0 10px;
-    text-align: center;
   `,
 
   Copyright: styled.div`
     display: flex;
     margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 28px;
   `,
 
   TeamName: styled.div`
