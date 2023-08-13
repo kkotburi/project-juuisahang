@@ -10,7 +10,8 @@
 
 ## 🎬 구현 사이트
 
-### [주(酒)의사항](https://drink-cautions.vercel.app/)
+### [주(酒)의사항으로 이동하기](https://drink-cautions.vercel.app/)
+https://github.com/ParkJe2/drink-cautions_TeamProject/assets/117563796/d260a519-31f2-45aa-91f4-9d8241e0b5c2
 
 ## ⏰ 개발 기간
 
