@@ -18,5 +18,5 @@ export default Layout;
 const Children = styled.div`
   width: 1200px;
   margin: 0 auto;
-  min-height: 41rem;
+  min-height: 570px;
 `;

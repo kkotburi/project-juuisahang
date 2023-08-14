@@ -27,7 +27,9 @@ const PopularPosts = () => {
     getPosts();
   }, []);
 
-  const popularPosts = posts.sort((a, b) => b.likes.length - a.likes.length).slice(0, 10);
+  const popularPosts = posts
+    .sort((a, b) => b.likes.length - a.likes.length || new Date(b.created_at) - new Date(a.created_at))
+    .slice(0, 10);
 
   return (
     <St.PopularContainer>

@@ -5,7 +5,7 @@ export const St = {
   Test: styled.div``,
 
   HeaderContainer: styled.header`
-    height: 100px;
+    height: 120px;
     background-color: white;
     border-bottom: solid 1px #969696;
 
@@ -16,13 +16,13 @@ export const St = {
 
   HeaderLogoImg: styled.img`
     width: auto;
-    height: 80px;
+    height: 100px;
 
     cursor: pointer;
   `,
 
   CategoryWrapper: styled.div`
-    width: 1000px;
+    width: 900px;
 
     justify-content: center;
     display: grid;
@@ -32,7 +32,7 @@ export const St = {
   CategoryLink: styled(Link)`
     text-decoration: none;
     color: black;
-    font-size: 18px;
+    font-size: 20px;
 
     margin: 0px 50px;
 
