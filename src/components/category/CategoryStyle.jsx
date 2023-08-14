@@ -40,11 +40,7 @@ export const St = {
   `,
   PostListWrap: styled.div`
     width: 100%;
-    height: 30rem;
-    overflow: auto;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    height: 100%;
   `,
   PostList: styled(Link)`
     width: 88%;
