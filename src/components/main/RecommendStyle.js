@@ -64,13 +64,14 @@ export const St = {
   DrinkName: styled.div`
     font-weight: 700;
     font-size: 20px;
-    height: 24%;
+    height: 18%;
   `,
 
   DrinkExplanation: styled.div`
     font-size: 18px;
     width: 80%;
-    height: 36%;
+    height: 50%;
+    line-height: 180%;
   `,
 
   AginBtn: styled.div`
@@ -81,6 +82,7 @@ export const St = {
 
     width: 90px;
     height: 36px;
+    margin-top: 20px;
     border-radius: 8px;
 
     display: flex;
